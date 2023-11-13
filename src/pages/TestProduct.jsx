@@ -1,106 +1,56 @@
 import { AiOutlineCheck } from "react-icons/ai";
-import { useCallback, useEffect, useState, useRef } from "react";
-import { Dropdown } from "primereact/dropdown";
-import image from "../assets/test.webp";
-import image2 from "../assets/test2.webp";
-import { InputText } from "primereact/inputtext";
+import { useEffect, useState, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  AddToCartApi,
-  GetToCart,
-  getProduct,
-  getProductSummery,
-} from "../store/ContactSlice";
+import {AddToCartApi,GetToCart, getProduct, getProductSummery,} from "../store/ContactSlice";
 import "primereact/resources/themes/saga-green/theme.css";
 import "primereact/resources/primereact.min.css";
-// import 'primeicons/primeicons.css';
 import SwiperProducts from "../components/SwiperProducts/SwiperProducts";
 import Helmet from "../components/Helmet";
-import { Toast } from "primereact/toast";
 
-const TestProduct = ({ isUser }) => {
-  const { id, id2 } = useParams();
+const TestProduct = () => {
+  const { id2 } = useParams();
   const [value, setValue] = useState(false);
   const { productArr, summeryArr } = useSelector((state) => state.ContactSlice);
-
   const dispatch = useDispatch();
-
   const [widthError, setWidthError] = useState(false);
   const [heightError, setheightError] = useState(false);
   const [SubOption, setSubOption] = useState(null);
-
   const [SubOptionTwo, setSubOptionTwo] = useState(null);
-
-  const [TitleOfSubOption, setTitleOfSubOption] = useState("");
-  const [TxtOfSubOption, setTxtOfSubOption] = useState("");
-  const [TxtOfSubOptionTwo, setTxtOfSubOptionTwo] = useState("");
-
   const [GetOptionName, setGetOptionName] = useState(null);
-  const [FinalOption, setFinalOption] = useState(null);
   const [width, setWidth] = useState("");
   const [height, setHeight] = useState("");
   const [limit, setLimit] = useState("");
   useEffect(() => {
     if (value === false) {
       setValue(true);
-      dispatch(getProduct(id2))
-        .unwrap()
-        .then((res) => {
+      dispatch(getProduct(id2)).unwrap().then((res) => {
           setHeadersId(res.data.headers[0]?.id);
           setWidth(`${res.data.def_width}`);
           setHeight(`${res.data.def_height}`);
           setLimit(`${res.data.limit}`);
         });
-      dispatch(
-        getProductSummery(
-          `?product_id=${id2}&width=${100}&height=${100}&quantity=${1}&limit=${limit}`
-        )
-      );
+      dispatch(getProductSummery(`?product_id=${id2}&width=${100}&height=${100}&quantity=${1}&limit=${limit}`));
     }
   }, [dispatch, id2, value]);
-  const [selected_op, setSelected] = useState([
-    {
+  const [selected_op, setSelected] = useState([{
       section_id: 0,
       Option_id: 0,
       parent_id: 0,
     },
   ]);
-
-  const [selected_op_New, setNewSelected] = useState([
-    {
-      section_id: 0,
-      Option_id: 0,
-      parent_id: 0,
-    },
-  ]);
-
   const [quantity, setQuantity] = useState(1);
-  const [finishnotes, setFinishNotes] = useState("");
-
-  const All_ids = selected_op
-    .filter((ele) => ele.Option_id !== 0)
-    .map((ele) => ele.Option_id);
+  const All_ids = selected_op.filter((ele) => ele.Option_id !== 0).map((ele) => ele.Option_id);
 
   const SendDataOption = (OP_data) => {
-    const Last_send_Ids = OP_data.filter((ele) => ele.Option_id !== 0).map(
-      (ele) => ele.Option_id
-    );
+    const Last_send_Ids = OP_data.filter((ele) => ele.Option_id !== 0).map((ele) => ele.Option_id);
     let FinalData = [];
     for (let i = 0; i <= Last_send_Ids.length; i++) {
       if (Last_send_Ids[i] !== undefined) {
         FinalData = [...FinalData, `options[${i}]=${Last_send_Ids[i]}&`];
       }
     }
-
-    dispatch(
-      getProductSummery(
-        `?product_id=${id2}&${FinalData.toString().replace(
-          /,/g,
-          ""
-        )}&width=${width}&height=${height}&quantity=${quantity}`
-      )
-    );
+    dispatch( getProductSummery(`?product_id=${id2}&${FinalData.toString().replace( /,/g, "" )}&width=${width}&height=${height}&quantity=${quantity}` ));
   };
 
   const [Order_name, setOrderName] = useState(""); // Define and initialize the Order_name state
@@ -158,11 +108,19 @@ const TestProduct = ({ isUser }) => {
       detail: detailValue,
     });
   };
+  const updateFilesParameter = (count) => {
+    let FinalData = [];
+    for (let i = 0; i <= All_ids.length; i++) {
+      if (All_ids[i] !== undefined) {
+        FinalData = [...FinalData, `options[${i}]=${All_ids[i]}&`];
+      }
+    }
+    dispatch(getProductSummery(`?product_id=${id2}&${FinalData.toString().replace(/,/g, "")}&width=${width}&height=${height}&quantity=${quantity}&files=${count}`));
+  }
   const handleFileUpload = (e) => {
     const files = e.target.files;
     setSelectedFiles(Array.from(files));
     setUploadedFilesCount(files.length);
-
     let FinalData = [];
     for (let i = 0; i <= All_ids.length; i++) {
       if (All_ids[i] !== undefined) {
@@ -172,16 +130,8 @@ const TestProduct = ({ isUser }) => {
     dispatch(getProductSummery(`?product_id=${id2}&${FinalData.toString().replace(/,/g,"")}&width=${width}&height=${e.target.value}&quantity=${quantity}&uploadedFilesCount=${files.length}`));
   };
 
-  const updateFilesParameter = (count) => {
-    let FinalData = [];
-    for (let i = 0; i <= All_ids.length; i++) {
-      if (All_ids[i] !== undefined) {
-        FinalData = [...FinalData, `options[${i}]=${All_ids[i]}&`];
-      }
-    }
-    dispatch(getProductSummery(`?product_id=${id2}&${FinalData.toString().replace(/,/g, "")}&width=${width}&height=${height}&quantity=${quantity}&files=${count}`));};
-
-  const semdfils = (e) => {const files = e.target.files;
+  const sendFiles = (e) => {
+    const files = e.target.files;
     // Check if the number of selected files exceeds the maximum limit (10 in this case)
     if (files.length > 10) {
       showError("error","Error Message","You can only upload a maximum of 10 files.");
@@ -200,7 +150,6 @@ const TestProduct = ({ isUser }) => {
     setSelectedFiles(Array.from(files));
     setUploadedFilesCount(files.length);
     updateFilesParameter(files.length);
-
     let FinalData = [];
     for (let i = 0; i < All_ids.length; i++) {
       if (All_ids[i] !== undefined) {
@@ -208,6 +157,7 @@ const TestProduct = ({ isUser }) => {
       }
     }
     dispatch(getProductSummery(`?product_id=${id2}&${FinalData.toString().replace(/,/g,"")}&width=${width}&height=${height}&quantity=${quantity}&files=${files.length}`));
+    e.target.value = null;
   };
 
   const handleFileDelete = () => {
@@ -228,7 +178,6 @@ const TestProduct = ({ isUser }) => {
   return (
     <Helmet title={productArr?.meta_title}>
       <meta name="description" content={productArr?.meta_description} />
-
       <div className="Product_test">
         <div className="container-xxl">
           <div className="row Responsive_row">
@@ -238,49 +187,16 @@ const TestProduct = ({ isUser }) => {
                   <div className="CardTest">
                     <h1>{productArr?.title}</h1>
                     <div className="Toogelbuttons">
-                      {productArr?.headers?.map((ele) => {
-                        return (
-                          <h2
-                            key={ele.id}
-                            onClick={() => {
-                              setHeadersId(ele.id);
-                            }}
-                            className={`${
-                              ele.id === HeadersId ? "ToggleActive" : ""
-                            } `}
-                            style={{ cursor: "pointer" }}
-                          >
-                            {ele.title}{" "}
-                          </h2>
-                        );
-                      })}
+                      {productArr?.headers?.map((ele) => <h2 key={ele.id}onClick={() => {setHeadersId(ele.id);}} className={`${ele.id === HeadersId ? "ToggleActive" : ""} `}style={{ cursor: "pointer" }}>{ele.title}{" "}</h2>)}
                     </div>
 
-                    {productArr?.headers?.map((ele) => {
-                      return (
-                        <div
-                          key={ele.id}
-                          style={{
-                            display: ele.id === HeadersId ? "block" : "none",
-                          }}
-                        >
+                    {productArr?.headers?.map((ele) => <div key={ele.id}style={{display: ele.id === HeadersId ? "block" : "none",}}>
                           <p>{ele.description} </p>
-
                           <div className="row">
-                            {ele.lines.map((ele, idx) => {
-                              return (
-                                <div
-                                  className="col-md-6 ProCheck"
-                                  key={`${ele} ${idx}`}
-                                >
-                                  <AiOutlineCheck />
-                                </div>
-                              );
-                            })}
+                            {ele.lines.map((ele, idx) =><div className="col-md-6 ProCheck"key={`${ele} ${idx}`} > <AiOutlineCheck /></div>)}
                           </div>
                         </div>
-                      );
-                    })}
+                    )}
                   </div>
                 </div>
                 <div className="col-md-12">
@@ -291,13 +207,7 @@ const TestProduct = ({ isUser }) => {
                         <div className="row cardCenter">
                           <div className="col-md-8">
                             <label htmlFor="Width ">Width </label>
-                            <input
-                              // keyfilter={"int"}
-                              type="number"
-                              value={width}
-                              onChange={(e) => {
-                                setWidth(e.target.value);
-
+                            <input type="number"value={width}onChange={(e) => {setWidth(e.target.value);
                                 if (e.target.value < productArr?.min_width) {
                                   // setHeight(100);
                                   setWidthError(true);
@@ -307,7 +217,6 @@ const TestProduct = ({ isUser }) => {
                                   setWidthError(true);
                                 } else {
                                   setWidthError(false);
-
                                   let FinalData = [];
                                   for (let i = 0; i <= All_ids.length; i++) {
                                     if (All_ids[i] !== undefined) {
@@ -317,27 +226,9 @@ const TestProduct = ({ isUser }) => {
                                       ];
                                     }
                                   }
-
-                                  dispatch(
-                                    getProductSummery(
-                                      `?product_id=${id2}&${FinalData.toString().replace(
-                                        /,/g,
-                                        ""
-                                      )}&width=${
-                                        e.target.value
-                                      }&height=${height}&quantity=${quantity}`
-                                    )
-                                  );
+                                  dispatch(getProductSummery(`?product_id=${id2}&${FinalData.toString().replace(/,/g,"" )}&width=${e.target.value}&height=${height}&quantity=${quantity}`));
                                 }
-                              }}
-                              className={`${
-                                parseInt(width) <= 0 || width.length <= 0
-                                  ? "p-invalid"
-                                  : ""
-                              } `}
-                              name="Width"
-                              id="Width"
-                            />
+                              }}className={`${parseInt(width) <= 0 || width.length <= 0? "p-invalid": ""} `} name="Width" id="Width"/>
                           </div>
                           <div className="col-md-4">cm</div>
                         </div>
@@ -346,13 +237,7 @@ const TestProduct = ({ isUser }) => {
                         <div className="row cardCenter">
                           <div className="col-md-8">
                             <label htmlFor="Height ">Height </label>
-                            <input
-                              // keyfilter={"int"}
-                              type="number"
-                              value={height}
-                              onChange={(e) => {
-                                setHeight(e.target.value);
-
+                            <input type="number"value={height}onChange={(e) => {setHeight(e.target.value);
                                 if (e.target.value < productArr?.min_height) {
                                   // setHeight(100);
                                   setheightError(true);
@@ -362,7 +247,6 @@ const TestProduct = ({ isUser }) => {
                                   setheightError(true);
                                 } else {
                                   setheightError(false);
-
                                   let FinalData = [];
                                   for (let i = 0; i <= All_ids.length; i++) {
                                     if (All_ids[i] !== undefined) {
@@ -372,26 +256,10 @@ const TestProduct = ({ isUser }) => {
                                       ];
                                     }
                                   }
-                                  dispatch(
-                                    getProductSummery(
-                                      `?product_id=${id2}&${FinalData.toString().replace(
-                                        /,/g,
-                                        ""
-                                      )}&width=${width}&height=${
-                                        e.target.value
-                                      }&quantity=${quantity}`
-                                    )
-                                  );
+                                  dispatch(getProductSummery(`?product_id=${id2}&${FinalData.toString().replace(/,/g,"" )}&width=${width}&height=${e.target.value}&quantity=${quantity}`));
                                 }
                               }}
-                              className={`${
-                                parseInt(height) <= 0 || height.length <= 0
-                                  ? "p-invalid"
-                                  : ""
-                              } `}
-                              name="Height"
-                              id="Height"
-                            />
+                              className={`${parseInt(height) <= 0 || height.length <= 0? "p-invalid": "" } `} name="Height" id="Height"/>
                           </div>
                           <div className="col-md-4">cm</div>
                         </div>
@@ -400,19 +268,12 @@ const TestProduct = ({ isUser }) => {
                         <div className="col-12">
                           <p className="Dimenstion_error">
                             Maximum dimensions of a single piece:{" "}
-                            {productArr?.max_width}x{productArr?.max_height} cm.
-                            Larger sizes are joined by vertical pieces welded by
-                            high frequency with a 2 cm overlap, and may have the
-                            same or different sizes depending on the final
-                            dimensions of the piece and its relationship with a
-                            streamlined printing process. Minimum dimensions of
-                            a single piece: {productArr?.min_width}x
-                            {productArr?.min_height} cm.{" "}
+                            {productArr?.max_width}x{productArr?.max_height} cm. Larger sizes are joined by vertical pieces welded by
+                            high frequency with a 2 cm overlap, and may have the same or different sizes depending on the final dimensions of the piece and its relationship with a
+                            streamlined printing process. Minimum dimensions of a single piece: {productArr?.min_width}x{productArr?.min_height} cm.{" "}
                           </p>
                         </div>
-                      ) : (
-                        ""
-                      )}
+                      ) : ("" )}
                       <div className="col-12">
                         <div className="row">
                           {productArr?.sections?.map((ele) => {
@@ -429,10 +290,7 @@ const TestProduct = ({ isUser }) => {
                                           <div className="col-md-6" key={e.id}>
                                             <div className="row cardCenter">
                                               <div className="col-md-12">
-                                                <div onClick={() => {
-                                                  // *FIXME - Error is here ...
-                                                  console.log("click on parent") 
-                                                  setSubOption(e);
+                                                <div onClick={() => {setSubOption(e);
                                                     const Option_data = {
                                                       section_id: parseFloat(e.section_id),
                                                       Option_id: parseFloat(e.id),};
@@ -443,7 +301,6 @@ const TestProduct = ({ isUser }) => {
                                                       if (All_ids.length <= 0) {
                                                         dispatch(getProductSummery(`?product_id=${id2}&options[0]=${parseFloat(e.id)}&width=${width}&height=${height}&quantity=${quantity}`));
                                                       } else {
-                                                        // SendData();
                                                         SendDataOption( New_selected);
                                                       }
                                                     }
@@ -458,8 +315,7 @@ const TestProduct = ({ isUser }) => {
                                                       </div>
                                                       <p>{e.description}</p>
                                                     </>
-                                                  ) : (
-                                                    <>
+                                                  ) : ( <>
                                                       <div className="Chose text-center "style={{borderColor:All_ids.includes( e.id)? "#0a3565": "#d1d1d1"}}>
                                                         {e.name}
                                                       </div>
@@ -481,7 +337,7 @@ const TestProduct = ({ isUser }) => {
                                                                               <div key={ item.id} className="col-6"style={{ textAlign:"center", borderColor: All_ids.includes(item.id)? "#d1d1d1": "#d1d1d10a3565"}}>
                                                                                 <div onClick={(e) => {
                                                                                   e.stopPropagation();
-                                                                                  setSubOptionTwo(item);setTxtOfSubOption(item.name);
+                                                                                  setSubOptionTwo(item);
                                                                                     const Option_data ={ 
                                                                                         section_id:parseFloat(item.section_id),
                                                                                         Option_id:parseFloat( item.id ),
@@ -498,8 +354,6 @@ const TestProduct = ({ isUser }) => {
                                                                                         console.log("click on oprtionnn");
                                                                                         dispatch(getProductSummery(`?product_id=${id2}&options[0]=${parseFloat(  item.id, parseFloat( item.id ) )}&width=${width}&height=${height}&quantity=${quantity}` ) );
                                                                                       } else {
-                                                                                        // SendData();
-                                                                                        console.log("click on oprtionnn elseee");
                                                                                         SendDataOption(  New_selected );
                                                                                       }
                                                                                     }
@@ -511,8 +365,7 @@ const TestProduct = ({ isUser }) => {
                                                                                       </div>
                                                                                       <h3>{item.name}</h3>
                                                                                     </>
-                                                                                  ) : (
-                                                                                    <>
+                                                                                  ) : (<>
                                                                                       <div className="Chose text-center " style={{ borderColor: All_ids.includes(item.id )? "#0a3565": "#d1d1d1" }}>{ item.name}
                                                                                       </div>
                                                                                       <p style={{textAlign:"left", color: "red", marginLeft:  "15px",}}>{ item.description }</p>
@@ -526,7 +379,6 @@ const TestProduct = ({ isUser }) => {
                                                                                               <div key={ element.id}className="col-6">
                                                                                                 <div style={{ textAlign: "center",}}
                                                                                                   onClick={() => {
-                                                                                                    setTxtOfSubOptionTwo( element.name );
                                                                                                     const Option_data = {
                                                                                                         section_id:parseFloat( element.section_id ),
                                                                                                         Option_id: parseFloat( element.id),
@@ -538,12 +390,10 @@ const TestProduct = ({ isUser }) => {
                                                                                                           ...old_selected,
                                                                                                           Option_data,
                                                                                                         ];
-                                                                                                      setTimeout(() => {
-                                                                                                        setSelected(New_selected);
+                                                                                                      setTimeout(() => {setSelected(New_selected);
                                                                                                         if (All_ids.length <=0) {
-                                                                                                            dispatch( getProductSummery(`?product_id=${id2}&options[0]=${parseFloat(element.id )}&width=${width}&height=${height}&quantity=${quantity}`) );
+                                                                                                          dispatch( getProductSummery(`?product_id=${id2}&options[0]=${parseFloat(element.id )}&width=${width}&height=${height}&quantity=${quantity}`) );
                                                                                                         } else {
-                                                                                                          // SendData();
                                                                                                           SendDataOption(New_selected );
                                                                                                         }
                                                                                                       }, []);
@@ -556,14 +406,12 @@ const TestProduct = ({ isUser }) => {
                                                                                                       </div>
                                                                                                       <h3>{element.name }</h3>
                                                                                                     </>
-                                                                                                  : (
-                                                                                                    <>
+                                                                                                  : (<>
                                                                                                       <div className="Chose text-center "style={{borderColor:All_ids.includes(element.id )? "#0a3565": "#d1d1d1"}}>{element.name}</div>
                                                                                                       <p style={{textAlign:"left",color:"red",marginLeft:"15px",}} >{ element.description }</p>
                                                                                                     </>
                                                                                                   )}
                                                                                                 </div>
-                                                                                                {/* -------------------------------------- */}
                                                                                               </div>
                                                                                             );
                                                                                           }
@@ -572,7 +420,6 @@ const TestProduct = ({ isUser }) => {
                                                                                     </> : null}
                                                                                   </div>
                                                                                 </div>
-                                                                                {/* -------------------------------------- */}
                                                                               </div>
                                                                             );
                                                                           }
@@ -621,7 +468,6 @@ const TestProduct = ({ isUser }) => {
                                   document.querySelector(".limit" ).style.opacity = 0; // Hide the <p> element
                                   setQuantity(newValue);
                                 }
-
                                 // Update the product summary based on the new quantity
                                 let FinalData = [];
                                 for (let i = 0; i <= All_ids.length; i++) {
@@ -635,37 +481,34 @@ const TestProduct = ({ isUser }) => {
                               dispatch(getProductSummery(`?product_id=${id2}&${FinalData.toString().replace(/,/g,"")}&width=${width}&height=${height}&quantity=${quantity}`));
                               }}
                             />
-
                             <p className="limit">Please select a quantity less than or equal to{" "}{limit}</p>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div className="btn-fils">
-                    <button className="btn-upload">
-                      <input  type="file" multiple={true} className="file-input"onChange={semdfils}/>
-
-                      <span>Upload</span>
-                    </button>
-
+                  {/* *FIXME - upload btn */}
+                  <div className="btn-fils">                  
+                    <label className="btn-upload mt-0 btn">
+                    Upload
+                      <input  type="file" multiple={true} className="file-input" onChange={(e) => sendFiles(e)}/>
+                    </label>
                     <button className="btn-delete" onClick={handleFileDelete}>
                       <span>Delete</span>
                     </button>
                   </div>
-                  <div id="uploaded-files"></div>
+                  {/* Display uploaded files count */}
+                  {uploadedFilesCount > 0 ? <h4 className="text-muted">Uploaded Files Count: <span className="text-dark">{uploadedFilesCount}</span> </h4> : null}
+   
                 </div>
               </div>
             </div>
             <div className="col-md-4">
-              <div style={{ height: "100%",}}
-              >
+              <div style={{ height: "100%"}}>
                 {productArr && (
-                  <div>
                     <div className="CardTest">
                       <SwiperProducts elements={productArr.images} />
                     </div>
-                  </div>
                 )}
 
                 <div className="order_now">
@@ -677,7 +520,6 @@ const TestProduct = ({ isUser }) => {
                           {GetOptionName ? GetOptionName.map((item) => { return (<span key={item.id}>{` - ${item.name} `}</span>);}): null}
                         </div>
                       </div>
-
                       <div className="d-flex">
                         <h5>Quantity:</h5>
                         <span> {summeryArr.quantity}</span>
@@ -686,7 +528,6 @@ const TestProduct = ({ isUser }) => {
                         <h5>Arrive on:</h5>
                         <span>{tomorrow.toLocaleDateString("en-US", options)} </span>
                       </div>
-
                       <div className="d-flex align-items-center font_grow_div ">
                         <h5 className="font_grow">Total:</h5>
                         <span className="span_active">{" "}{summeryArr.total.toFixed(2)} &euro;</span>
@@ -699,7 +540,6 @@ const TestProduct = ({ isUser }) => {
                     </div>
                   )}
                 </div>
-
                 <div className="order_now order_now_button">
                   {summeryArr && (
                     <div className="CardTest">
@@ -710,24 +550,7 @@ const TestProduct = ({ isUser }) => {
               </div>
             </div>
           </div>
-          {/* {productArr?.footers?.map((ele) => {
-          return (
-            <div key={ele.id}>
-              <h2>{ele.title}</h2>
-              <p>{ele.description}</p>
-            </div>
-          );
-        })} */}
-
-          {productArr && (
-            <div
-              className="article_body"
-              id={"artContent"}
-              dangerouslySetInnerHTML={{
-                __html: productArr?.footers.description,
-              }}
-            ></div>
-          )}
+          {productArr && ( <div className="article_body"id={"artContent"}dangerouslySetInnerHTML={{__html: productArr?.footers.description}}></div>)}
         </div>
       </div>
     </Helmet>
