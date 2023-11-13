@@ -117,19 +117,6 @@ const TestProduct = () => {
     }
     dispatch(getProductSummery(`?product_id=${id2}&${FinalData.toString().replace(/,/g, "")}&width=${width}&height=${height}&quantity=${quantity}&files=${count}`));
   }
-  const handleFileUpload = (e) => {
-    const files = e.target.files;
-    setSelectedFiles(Array.from(files));
-    setUploadedFilesCount(files.length);
-    let FinalData = [];
-    for (let i = 0; i <= All_ids.length; i++) {
-      if (All_ids[i] !== undefined) {
-        FinalData = [...FinalData, `options[${i}]=${All_ids[i]}&`];
-      }
-    }
-    dispatch(getProductSummery(`?product_id=${id2}&${FinalData.toString().replace(/,/g,"")}&width=${width}&height=${e.target.value}&quantity=${quantity}&uploadedFilesCount=${files.length}`));
-  };
-
   const sendFiles = (e) => {
     const files = e.target.files;
     // Check if the number of selected files exceeds the maximum limit (10 in this case)
@@ -137,15 +124,6 @@ const TestProduct = () => {
       showError("error","Error Message","You can only upload a maximum of 10 files.");
       e.target.value = null;
       return;
-    }
-    // Display selected files in a div with id 'uploaded-files'
-    const uploadedFilesDiv = document.getElementById("uploaded-files");
-    uploadedFilesDiv.innerHTML = ""; // Clear previous content
-    for (let i = 0; i < files.length; i++) {
-      const fileName = files[i].name;
-      const fileListItem = document.createElement("div");
-      fileListItem.textContent = fileName;
-      uploadedFilesDiv.appendChild(fileListItem);
     }
     setSelectedFiles(Array.from(files));
     setUploadedFilesCount(files.length);
@@ -164,10 +142,6 @@ const TestProduct = () => {
     setSelectedFiles([]);
     setUploadedFilesCount(0);
     updateFilesParameter(0); // Call the function with 0
-
-    // Clear the content of the 'uploaded-files' element
-    const uploadedFilesElement = document.getElementById("uploaded-files");
-    uploadedFilesElement.textContent = ""; // Clear the content
   };
   useEffect(() => {
     if (summeryArr) {
@@ -489,7 +463,7 @@ const TestProduct = () => {
                   </div>
                   {/* *FIXME - upload btn */}
                   <div className="btn-fils">                  
-                    <label className="btn-upload mt-0 btn">
+                    <label className="btn-upload mt-0">
                     Upload
                       <input  type="file" multiple={true} className="file-input" onChange={(e) => sendFiles(e)}/>
                     </label>
@@ -497,10 +471,7 @@ const TestProduct = () => {
                       <span>Delete</span>
                     </button>
                   </div>
-                  {/* Display uploaded files count */}
-                  {uploadedFilesCount > 0 ? <h4 className="text-muted">Uploaded Files Count: <span className="text-dark">{uploadedFilesCount}</span> </h4> : null}
-   
-                </div>
+                  {uploadedFilesCount > 0 ? <h4 className="text-muted">Uploaded Files Count: <span className="text-dark">{uploadedFilesCount}</span> </h4> : null}    </div>
               </div>
             </div>
             <div className="col-md-4">
