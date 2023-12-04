@@ -216,7 +216,7 @@ const TestProduct = () => {
     const [MaxQuanity, setMaxQuanity] = useState(null);
     const [MinQuanity, setMinQuanity] = useState(null);
     const [limit, setLimit] = useState("");
-  
+    
     const handelQuantityChange = (e)=>{
       // Parse the input value to an integer
       const newValue = parseInt(e.target.value, 10);
@@ -235,6 +235,8 @@ const TestProduct = () => {
   useEffect(() => {
     if (summeryArr) {
       const data = summeryArr.options.slice(1, summeryArr.options.length);
+      // *FIXME - label in summary
+      console.log(data);
       setGetOptionName(data);
     }
   }, [summeryArr]);
@@ -359,15 +361,16 @@ const TestProduct = () => {
                                                       <div className="row">
                                                         {SubOption ? (
                                                           <div className="row">
-                                                            {SubOption.childrens.map( (item) => {
+                                                            {SubOption.childrens.map( (item , index) => {
                                                                 return (
-                                                                  <div key={item.id}className="col-12 rounded ms-3 py-2 mb-2">
+                                                                  <div key={index} className="col-12 rounded ms-3 py-2 mb-2">
                                                                     <div className="">
+                                                                      {/* *FIXME - show in summary */}
                                                                       <label htmlFor="Height ">{item.name}</label>
                                                                       <div className="row">
-                                                                        {item.childrens.map((item) => {
+                                                                        {item.childrens.map((item , index) => {
                                                                             return (
-                                                                              <div key={ item.id} className="col-6"style={{ textAlign:"center", borderColor: All_ids.includes(item.id)? "#d1d1d1": "#d1d1d10a3565"}}>
+                                                                              <div key={ index} className="col-6"style={{ textAlign:"center", borderColor: All_ids.includes(item.id)? "#d1d1d1": "#d1d1d10a3565"}}>
                                                                                 <div className="text-start" onClick={(e) => {handelSupOptionSelect(e , item)}}>
                                                                                   {item.image ? ( <>
                                                                                       <div className="Card_Image" style={{  borderColor: All_ids.includes( item.id )? "#0a3565"  : "#d1d1d1", }}>
@@ -385,9 +388,9 @@ const TestProduct = () => {
                                                                                   <div className="row">
                                                                                     {SubOptionTwo && SubOptionTwo.id === item.id ? <>
                                                                                       <div className="row p-0 m-0">
-                                                                                        {SubOptionTwo.childrens.map(( element) => {
+                                                                                        {SubOptionTwo.childrens.map(( element , index) => {
                                                                                           return (
-                                                                                              <div key={ element.id}className="col-6">
+                                                                                              <div key={ index}className="col-6">
                                                                                                 <div style={{ textAlign: "left",}}
                                                                                                   onClick={() => {
                                                                                                     const Option_data = {
@@ -496,9 +499,10 @@ const TestProduct = () => {
                   {summeryArr && (
                     <div className="CardTest "> <h2 className="mb-3">Order Summary</h2> <div>
                         <div className="d-flex flex-wrap">
-                          <h5>selected : {summeryArr.options.length > 0 ? summeryArr.options[0].section + " : ": null}{" "}</h5>
-                          <span> {summeryArr.options.length > 0 ? summeryArr.options[0].name : null}</span>
-                          {GetOptionName ? GetOptionName.map((item) => { return (<span key={item.id}>{` - ${item.name} `}</span>);}): null}
+                          <h5>{summeryArr.options.length > 0 ? summeryArr.options[0].section + " : ": null}{" "}</h5>
+                          <span>{summeryArr.options.length > 0 ? summeryArr.options[0].name : null}</span>
+                          {/* *FIXME - add label in this span */}
+                          {GetOptionName ? GetOptionName.map((item) => { return (<span key={item.id}>{` - ${item.section} : ${item.name} `}</span>);}): null}
                         </div>
                       </div>
                       <div className="d-flex">

@@ -1,12 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
-// import "swiper/css/pagination";
-// import "swiper/css/navigation";
-// import styles from "@/styles/layouts/Card.module.css";
-// import Image from "next/legacy/image";
-// import Card from "../Card/Card";
 const SwiperProducts = ({ elements }) => {
-  // console.log(elements);
   return (
     <>
       <Swiper
@@ -16,7 +10,6 @@ const SwiperProducts = ({ elements }) => {
         pagination={{
           clickable: true,
         }}
-        // navigation={true}
         breakpoints={{
           640: {
             slidesPerView: 1,
@@ -37,16 +30,13 @@ const SwiperProducts = ({ elements }) => {
         }}
         modules={[
           Autoplay,
-
-          // , Navigation
         ]}
-        // modules={[Pagination]}
         className="mySwiper"
       >
         {elements &&
-          elements.map((ele) => {
+          elements.map((ele , index) => {
             return (
-              <SwiperSlide key={ele.id}>
+              <SwiperSlide key={index}>
                 <div className="ImagesMain">
                   <img src={ele} alt="images" />
                 </div>
