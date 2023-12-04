@@ -18,7 +18,6 @@ code {
   padding: 0;
   margin: 0;
 }
-
 .main-title {
   background-color: #5b58ba;
   color: white;
@@ -226,6 +225,9 @@ a {
 .CardTest svg {
   color: #0a3565;
   margin-right: 10px;
+}
+.CardTest i svg{
+  color: #EF233C !important;
 }
 
 .ProCheck {

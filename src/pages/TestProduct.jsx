@@ -19,6 +19,8 @@ const TestProduct = () => {
   const [SubOption, setSubOption] = useState(null);
   const [SubOptionTwo, setSubOptionTwo] = useState(null);
   const [GetOptionName, setGetOptionName] = useState(null);
+  const [MaxQuanity, setMaxQuanity] = useState(null);
+  const [MinQuanity, setMinQuanity] = useState(null);
   const [width, setWidth] = useState("");
   const [height, setHeight] = useState("");
   const [limit, setLimit] = useState("");
@@ -26,6 +28,9 @@ const TestProduct = () => {
     if (value === false) {
       setValue(true);
       dispatch(getProduct(id2)).unwrap().then((res) => {
+        console.log(res.data);
+        setMaxQuanity(res.data.max_q);
+        setMinQuanity(res.data.min_q);
           setHeadersId(res.data.headers[0]?.id);
           setWidth(`${res.data.def_width}`);
           setHeight(`${res.data.def_height}`);
@@ -332,7 +337,7 @@ const TestProduct = () => {
                                                             {SubOption.childrens.map( (item) => {
                                                                 return (
                                                                   <div key={item.id}className="col-12 rounded ms-3 py-2 mb-2 bg-light ">
-                                                                    <div className="bg-danger">
+                                                                    <div className="">
                                                                       <label htmlFor="Height ">{item.name}</label>
                                                                       <div className="row">
                                                                         {item.childrens.map((item) => {
@@ -437,7 +442,7 @@ const TestProduct = () => {
                           <div className="col-md-12">
                             <label htmlFor="Height ">Quantity</label>
                             <p> Finishing Notes</p>
-                            <input type="number"max={limit}value={quantity}onChange={(e) => {
+                            <input type="number" max={limit} value={quantity} onChange={(e) => {
                                 // Parse the input value to an integer
                                 const newValue = parseInt(e.target.value, 10);
                                 if (isNaN(newValue) || newValue >= limit) {
@@ -469,7 +474,6 @@ const TestProduct = () => {
                       </div>
                     </div>
                   </div>
-                  {/* *FIXME - upload btn */}
                   <div className="btn-fils">                  
                     <label className="btn-upload mt-0">
                       Upload
@@ -504,10 +508,10 @@ const TestProduct = () => {
                         <span> {summeryArr.quantity}</span>
                       </div>
                       {uploadedFilesCount > 0 ? <>
-                          <h4 className="text-muted">Uploaded Files Count: <span className="text-dark">{uploadedFilesCount}</span> </h4>
-                          {selectedFiles?.map( (file , index) => <div className="fielsContainer d-flex justify-content-between">
-                          <p key={index}>file name : {file.name}</p>
-                          <Icon className="text-danger cursor-pointer" icon={xCircle} onClick={(e)=>handleDeleteFile(index)}/>
+                          <h5 className="text-dark">Uploaded Files Count: <span className="text-muted fw-normal">{uploadedFilesCount}</span> </h5>
+                          {selectedFiles?.map( (file , index) => <div className="fielsContainer d-flex align-items-center">
+                          <h5 className="mb-1 text-dark" key={index}>File name : <span className="text-muted">{file.name}</span> </h5>
+                          <Icon className="text-danger delBtn ms-3 cursor-pointer" icon={xCircle} onClick={(e)=>handleDeleteFile(index)}/>
                           </div> 
                           )}
                       </>
