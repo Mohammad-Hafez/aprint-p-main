@@ -19,16 +19,12 @@ const TestProduct = () => {
   const [SubOption, setSubOption] = useState(null);
   const [SubOptionTwo, setSubOptionTwo] = useState(null);
   const [GetOptionName, setGetOptionName] = useState(null);
-  const [MaxQuanity, setMaxQuanity] = useState(null);
-  const [MinQuanity, setMinQuanity] = useState(null);
   const [width, setWidth] = useState("");
   const [height, setHeight] = useState("");
-  const [limit, setLimit] = useState("");
   useEffect(() => {
     if (value === false) {
       setValue(true);
       dispatch(getProduct(id2)).unwrap().then((res) => {
-        console.log(res.data);
         setMaxQuanity(res.data.max_q);
         setMinQuanity(res.data.min_q);
           setHeadersId(res.data.headers[0]?.id);
@@ -154,7 +150,6 @@ const TestProduct = () => {
   };
 
   const handelSupOptionSelect = (e , item) =>{
-    console.log(item);
     e.stopPropagation();
     setSubOptionTwo(item);
       const Option_data ={ 
@@ -217,7 +212,25 @@ const TestProduct = () => {
         }
         dispatch(getProductSummery(`?product_id=${id2}&${FinalData.toString().replace(/,/g,"" )}&width=${width}&height=${e.target.value}&quantity=${quantity}`));
       }
-
+    }
+    const [MaxQuanity, setMaxQuanity] = useState(null);
+    const [MinQuanity, setMinQuanity] = useState(null);
+    const [limit, setLimit] = useState("");
+  
+    const handelQuantityChange = (e)=>{
+      // Parse the input value to an integer
+      const newValue = parseInt(e.target.value, 10);
+      if (newValue > MaxQuanity) {
+        document.querySelector(".limit").style.opacity = 1;  // Hide the <p> element
+        setQuantity(MaxQuanity);
+        return
+      } else if ( isNaN(newValue) ||newValue < MinQuanity) {
+        setQuantity(MinQuanity);
+        return
+      } else {
+        document.querySelector(".limit" ).style.opacity = 0; // Hide the <p> element
+        setQuantity(newValue);
+      }
     }
   useEffect(() => {
     if (summeryArr) {
@@ -225,6 +238,18 @@ const TestProduct = () => {
       setGetOptionName(data);
     }
   }, [summeryArr]);
+  useEffect(() => {
+    let FinalData = [];
+    for (let i = 0; i <= All_ids.length; i++) {
+      if (All_ids[i] !== undefined) {
+        FinalData = [
+          ...FinalData,
+          `options[${i}]=${All_ids[i]}&`
+        ];
+      }
+    }
+    dispatch(getProductSummery(`?product_id=${id2}&${FinalData.toString().replace(/,/g,"")}&width=${width}&height=${height}&quantity=${quantity}`)); 
+  }, [quantity]);
   return (
     <Helmet title={productArr?.meta_title}>
       <meta name="description" content={productArr?.meta_description} />
@@ -336,14 +361,14 @@ const TestProduct = () => {
                                                           <div className="row">
                                                             {SubOption.childrens.map( (item) => {
                                                                 return (
-                                                                  <div key={item.id}className="col-12 rounded ms-3 py-2 mb-2 bg-light ">
+                                                                  <div key={item.id}className="col-12 rounded ms-3 py-2 mb-2">
                                                                     <div className="">
                                                                       <label htmlFor="Height ">{item.name}</label>
                                                                       <div className="row">
                                                                         {item.childrens.map((item) => {
                                                                             return (
                                                                               <div key={ item.id} className="col-6"style={{ textAlign:"center", borderColor: All_ids.includes(item.id)? "#d1d1d1": "#d1d1d10a3565"}}>
-                                                                                <div onClick={(e) => {handelSupOptionSelect(e , item)}}>
+                                                                                <div className="text-start" onClick={(e) => {handelSupOptionSelect(e , item)}}>
                                                                                   {item.image ? ( <>
                                                                                       <div className="Card_Image" style={{  borderColor: All_ids.includes( item.id )? "#0a3565"  : "#d1d1d1", }}>
                                                                                         <img src={ item.image} alt="" width={ 100 } height={ 100  } />
@@ -353,8 +378,7 @@ const TestProduct = () => {
                                                                                   ) : (<>
                                                                                       <div className="Chose text-center " style={{ borderColor: All_ids.includes(item.id )? "#0a3565": "#d1d1d1" }}>{ item.name}
                                                                                       </div>
-                                                                                      {item.description ?<p className="mb-2">{ item.description }</p> : null}
-                                                                                      
+                                                                                      {item.description ?<label className="ms-0 mb-2">{ item.description }</label> : null}
                                                                                     </>
                                                                                   )}
                                                                                   {/* *********************** */}
@@ -364,7 +388,7 @@ const TestProduct = () => {
                                                                                         {SubOptionTwo.childrens.map(( element) => {
                                                                                           return (
                                                                                               <div key={ element.id}className="col-6">
-                                                                                                <div style={{ textAlign: "center",}}
+                                                                                                <div style={{ textAlign: "left",}}
                                                                                                   onClick={() => {
                                                                                                     const Option_data = {
                                                                                                         section_id:parseFloat( element.section_id ),
@@ -395,7 +419,7 @@ const TestProduct = () => {
                                                                                                     </>
                                                                                                   : (<>
                                                                                                       <div className="Chose text-center "style={{borderColor:All_ids.includes(element.id )? "#0a3565": "#d1d1d1"}}>{element.name}</div>
-                                                                                                      <p style={{textAlign:"left",color:"red",marginLeft:"15px",}} >{ element.description }</p>
+                                                                                                      <label>{ element.description }</label>
                                                                                                     </>
                                                                                                   )}
                                                                                                 </div>
@@ -436,39 +460,13 @@ const TestProduct = () => {
                           })}
                         </div>
                       </div>
-
                       <div className="col-md-12">
                         <div className="row cardCenter">
                           <div className="col-md-12">
                             <label htmlFor="Height ">Quantity</label>
                             <p> Finishing Notes</p>
-                            <input type="number" max={limit} value={quantity} onChange={(e) => {
-                                // Parse the input value to an integer
-                                const newValue = parseInt(e.target.value, 10);
-                                if (isNaN(newValue) || newValue >= limit) {
-                                  document.querySelector(".limit").style.opacity = 1; // Hide the <p> element
-                                  setQuantity(limit);
-                                } else if (newValue < 1) {
-                                  // If the input is less than 1, set the quantity to 1
-                                  setQuantity(1);
-                                } else {
-                                  document.querySelector(".limit" ).style.opacity = 0; // Hide the <p> element
-                                  setQuantity(newValue);
-                                }
-                                // Update the product summary based on the new quantity
-                                let FinalData = [];
-                                for (let i = 0; i <= All_ids.length; i++) {
-                                  if (All_ids[i] !== undefined) {
-                                    FinalData = [
-                                      ...FinalData,
-                                      `options[${i}]=${All_ids[i]}&`,
-                                    ];
-                                  }
-                                }
-                              dispatch(getProductSummery(`?product_id=${id2}&${FinalData.toString().replace(/,/g,"")}&width=${width}&height=${height}&quantity=${quantity}`));
-                              }}
-                            />
-                            <p className="limit">Please select a quantity less than or equal to{" "}{limit}</p>
+                            <input type="number" min={MinQuanity} max={MaxQuanity} value={quantity} onChange={(e) => {handelQuantityChange(e)}}/>
+                            <p className="limit">Please Select a Quantity Between {MinQuanity} as a Minimum Quantity & {MaxQuanity} as a Maximum Quantity</p>
                           </div>
                         </div>
                       </div>
@@ -498,7 +496,7 @@ const TestProduct = () => {
                   {summeryArr && (
                     <div className="CardTest "> <h2 className="mb-3">Order Summary</h2> <div>
                         <div className="d-flex flex-wrap">
-                          <h5> {summeryArr.options.length > 0 ? summeryArr.options[0].section + " : ": null}{" "}</h5>
+                          <h5>selected : {summeryArr.options.length > 0 ? summeryArr.options[0].section + " : ": null}{" "}</h5>
                           <span> {summeryArr.options.length > 0 ? summeryArr.options[0].name : null}</span>
                           {GetOptionName ? GetOptionName.map((item) => { return (<span key={item.id}>{` - ${item.name} `}</span>);}): null}
                         </div>
