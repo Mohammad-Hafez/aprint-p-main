@@ -7,7 +7,8 @@ import "primereact/resources/themes/saga-green/theme.css";
 import "primereact/resources/primereact.min.css";
 import SwiperProducts from "../components/SwiperProducts/SwiperProducts";
 import Helmet from "../components/Helmet";
-
+import { Icon } from 'react-icons-kit'
+import {xCircle} from 'react-icons-kit/feather/xCircle'
 const TestProduct = () => {
   const { id2 } = useParams();
   const [value, setValue] = useState(false);
@@ -73,7 +74,6 @@ const TestProduct = () => {
     // Append the uploaded files to the FormData
     selectedFiles.forEach((file, index) => {
       data.append(`Files[${index}]`, file);
-      console.log("", `Files[${index}]`);
     });
 
     if (
@@ -117,32 +117,103 @@ const TestProduct = () => {
     }
     dispatch(getProductSummery(`?product_id=${id2}&${FinalData.toString().replace(/,/g, "")}&width=${width}&height=${height}&quantity=${quantity}&files=${count}`));
   }
+
   const sendFiles = (e) => {
     const files = e.target.files;
-    // Check if the number of selected files exceeds the maximum limit (10 in this case)
     if (files.length > 10) {
-      showError("error","Error Message","You can only upload a maximum of 10 files.");
+      showError("error", "Error Message", "You can only upload a maximum of 10 files.");
       e.target.value = null;
       return;
     }
-    setSelectedFiles(Array.from(files));
-    setUploadedFilesCount(files.length);
-    updateFilesParameter(files.length);
-    let FinalData = [];
-    for (let i = 0; i < All_ids.length; i++) {
-      if (All_ids[i] !== undefined) {
-        FinalData = [...FinalData, `options[${i}]=${All_ids[i]}&`];
-      }
-    }
-    dispatch(getProductSummery(`?product_id=${id2}&${FinalData.toString().replace(/,/g,"")}&width=${width}&height=${height}&quantity=${quantity}&files=${files.length}`));
+    // Preserve the old files and add the newly uploaded files
+    const newFiles = [...selectedFiles, ...files];
+    setSelectedFiles(newFiles);
+    setUploadedFilesCount(newFiles.length);
+    updateFilesParameter(newFiles.length);
+    let FinalData = All_ids.map((id, i) => (id !== undefined ? `options[${i}]=${id}&` : ""));
+    dispatch(getProductSummery(`?product_id=${id2}&${FinalData.toString().replace(/,/g, "")}&width=${width}&height=${height}&quantity=${quantity}&files=${newFiles.length}`));
     e.target.value = null;
   };
 
-  const handleFileDelete = () => {
+  const handleDeleteFile = (indexToDelete) => {
+    const updatedFiles = selectedFiles.filter((file, index) => index !== indexToDelete);
+    setSelectedFiles(updatedFiles);
+    setUploadedFilesCount(updatedFiles.length);
+    updateFilesParameter(updatedFiles.length);
+  };
+
+  const handleDeleteAllFiles = () => {
     setSelectedFiles([]);
     setUploadedFilesCount(0);
     updateFilesParameter(0); // Call the function with 0
   };
+
+  const handelSupOptionSelect = (e , item) =>{
+    console.log(item);
+    e.stopPropagation();
+    setSubOptionTwo(item);
+      const Option_data ={ 
+          section_id:parseFloat(item.section_id),
+          Option_id:parseFloat( item.id ),
+          parent_id:parseFloat(item.parent_id),
+        };
+      if (selected_op.indexOf(Option_data ) ===-1 ) {
+        const old_selected = selected_op.filter((op ) => parseFloat( op.parent_id  ) !==  parseFloat(item.parent_id ));
+        const New_selected =[
+            ...old_selected,
+            Option_data,
+          ];
+        setSelected( New_selected );
+        if (All_ids.length <= 0 ) {
+          dispatch(getProductSummery(`?product_id=${id2}&options[0]=${parseFloat(  item.id, parseFloat( item.id ) )}&width=${width}&height=${height}&quantity=${quantity}` ) );
+        } else {
+          SendDataOption(  New_selected );
+        }
+      }
+    }
+
+    const handelSetWidth = (e)=>{
+      setWidth(e.target.value);
+      if (e.target.value < productArr?.min_width) {
+        setWidthError(true);
+      } else if (e.target.value > productArr?.max_width) {
+        setWidthError(true);
+      } else {
+        setWidthError(false);
+        let FinalData = [];
+        for (let i = 0; i <= All_ids.length; i++) {
+          if (All_ids[i] !== undefined) {
+            FinalData = [
+              ...FinalData,
+              `options[${i}]=${All_ids[i]}&`,
+            ];
+          }
+        }
+        dispatch(getProductSummery(`?product_id=${id2}&${FinalData.toString().replace(/,/g,"" )}&width=${e.target.value}&height=${height}&quantity=${quantity}`));
+        }
+    }
+
+    const handelSetHieght = (e) => {
+      setHeight(e.target.value);
+      if (e.target.value < productArr?.min_height) {
+        setheightError(true);
+      } else if ( e.target.value > productArr?.max_height ) {
+        setheightError(true);
+      } else {
+        setheightError(false);
+        let FinalData = [];
+        for (let i = 0; i <= All_ids.length; i++) {
+          if (All_ids[i] !== undefined) {
+            FinalData = [
+              ...FinalData,
+              `options[${i}]=${All_ids[i]}&`,
+            ];
+          }
+        }
+        dispatch(getProductSummery(`?product_id=${id2}&${FinalData.toString().replace(/,/g,"" )}&width=${width}&height=${e.target.value}&quantity=${quantity}`));
+      }
+
+    }
   useEffect(() => {
     if (summeryArr) {
       const data = summeryArr.options.slice(1, summeryArr.options.length);
@@ -181,28 +252,7 @@ const TestProduct = () => {
                         <div className="row cardCenter">
                           <div className="col-md-8">
                             <label htmlFor="Width ">Width </label>
-                            <input type="number"value={width}onChange={(e) => {setWidth(e.target.value);
-                                if (e.target.value < productArr?.min_width) {
-                                  // setHeight(100);
-                                  setWidthError(true);
-                                } else if (
-                                  e.target.value > productArr?.max_width
-                                ) {
-                                  setWidthError(true);
-                                } else {
-                                  setWidthError(false);
-                                  let FinalData = [];
-                                  for (let i = 0; i <= All_ids.length; i++) {
-                                    if (All_ids[i] !== undefined) {
-                                      FinalData = [
-                                        ...FinalData,
-                                        `options[${i}]=${All_ids[i]}&`,
-                                      ];
-                                    }
-                                  }
-                                  dispatch(getProductSummery(`?product_id=${id2}&${FinalData.toString().replace(/,/g,"" )}&width=${e.target.value}&height=${height}&quantity=${quantity}`));
-                                }
-                              }}className={`${parseInt(width) <= 0 || width.length <= 0? "p-invalid": ""} `} name="Width" id="Width"/>
+                            <input type="number"value={width} onChange={(e) => handelSetWidth(e)} className={`${parseInt(width) <= 0 || width.length <= 0? "p-invalid": ""} `} name="Width" id="Width"/>
                           </div>
                           <div className="col-md-4">cm</div>
                         </div>
@@ -210,30 +260,8 @@ const TestProduct = () => {
                       <div className="col-md-6">
                         <div className="row cardCenter">
                           <div className="col-md-8">
-                            <label htmlFor="Height ">Height </label>
-                            <input type="number"value={height}onChange={(e) => {setHeight(e.target.value);
-                                if (e.target.value < productArr?.min_height) {
-                                  // setHeight(100);
-                                  setheightError(true);
-                                } else if (
-                                  e.target.value > productArr?.max_height
-                                ) {
-                                  setheightError(true);
-                                } else {
-                                  setheightError(false);
-                                  let FinalData = [];
-                                  for (let i = 0; i <= All_ids.length; i++) {
-                                    if (All_ids[i] !== undefined) {
-                                      FinalData = [
-                                        ...FinalData,
-                                        `options[${i}]=${All_ids[i]}&`,
-                                      ];
-                                    }
-                                  }
-                                  dispatch(getProductSummery(`?product_id=${id2}&${FinalData.toString().replace(/,/g,"" )}&width=${width}&height=${e.target.value}&quantity=${quantity}`));
-                                }
-                              }}
-                              className={`${parseInt(height) <= 0 || height.length <= 0? "p-invalid": "" } `} name="Height" id="Height"/>
+                            <label htmlFor="Height ">Height</label>
+                            <input type="number"value={height}onChange={(e) => { handelSetHieght(e) }}className={`${parseInt(height) <= 0 || height.length <= 0? "p-invalid": "" } `} name="Height" id="Height"/>
                           </div>
                           <div className="col-md-4">cm</div>
                         </div>
@@ -247,7 +275,7 @@ const TestProduct = () => {
                             streamlined printing process. Minimum dimensions of a single piece: {productArr?.min_width}x{productArr?.min_height} cm.{" "}
                           </p>
                         </div>
-                      ) : ("" )}
+                      ) : ("")}
                       <div className="col-12">
                         <div className="row">
                           {productArr?.sections?.map((ele) => {
@@ -264,7 +292,8 @@ const TestProduct = () => {
                                           <div className="col-md-6" key={e.id}>
                                             <div className="row cardCenter">
                                               <div className="col-md-12">
-                                                <div onClick={() => {setSubOption(e);
+                                                <div className=" mb-3" onClick={() => {
+                                                    setSubOption(e);
                                                     const Option_data = {
                                                       section_id: parseFloat(e.section_id),
                                                       Option_id: parseFloat(e.id),};
@@ -290,49 +319,26 @@ const TestProduct = () => {
                                                       <p>{e.description}</p>
                                                     </>
                                                   ) : ( <>
-                                                      <div className="Chose text-center "style={{borderColor:All_ids.includes( e.id)? "#0a3565": "#d1d1d1"}}>
+                                                      <div className="Chose text-center"style={{borderColor:All_ids.includes( e.id)? "#0a3565": "#d1d1d1"}}>
                                                         {e.name}
                                                       </div>
-                                                      <p>{e.description}</p>
+                                                      <p> {e.description}</p>
                                                     </>
                                                   )}
                                                   {SubOption ? ( e.id === SubOption.id ? (
-                                                      <div className="row lehhhh">
+                                                      <div className="row">
                                                         {SubOption ? (
                                                           <div className="row">
                                                             {SubOption.childrens.map( (item) => {
                                                                 return (
-                                                                  <div key={item.id}className="col-12">
-                                                                    <div>
+                                                                  <div key={item.id}className="col-12 rounded ms-3 py-2 mb-2 bg-light ">
+                                                                    <div className="bg-danger">
                                                                       <label htmlFor="Height ">{item.name}</label>
                                                                       <div className="row">
                                                                         {item.childrens.map((item) => {
                                                                             return (
                                                                               <div key={ item.id} className="col-6"style={{ textAlign:"center", borderColor: All_ids.includes(item.id)? "#d1d1d1": "#d1d1d10a3565"}}>
-                                                                                <div onClick={(e) => {
-                                                                                  e.stopPropagation();
-                                                                                  setSubOptionTwo(item);
-                                                                                    const Option_data ={ 
-                                                                                        section_id:parseFloat(item.section_id),
-                                                                                        Option_id:parseFloat( item.id ),
-                                                                                        parent_id:parseFloat(item.parent_id),
-                                                                                      };
-                                                                                    if (selected_op.indexOf(Option_data ) ===-1 ) {
-                                                                                      const old_selected = selected_op.filter((op ) => parseFloat( op.parent_id  ) !==  parseFloat(item.parent_id ));
-                                                                                      const New_selected =[
-                                                                                          ...old_selected,
-                                                                                          Option_data,
-                                                                                        ];
-                                                                                      setSelected( New_selected );
-                                                                                      if (All_ids.length <= 0 ) {
-                                                                                        console.log("click on oprtionnn");
-                                                                                        dispatch(getProductSummery(`?product_id=${id2}&options[0]=${parseFloat(  item.id, parseFloat( item.id ) )}&width=${width}&height=${height}&quantity=${quantity}` ) );
-                                                                                      } else {
-                                                                                        SendDataOption(  New_selected );
-                                                                                      }
-                                                                                    }
-                                                                                  }}
-                                                                                >
+                                                                                <div onClick={(e) => {handelSupOptionSelect(e , item)}}>
                                                                                   {item.image ? ( <>
                                                                                       <div className="Card_Image" style={{  borderColor: All_ids.includes( item.id )? "#0a3565"  : "#d1d1d1", }}>
                                                                                         <img src={ item.image} alt="" width={ 100 } height={ 100  } />
@@ -342,14 +348,16 @@ const TestProduct = () => {
                                                                                   ) : (<>
                                                                                       <div className="Chose text-center " style={{ borderColor: All_ids.includes(item.id )? "#0a3565": "#d1d1d1" }}>{ item.name}
                                                                                       </div>
-                                                                                      <p style={{textAlign:"left", color: "red", marginLeft:  "15px",}}>{ item.description }</p>
+                                                                                      {item.description ?<p className="mb-2">{ item.description }</p> : null}
+                                                                                      
                                                                                     </>
                                                                                   )}
                                                                                   {/* *********************** */}
                                                                                   <div className="row">
                                                                                     {SubOptionTwo && SubOptionTwo.id === item.id ? <>
                                                                                       <div className="row p-0 m-0">
-                                                                                        {SubOptionTwo.childrens.map(( element) => {return (
+                                                                                        {SubOptionTwo.childrens.map(( element) => {
+                                                                                          return (
                                                                                               <div key={ element.id}className="col-6">
                                                                                                 <div style={{ textAlign: "center",}}
                                                                                                   onClick={() => {
@@ -464,14 +472,14 @@ const TestProduct = () => {
                   {/* *FIXME - upload btn */}
                   <div className="btn-fils">                  
                     <label className="btn-upload mt-0">
-                    Upload
+                      Upload
                       <input  type="file" multiple={true} className="file-input" onChange={(e) => sendFiles(e)}/>
                     </label>
-                    <button className="btn-delete" onClick={handleFileDelete}>
+                    <button className="btn-delete" onClick={handleDeleteAllFiles}>
                       <span>Delete</span>
                     </button>
                   </div>
-                  {uploadedFilesCount > 0 ? <h4 className="text-muted">Uploaded Files Count: <span className="text-dark">{uploadedFilesCount}</span> </h4> : null}    </div>
+                </div>
               </div>
             </div>
             <div className="col-md-4">
@@ -495,6 +503,16 @@ const TestProduct = () => {
                         <h5>Quantity:</h5>
                         <span> {summeryArr.quantity}</span>
                       </div>
+                      {uploadedFilesCount > 0 ? <>
+                          <h4 className="text-muted">Uploaded Files Count: <span className="text-dark">{uploadedFilesCount}</span> </h4>
+                          {selectedFiles?.map( (file , index) => <div className="fielsContainer d-flex justify-content-between">
+                          <p key={index}>file name : {file.name}</p>
+                          <Icon className="text-danger cursor-pointer" icon={xCircle} onClick={(e)=>handleDeleteFile(index)}/>
+                          </div> 
+                          )}
+                      </>
+                      : 
+                      null}   
                       <div className="d-flex ">
                         <h5>Arrive on:</h5>
                         <span>{tomorrow.toLocaleDateString("en-US", options)} </span>
