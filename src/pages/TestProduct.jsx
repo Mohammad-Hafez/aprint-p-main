@@ -224,9 +224,13 @@ const TestProduct = () => {
         document.querySelector(".limit").style.opacity = 1;  // Hide the <p> element
         setQuantity(MaxQuanity);
         return
-      } else if ( isNaN(newValue) ||newValue < MinQuanity) {
-        setQuantity();
+      } else if (newValue < MinQuanity) {
+        setQuantity(MinQuanity);
+        document.querySelector(".limit").style.opacity = 1;
         return
+      }else if (isNaN(newValue) ) {
+          setQuantity();
+          document.querySelector(".limit").style.opacity = 1;
       } else {
         document.querySelector(".limit" ).style.opacity = 0; // Hide the <p> element
         setQuantity(newValue);
