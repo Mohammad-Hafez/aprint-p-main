@@ -503,7 +503,7 @@ const TestProduct = () => {
                           <h5>{summeryArr.options.length > 0 ? summeryArr.options[0].section + " : ": null}{" "}</h5>
                           <span>{summeryArr.options.length > 0 ? summeryArr.options[0].name : null}</span>
                           {/* *FIXME - add label in this span */}
-                          {GetOptionName ? GetOptionName.map((item) => { return (<span key={item.id}>{` - ${item.section} : ${item.name} `}</span>);}): null}
+                          {GetOptionName ? GetOptionName.map((item) => { return (<span key={item.id}>{` - ${item.description} : ${item.name} `}</span>);}): null}
                         </div>
                       </div>
                       <div className="d-flex">
