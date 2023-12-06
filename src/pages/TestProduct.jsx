@@ -395,7 +395,7 @@ const TestProduct = () => {
                                                                                       <div className="row p-0 m-0">
                                                                                         {SubOptionTwo.childrens.map(( element , index) => {
                                                                                           return (<>
-                                                                                            <label htmlFor="Height ">{element.name}</label>
+                                                                                            {/* <label htmlFor="Height ">{element.name}</label> */}
                                                                                               <div key={ index}className="col-6">
                                                                                                 <div style={{ textAlign: "left",}}
                                                                                                   onClick={() => {
