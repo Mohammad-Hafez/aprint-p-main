@@ -254,7 +254,7 @@ const TestProduct = () => {
       }
     }
     dispatch(getProductSummery(`?product_id=${id2}&${FinalData.toString().replace(/,/g,"")}&width=${width}&height=${height}&quantity=${quantity >= MinQuanity && quantity <= MaxQuanity ? quantity : 1}`)); 
-  }, [quantity]);
+  }, [quantity , width , height ]);
   return (
     <Helmet title={productArr?.meta_title}>
       <meta name="description" content={productArr?.meta_description} />
