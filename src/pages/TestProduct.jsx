@@ -376,10 +376,11 @@ const TestProduct = () => {
                                                                                       <div className="Card_Image" style={{  borderColor: All_ids.includes( item.id )? "#0a3565"  : "#d1d1d1", }}>
                                                                                         <img src={ item.image} alt="" width={ 100 } height={ 100  } />
                                                                                       </div>
-                                                                                      <h3>{item.name}</h3>
+                                                                                      <h3> {item.name}</h3>
                                                                                     </>
                                                                                   ) : (<>
-                                                                                      <div className="Chose text-center " style={{ borderColor: All_ids.includes(item.id )? "#0a3565": "#d1d1d1" }}>{ item.name}
+                                                                                      <div className="Chose text-center " style={{ borderColor: All_ids.includes(item.id )? "#0a3565": "#d1d1d1" }}> 
+                                                                                      nameee{ item.name}
                                                                                       </div>
                                                                                       {item.description ?<label className="ms-0 mb-2">{ item.description }</label> : null}
                                                                                     </>
