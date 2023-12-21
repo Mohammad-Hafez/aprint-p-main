@@ -421,27 +421,18 @@ const TestProduct = () => {
                                                                                                   }}
                                                                                                 
                                                                                                 >
-
+                                                                                                  {ele.image?<>
+                                                                                                    <div className="Card_Image" style={{ borderColor:All_ids.includes(ele.id ) ? "#0a3565": "#d1d1d1" }}>
+                                                                                                        <img src={ele.image}alt="" width={100} height={ 100}/>
+                                                                                                      </div>
+                                                                                                      <h3>{ele.name }</h3>
+                                                                                                  </>:<></>}
                                                                                                   <div className="Chose" style={{ textAlign:"left", borderColor: All_ids.includes(ele.id)? "#0a3565": "#d1d1d1"}}>
                                                                                                     {ele.name}
                                                                                                   </div>
                                                                                                 </div>
                                                                                               </>
                                                                                             })}
-                                                                                              <div key={ index}className="col-6">
-                                                                                                <div style={{ textAlign: "left",}}
-                                                                                                >
-                                                                                                  {element.image ? <>
-                                                                                                      <div className="Card_Image" style={{ borderColor:All_ids.includes(element.id ) ? "#0a3565": "#d1d1d1" }}>
-                                                                                                        <img src={element.image}alt="" width={100} height={ 100}/>
-                                                                                                      </div>
-                                                                                                      <h3>{element.name }</h3>
-                                                                                                    </>
-                                                                                                  : (<>
-                                                                                                    </>
-                                                                                                  )}
-                                                                                                </div>
-                                                                                              </div>
                                                                                               </>
                                                                                             );
                                                                                           }
