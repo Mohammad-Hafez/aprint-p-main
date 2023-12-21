@@ -32,7 +32,7 @@ const TestProduct = () => {
           setHeight(`${res.data.def_height}`);
           setLimit(`${res.data.limit}`);
         });
-      dispatch(getProductSummery(`?product_id=${id2}&width=${100}&height=${100}&quantity=${1}&limit=${limit}`));
+      dispatch(getProductSummery(`?product_id=${id2}&width=${100}&height=${100}&quantity=${ quantity ? quantity : 1}&limit=${limit}`));
     }
   }, [dispatch, id2, value]);
   const [selected_op, setSelected] = useState([{
@@ -52,7 +52,7 @@ const TestProduct = () => {
         FinalData = [...FinalData, `options[${i}]=${Last_send_Ids[i]}&`];
       }
     }
-    dispatch( getProductSummery(`?product_id=${id2}&${FinalData.toString().replace( /,/g, "" )}&width=${width}&height=${height}&quantity=${quantity}` ));
+    dispatch( getProductSummery(`?product_id=${id2}&${FinalData.toString().replace( /,/g, "" )}&width=${width}&height=${height}&quantity=${quantity ? quantity : 1}` ));
   };
 
   const [Order_name, setOrderName] = useState(""); // Define and initialize the Order_name state
@@ -116,7 +116,7 @@ const TestProduct = () => {
         FinalData = [...FinalData, `options[${i}]=${All_ids[i]}&`];
       }
     }
-    dispatch(getProductSummery(`?product_id=${id2}&${FinalData.toString().replace(/,/g, "")}&width=${width}&height=${height}&quantity=${quantity}&files=${count}`));
+    dispatch(getProductSummery(`?product_id=${id2}&${FinalData.toString().replace(/,/g, "")}&width=${width}&height=${height}&quantity=${quantity ? quantity : 1}&files=${count}`));
   }
 
   const sendFiles = (e) => {
@@ -132,7 +132,7 @@ const TestProduct = () => {
     setUploadedFilesCount(newFiles.length);
     updateFilesParameter(newFiles.length);
     let FinalData = All_ids.map((id, i) => (id !== undefined ? `options[${i}]=${id}&` : ""));
-    dispatch(getProductSummery(`?product_id=${id2}&${FinalData.toString().replace(/,/g, "")}&width=${width}&height=${height}&quantity=${quantity}&files=${newFiles.length}`));
+    dispatch(getProductSummery(`?product_id=${id2}&${FinalData.toString().replace(/,/g, "")}&width=${width}&height=${height}&quantity=${quantity ? quantity : 1}&files=${newFiles.length}`));
     e.target.value = null;
   };
 
@@ -165,7 +165,7 @@ const TestProduct = () => {
           ];
         setSelected( New_selected );
         if (All_ids.length <= 0 ) {
-          dispatch(getProductSummery(`?product_id=${id2}&options[0]=${parseFloat(  item.id, parseFloat( item.id ) )}&width=${width}&height=${height}&quantity=${quantity}` ) );
+          dispatch(getProductSummery(`?product_id=${id2}&options[0]=${parseFloat(  item.id, parseFloat( item.id ) )}&width=${width}&height=${height}&quantity=${quantity ? quantity : 1}` ) );
         } else {
           SendDataOption(  New_selected );
         }
@@ -189,7 +189,7 @@ const TestProduct = () => {
             ];
           }
         }
-        dispatch(getProductSummery(`?product_id=${id2}&${FinalData.toString().replace(/,/g,"" )}&width=${e.target.value}&height=${height}&quantity=${quantity}`));
+        dispatch(getProductSummery(`?product_id=${id2}&${FinalData.toString().replace(/,/g,"" )}&width=${e.target.value}&height=${height}&quantity=${quantity ? quantity : 1}`));
         }
     }
 
@@ -210,7 +210,7 @@ const TestProduct = () => {
             ];
           }
         }
-        dispatch(getProductSummery(`?product_id=${id2}&${FinalData.toString().replace(/,/g,"" )}&width=${width}&height=${e.target.value}&quantity=${quantity}`));
+        dispatch(getProductSummery(`?product_id=${id2}&${FinalData.toString().replace(/,/g,"" )}&width=${width}&height=${e.target.value}&quantity=${quantity ?quantity : 1}`));
       }
     }
     const [MaxQuanity, setMaxQuanity] = useState(null);
@@ -253,7 +253,7 @@ const TestProduct = () => {
         ];
       }
     }
-    dispatch(getProductSummery(`?product_id=${id2}&${FinalData.toString().replace(/,/g,"")}&width=${width}&height=${height}&quantity=${quantity >= MinQuanity && quantity <= MaxQuanity ? quantity : 1}`)); 
+    dispatch(getProductSummery(`?product_id=${id2}&${FinalData.toString().replace(/,/g,"")}&width=${width}&height=${height}&quantity=${quantity ? quantity : 1}`)); 
   }, [quantity , width , height ]);
   return (
     <Helmet title={productArr?.meta_title}>
@@ -318,7 +318,7 @@ const TestProduct = () => {
                               <div className="col-12" key={ele.id}>
                                 <div className="row">
                                   <div className="col-12">
-                                    <label htmlFor="Height "> {ele.name} </label>
+                                    <label htmlFor="Height ">{ele.name} </label>
                                   </div>
                                   <div className="col-12">
                                     <div className="row">
@@ -327,7 +327,7 @@ const TestProduct = () => {
                                           <div className="col-md-6" key={e.id}>
                                             <div className="row cardCenter">
                                               <div className="col-md-12">
-                                                <div className=" mb-3" onClick={() => {
+                                                <div className="mb-3" onClick={() => {
                                                     setSubOption(e);
                                                     const Option_data = {
                                                       section_id: parseFloat(e.section_id),
@@ -337,7 +337,7 @@ const TestProduct = () => {
                                                       const New_selected = [...old_selected,Option_data];
                                                       setSelected(New_selected);
                                                       if (All_ids.length <= 0) {
-                                                        dispatch(getProductSummery(`?product_id=${id2}&options[0]=${parseFloat(e.id)}&width=${width}&height=${height}&quantity=${quantity}`));
+                                                        dispatch(getProductSummery(`?product_id=${id2}&options[0]=${parseFloat(e.id)}&width=${width}&height=${height}&quantity=${quantity ?quantity : 1}`));
                                                       } else {
                                                         SendDataOption( New_selected);
                                                       }
@@ -369,8 +369,7 @@ const TestProduct = () => {
                                                                   <div key={index} className="col-12 rounded ms-3 py-2 mb-2">
                                                                     <div className="">
                                                                       {/* *FIXME - show in summary */}
-                                                                      <label htmlFor="Height ">{item.name}</label>
-                                                                      
+                                                                      <label>{item.name}</label>
                                                                       <div className="row">
                                                                         {item.childrens.map((item , index) => {
                                                                             return (
@@ -386,7 +385,6 @@ const TestProduct = () => {
                                                                                       <div className="Chose text-center " style={{ borderColor: All_ids.includes(item.id )? "#0a3565": "#d1d1d1" }}> 
                                                                                         { item.name}
                                                                                       </div>
-                                                                                      {item.description ?<label className="ms-0 mb-2">{ item.description }</label> : null}
                                                                                     </>
                                                                                   )}
                                                                                   {/* *********************** */}
@@ -395,30 +393,43 @@ const TestProduct = () => {
                                                                                       <div className="row p-0 m-0">
                                                                                         {SubOptionTwo.childrens.map(( element , index) => {
                                                                                           return (<>
-                                                                                            {/* <label htmlFor="Height ">{element.name}</label> */}
-                                                                                              <div key={ index}className="col-6">
-                                                                                                <div style={{ textAlign: "left",}}
+                                                                                            <label>{element.name}</label>
+
+                                                                                            {element.childrens?.map((ele , index) =>{
+                                                                                              return <>
+                                                                                                <div className="col-6 p-2" key={index} style={{ textAlign:"center", borderColor: All_ids.includes(ele.id)? "#d1d1d1": "#d1d1d10a3565"}}
                                                                                                   onClick={() => {
                                                                                                     const Option_data = {
-                                                                                                        section_id:parseFloat( element.section_id ),
-                                                                                                        Option_id: parseFloat( element.id),
-                                                                                                        parent_id:parseFloat( element.parent_id ),
+                                                                                                        section_id:parseFloat( ele.section_id ),
+                                                                                                        Option_id: parseFloat( ele.id),
+                                                                                                        parent_id:parseFloat( ele.parent_id ),
                                                                                                       };
                                                                                                     if (selected_op.indexOf( Option_data) ===-1) {
-                                                                                                      const old_selected =selected_op.filter( (op ) => parseFloat(op.parent_id ) !==parseFloat(element.parent_id));
+                                                                                                      const old_selected =selected_op.filter( (op ) => parseFloat(op.parent_id ) !==parseFloat(ele.parent_id));
                                                                                                       const New_selected =[
                                                                                                           ...old_selected,
                                                                                                           Option_data,
                                                                                                         ];
                                                                                                       setTimeout(() => {setSelected(New_selected);
                                                                                                         if (All_ids.length <=0) {
-                                                                                                          dispatch( getProductSummery(`?product_id=${id2}&options[0]=${parseFloat(element.id )}&width=${width}&height=${height}&quantity=${quantity}`) );
+                                                                                                          dispatch( getProductSummery(`?product_id=${id2}&options[0]=${parseFloat(ele.id )}&width=${width}&height=${height}&quantity=${quantity ?quantity : 1}`) );
                                                                                                         } else {
                                                                                                           SendDataOption(New_selected );
                                                                                                         }
                                                                                                       }, []);
                                                                                                     }
                                                                                                   }}
+                                                                                                
+                                                                                                >
+
+                                                                                                  <div className="Chose" style={{ textAlign:"left", borderColor: All_ids.includes(ele.id)? "#0a3565": "#d1d1d1"}}>
+                                                                                                    {ele.name}
+                                                                                                  </div>
+                                                                                                </div>
+                                                                                              </>
+                                                                                            })}
+                                                                                              <div key={ index}className="col-6">
+                                                                                                <div style={{ textAlign: "left",}}
                                                                                                 >
                                                                                                   {element.image ? <>
                                                                                                       <div className="Card_Image" style={{ borderColor:All_ids.includes(element.id ) ? "#0a3565": "#d1d1d1" }}>
@@ -427,15 +438,12 @@ const TestProduct = () => {
                                                                                                       <h3>{element.name }</h3>
                                                                                                     </>
                                                                                                   : (<>
-                                                                                                      <div className="Chose text-center "style={{borderColor:All_ids.includes(element.id )? "#0a3565": "#d1d1d1"}}>{element.name}</div>
-                                                                                                      <label>{ element.description }</label>
                                                                                                     </>
                                                                                                   )}
                                                                                                 </div>
                                                                                               </div>
                                                                                               </>
                                                                                             );
-                                                                                           
                                                                                           }
                                                                                         )}
                                                                                       </div>

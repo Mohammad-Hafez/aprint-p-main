@@ -21,7 +21,6 @@ const Service = ({ lang }) => {
     setMainName(data.data.data.name);
   };
   const onServicesError = (error) => {
-    // console.log("Error", error);
   };
   const servicesFetcher = () => {
     return axios.get(`${process.env.REACT_APP_BACKEND_API}/categories/${id}`, {
