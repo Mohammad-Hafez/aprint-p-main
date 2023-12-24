@@ -390,10 +390,10 @@ const TestProduct = () => {
                                                                                   {/* *********************** */}
                                                                                   <div className="row">
                                                                                     {SubOptionTwo && SubOptionTwo.id === item.id ? <>
-                                                                                      <div className="row p-0 m-0">
                                                                                         {SubOptionTwo.childrens.map(( element , index) => {
                                                                                           return (<>
-                                                                                            <label>{element.name}</label>
+                                                                                            <label className="w-auto position-relative pe-0">{element.name}</label>
+                                                                                            <div className="row p-0 m-0">
 
                                                                                             {element.childrens?.map((ele , index) =>{
                                                                                               return <>
@@ -419,7 +419,6 @@ const TestProduct = () => {
                                                                                                       }, []);
                                                                                                     }
                                                                                                   }}
-                                                                                                
                                                                                                 >
                                                                                                   {ele.image?<>
                                                                                                     <div className="Card_Image" style={{ borderColor:All_ids.includes(ele.id ) ? "#0a3565": "#d1d1d1" }}>
@@ -433,11 +432,12 @@ const TestProduct = () => {
                                                                                                 </div>
                                                                                               </>
                                                                                             })}
+                                                                                            </div>
                                                                                               </>
                                                                                             );
                                                                                           }
                                                                                         )}
-                                                                                      </div>
+                                                                                      {/* </div> */}
                                                                                     </> : null}
                                                                                   </div>
                                                                                 </div>
