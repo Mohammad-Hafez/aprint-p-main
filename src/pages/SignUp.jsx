@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import axios from "axios";
 import styles from "../styles/login/login.module.css";
 import FormikControl from "./../components/formik/FormikControl";
@@ -7,14 +7,12 @@ import * as Yup from "yup";
 import ModalMe from "../components/ModalMe";
 import Loader from "../components/Loader";
 import { Link, useNavigate } from "react-router-dom";
-import styles1 from "../styles/sign up/sign.module.css";
-import { COUNTRIES } from "../data/data";
 import { HiOutlineMailOpen } from "react-icons/hi";
-import { FaLinkedinIn, FaLock } from "react-icons/fa";
-import { AiFillApple, AiOutlineTwitter } from "react-icons/ai";
+import { FaLock } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { BsTelephone } from "react-icons/bs";
 import { signINWithGoogle } from "../firebase";
+
 const SignUp = ({ lang, isUser, setIsUser }) => {
   const [loginErrors, setLoginErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -56,6 +54,7 @@ const SignUp = ({ lang, isUser, setIsUser }) => {
         }
       )
       .then((res) => {
+        console.log(res);
         setModalShow(true);
         setSuccessMessage("Login success");
         setTimeout(() => {
@@ -71,19 +70,9 @@ const SignUp = ({ lang, isUser, setIsUser }) => {
 
   return (
     <section className={`${styles.LoginSection}`}>
-      <ModalMe
-        show={modalShow}
-        lang={lang}
-        onHide={() => setModalShow(false)}
-        // header={}
-        body={successMessage}
-      />
+      <ModalMe show={modalShow} lang={lang} onHide={() => setModalShow(false)} body={successMessage} />
       {isLoading && (
-        <div
-          className="d-flex justify-content-center align-items-center"
-          style={{
-            height: "100%",
-            width: "100%",
+        <div className="d-flex justify-content-center align-items-center w-100 h-100" style={{ 
             position: "fixed",
             top: "0",
             left: "0",
@@ -190,15 +179,6 @@ const SignUp = ({ lang, isUser, setIsUser }) => {
           </Formik>
           <p className="text-center">Or</p>
           <div className={styles.iconSection}>
-            {/* <div>
-              <AiOutlineTwitter />
-            </div>
-            <div>
-              <AiFillApple />
-            </div>
-            <div>
-              <FaLinkedinIn />
-            </div> */}
             <div
               onClick={() => {
                 signINWithGoogle();

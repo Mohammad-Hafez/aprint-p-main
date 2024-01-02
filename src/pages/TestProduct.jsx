@@ -158,7 +158,7 @@ const TestProduct = () => {
           parent_id:parseFloat(item.parent_id),
         };
       if (selected_op.indexOf(Option_data ) ===-1 ) {
-        const old_selected = selected_op.filter((op ) => parseFloat( op.parent_id  ) !==  parseFloat(item.parent_id ));
+        const old_selected = selected_op.filter((op ) => parseFloat( op.parent_id ) !== parseFloat(item.parent_id ));
         const New_selected =[
             ...old_selected,
             Option_data,
@@ -171,7 +171,28 @@ const TestProduct = () => {
         }
       }
     }
-
+  const handleThirdSupOption = (e , ele)=>{
+      e.stopPropagation();
+      const Option_data = {
+          section_id:parseFloat( ele.section_id ),
+          Option_id: parseFloat( ele.id),
+          parent_id:parseFloat( ele.parent_id ),
+        };
+      if (selected_op.indexOf( Option_data) ===-1) {
+        const old_selected =selected_op.filter((op ) => parseFloat( op.parent_id ) !== parseFloat(ele.parent_id));
+        const New_selected =[
+            ...old_selected,
+            Option_data,
+          ];
+        setTimeout(() => {setSelected(New_selected);
+          if (All_ids.length <=0) {
+            dispatch( getProductSummery(`?product_id=${id2}&options[0]=${parseFloat(ele.id )}&width=${width}&height=${height}&quantity=${quantity ?quantity : 1}`) );
+          } else {
+            SendDataOption(New_selected );
+          }
+        }, []);
+      }
+    }
     const handelSetWidth = (e)=>{
       setWidth(e.target.value);
       if (e.target.value < productArr?.min_width) {
@@ -255,6 +276,7 @@ const TestProduct = () => {
     }
     dispatch(getProductSummery(`?product_id=${id2}&${FinalData.toString().replace(/,/g,"")}&width=${width}&height=${height}&quantity=${quantity ? quantity : 1}`)); 
   }, [quantity , width , height ]);
+
   return (
     <Helmet title={productArr?.meta_title}>
       <meta name="description" content={productArr?.meta_description} />
@@ -368,7 +390,6 @@ const TestProduct = () => {
                                                                 return (
                                                                   <div key={index} className="col-12 rounded ms-3 py-2 mb-2">
                                                                     <div className="">
-                                                                      {/* *FIXME - show in summary */}
                                                                       <label>{item.name}</label>
                                                                       <div className="row">
                                                                         {item.childrens.map((item , index) => {
@@ -388,38 +409,15 @@ const TestProduct = () => {
                                                                                     </>
                                                                                   )}
                                                                                   {/* *********************** */}
-                                                                                  <div className="row">
+                                                                                  <div className="row my-2">
                                                                                     {SubOptionTwo && SubOptionTwo.id === item.id ? <>
                                                                                         {SubOptionTwo.childrens.map(( element , index) => {
                                                                                           return (<>
                                                                                             <label className="w-auto position-relative pe-0">{element.name}</label>
                                                                                             <div className="row p-0 m-0">
-
                                                                                             {element.childrens?.map((ele , index) =>{
                                                                                               return <>
-                                                                                                <div className="col-6 p-2" key={index} style={{ textAlign:"center", borderColor: All_ids.includes(ele.id)? "#d1d1d1": "#d1d1d10a3565"}}
-                                                                                                  onClick={() => {
-                                                                                                    const Option_data = {
-                                                                                                        section_id:parseFloat( ele.section_id ),
-                                                                                                        Option_id: parseFloat( ele.id),
-                                                                                                        parent_id:parseFloat( ele.parent_id ),
-                                                                                                      };
-                                                                                                    if (selected_op.indexOf( Option_data) ===-1) {
-                                                                                                      const old_selected =selected_op.filter( (op ) => parseFloat(op.parent_id ) !==parseFloat(ele.parent_id));
-                                                                                                      const New_selected =[
-                                                                                                          ...old_selected,
-                                                                                                          Option_data,
-                                                                                                        ];
-                                                                                                      setTimeout(() => {setSelected(New_selected);
-                                                                                                        if (All_ids.length <=0) {
-                                                                                                          dispatch( getProductSummery(`?product_id=${id2}&options[0]=${parseFloat(ele.id )}&width=${width}&height=${height}&quantity=${quantity ?quantity : 1}`) );
-                                                                                                        } else {
-                                                                                                          SendDataOption(New_selected );
-                                                                                                        }
-                                                                                                      }, []);
-                                                                                                    }
-                                                                                                  }}
-                                                                                                >
+                                                                                                <div className="col-12 mb-1" key={index} style={{ textAlign:"center", borderColor: All_ids.includes(ele.id)? "#d1d1d1": "#d1d1d10a3565"}} onClick={(e) => {handleThirdSupOption(e , ele)}}>
                                                                                                   {ele.image?<>
                                                                                                     <div className="Card_Image" style={{ borderColor:All_ids.includes(ele.id ) ? "#0a3565": "#d1d1d1" }}>
                                                                                                         <img src={ele.image}alt="" width={100} height={ 100}/>
@@ -437,7 +435,6 @@ const TestProduct = () => {
                                                                                             );
                                                                                           }
                                                                                         )}
-                                                                                      {/* </div> */}
                                                                                     </> : null}
                                                                                   </div>
                                                                                 </div>
@@ -508,8 +505,9 @@ const TestProduct = () => {
                         <div className="d-flex flex-wrap">
                           <h5>{summeryArr.options.length > 0 ? summeryArr.options[0].section + " : ": null}{" "}</h5>
                           <span>{summeryArr.options.length > 0 ? summeryArr.options[0].name : null}</span>
-                          {/* *FIXME - add label in this span */}
-                          {GetOptionName ? GetOptionName.map((item , index) => { return (<span key={index}>{` - ${item.parent_name} : ${item.name} `}</span>);}): null}
+                          <ul>
+                            {GetOptionName ? GetOptionName.map((item , index) => { return (<li key={index}><span className="fw-bold">{item.parent_name}</span> {` : ${item.name} `}</li>);}): null}
+                          </ul>
                         </div>
                       </div>
                       <div className="d-flex">
