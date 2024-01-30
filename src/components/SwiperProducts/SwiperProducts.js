@@ -16,7 +16,7 @@ const SwiperProducts = ({ elements }) => {
             spaceBetween: 20,
           },
           768: {
-            slidesPerView: 2,
+            slidesPerView: 1,
             spaceBetween: 40,
           },
           1024: {
@@ -38,7 +38,7 @@ const SwiperProducts = ({ elements }) => {
             return (
               <SwiperSlide key={index}>
                 <div className="ImagesMain">
-                  <img src={ele} alt="images" />
+                  <img src={ele} alt="images" className="w-100" />
                 </div>
               </SwiperSlide>
             );

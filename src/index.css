@@ -462,7 +462,7 @@ input::-webkit-outer-spin-button,
 }
 @media (max-width: 767.98px) {
   .Responsive_row {
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
   .order_now_button {
     display: block;

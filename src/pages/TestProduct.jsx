@@ -541,13 +541,13 @@ const TestProduct = () => {
                     </div>
                   )}
                 </div>
-                <div className="order_now order_now_button">
+                {/* <div className="order_now order_now_button">
                   {summeryArr && (
                     <div className="CardTest">
                       <button className="AddToCartBtn"onClick={() => {AddToCart();}}>Add To Cart</button>
                     </div>
                   )}
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
