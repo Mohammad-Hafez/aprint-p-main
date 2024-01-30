@@ -18,6 +18,19 @@ code {
   padding: 0;
   margin: 0;
 }
+.font-quest{
+  font-family: 'Questrial', sans-serif ;
+}
+.font-Rowdies{
+  font-family: 'Rowdies', sans-serif ;
+}
+.font-roboto{
+  font-family: 'Roboto', sans-serif;
+}
+.font-Poppins{
+  font-family: 'Poppins', sans-serif;
+}
+
 .main-title {
   background-color: #5b58ba;
   color: white;

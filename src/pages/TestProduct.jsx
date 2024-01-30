@@ -348,7 +348,7 @@ const TestProduct = () => {
                                         return (
                                           <div className="col-md-6" key={e.id}>
                                             <div className="row cardCenter">
-                                              <div className="col-md-12">
+                                              <div className="col-md-12 font-roboto">
                                                 <div className="mb-3" onClick={() => {
                                                     setSubOption(e);
                                                     const Option_data = {
@@ -367,7 +367,7 @@ const TestProduct = () => {
                                                   }}
                                                 >
                                                   {e.image ? (<>
-                                                      <div className="Card_Image"style={{borderColor:All_ids.includes(e.id)? "#0a3565": "#d1d1d1"}}>
+                                                      <div className="Card_Image Chose rounded"style={{borderColor:All_ids.includes(e.id)? "#0a3565": "#d1d1d1"}}>
                                                         <div className="ImageTesetCon">
                                                           <img src={e.image}alt=""/>
                                                         </div>
