@@ -504,7 +504,7 @@ const TestProduct = () => {
                   {summeryArr && (
                     <div className="CardTest "> <h2 className="mb-3">Order Summary</h2> <div>
                         <div className="d-flex flex-wrap">
-                          <h5>{summeryArr.options.length > 0 ? summeryArr.options[0].section + " : ": null}{" "}</h5>
+                          <h5 className="font-quest fw-bolder">{summeryArr.options.length > 0 ? summeryArr.options[0].section + " : ": null}{" "}</h5>
                           <span>{summeryArr.options.length > 0 ? summeryArr.options[0].name : null}</span>
                           <ul>
                             {GetOptionName ? GetOptionName.map((item , index) => { return (<li key={index}><span className="fw-boldذ  ">{item.parent_name}</span> {` : ${item.name} `}</li>);}): null}
@@ -512,13 +512,13 @@ const TestProduct = () => {
                         </div>
                       </div>
                       <div className="d-flex">
-                        <h5>Quantity:</h5>
+                        <h5 className="font-quest fw-bolder">Quantity:</h5>
                         <span> {summeryArr.quantity}</span>
                       </div>
                       {uploadedFilesCount > 0 ? <>
-                          <h5 className="text-dark">Uploaded Files Count: <span className="text-muted fw-normal">{uploadedFilesCount}</span> </h5>
+                          <h5 className="text-dark font-Rowdies">Uploaded Files Count: <span className="text-muted fw-normal">{uploadedFilesCount}</span> </h5>
                           {selectedFiles?.map( (file , index) => <div className="fielsContainer d-flex align-items-center">
-                          <h5 className="mb-1 text-dark" key={index}>File name : <span className="text-muted">{file.name}</span> </h5>
+                          <h5 className="mb-1 text-dark font-quest fw-bolder" key={index}>File name : <span className="text-muted fw-normal">{file.name}</span> </h5>
                           <Icon className="text-danger delBtn ms-3 cursor-pointer" icon={xCircle} onClick={(e)=>handleDeleteFile(index)}/>
                           </div> 
                           )}
@@ -526,15 +526,15 @@ const TestProduct = () => {
                       : 
                       null}   
                       <div className="d-flex ">
-                        <h5>Arrive on:</h5>
+                        <h5 className="font-quest fw-bolder">Arrive on:</h5>
                         <span>{tomorrow.toLocaleDateString("en-US", options)} </span>
                       </div>
                       <div className="d-flex align-items-center font_grow_div ">
-                        <h5 className="font_grow">Total:</h5>
+                        <h5 className="font_grow font-quest fw-bolder">Total:</h5>
                         <span className="span_active">{" "}{summeryArr.total.toFixed(2)} &euro;</span>
                       </div>
                       <div className="mb-4 Order_name">
-                        <label htmlFor="Order_name">Order name </label>
+                        <label htmlFor="Order_name font-quest fw-bolder">Order name </label>
                         <input type="text" onChange={(e) => {setOrderName(e.target.value);}}className={`${parseInt(Order_name) <= 0 || Order_name.length <= 0? "p-invalid": ""} `}name="Order_name"id="Order_name"/>
                       </div>
                       <button className="AddToCartBtn"onClick={() => {AddToCart();}}>Add To Cart</button>
