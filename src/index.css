@@ -322,7 +322,10 @@ a {
 
   border: 1px solid white;
 }
-
+input::-webkit-outer-spin-button,
+ input::-webkit-inner-spin-button{
+  -webkit-appearance: none;
+}
 .Card_Image {
   margin-top: 5px;
   display: flex;

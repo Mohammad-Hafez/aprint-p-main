@@ -306,21 +306,21 @@ const TestProduct = () => {
                     <h2>Create your order</h2>
                     <div className="row  aLLCenter">
                       <div className="col-md-6">
-                        <div className="row cardCenter">
-                          <div className="col-md-8">
-                            <label htmlFor="Width ">Width </label>
-                            <input type="number"value={width} onChange={(e) => handelSetWidth(e)} className={`${parseInt(width) <= 0 || width.length <= 0? "p-invalid": ""} `} name="Width" id="Width"/>
+                      <label htmlFor="Width ">Width </label>
+                        <div className="d-flex align-items-center  cardCenter">
+                          <div className="widthInput">
+                            <input type="number"value={width} placeholder="Panner Width" onChange={(e) => handelSetWidth(e)} className={`inputNum ${parseInt(width) <= 0 || width.length <= 0? "p-invalid": ""} `} name="Width" id="Width"/>
                           </div>
-                          <div className="col-md-4">cm</div>
+                          <div className="unit">cm</div>
                         </div>
                       </div>
                       <div className="col-md-6">
-                        <div className="row cardCenter">
-                          <div className="col-md-8">
-                            <label htmlFor="Height ">Height</label>
-                            <input type="number"value={height}onChange={(e) => { handelSetHieght(e) }}className={`${parseInt(height) <= 0 || height.length <= 0? "p-invalid": "" } `} name="Height" id="Height"/>
+                      <label htmlFor="Height ">Height</label>
+                        <div className=" d-flex align-items-center cardCenter">
+                          <div className="hightInput">
+                            <input type="number"value={height} placeholder="Panner Height" onChange={(e) => { handelSetHieght(e) }}className={`inputNum ${parseInt(height) <= 0 || height.length <= 0? "p-invalid": "" } `} name="Height" id="Height"/>
                           </div>
-                          <div className="col-md-4">cm</div>
+                          <div className="unit"><span>cm</span></div>
                         </div>
                       </div>
                       {widthError || heightError ? (
@@ -397,10 +397,10 @@ const TestProduct = () => {
                                                                               <div key={ index} className="col-6"style={{ textAlign:"center", borderColor: All_ids.includes(item.id)? "#d1d1d1": "#d1d1d10a3565"}}>
                                                                                 <div className="text-start" onClick={(e) => {handelSupOptionSelect(e , item)}}>
                                                                                   {item.image ? ( <>
-                                                                                      <div className="Card_Image" style={{  borderColor: All_ids.includes( item.id )? "#0a3565"  : "#d1d1d1", }}>
+                                                                                      <div className="Card_Image Chose rounded" style={{  borderColor: All_ids.includes( item.id )? "#0a3565"  : "#d1d1d1", }}>
                                                                                         <img src={ item.image} alt="" width={ 100 } height={ 100  } />
+                                                                                        <h3 className="mt-2 mb-1"> {item.name}</h3>
                                                                                       </div>
-                                                                                      <h3> {item.name}</h3>
                                                                                     </>
                                                                                   ) : (<>
                                                                                       <div className="Chose text-center " style={{ borderColor: All_ids.includes(item.id )? "#0a3565": "#d1d1d1" }}> 
@@ -409,7 +409,7 @@ const TestProduct = () => {
                                                                                     </>
                                                                                   )}
                                                                                   {/* *********************** */}
-                                                                                  <div className="row my-2">
+                                                                                  <div className="row my-2 mx-auto" style={{width:'90%'}}>
                                                                                     {SubOptionTwo && SubOptionTwo.id === item.id ? <>
                                                                                         {SubOptionTwo.childrens.map(( element , index) => {
                                                                                           return (<>
@@ -419,14 +419,15 @@ const TestProduct = () => {
                                                                                               return <>
                                                                                                 <div className="col-12 mb-1" key={index} style={{ textAlign:"center", borderColor: All_ids.includes(ele.id)? "#d1d1d1": "#d1d1d10a3565"}} onClick={(e) => {handleThirdSupOption(e , ele)}}>
                                                                                                   {ele.image?<>
-                                                                                                    <div className="Card_Image" style={{ borderColor:All_ids.includes(ele.id ) ? "#0a3565": "#d1d1d1" }}>
+                                                                                                    <div className="Card_Image Chose mb-2 rounded" style={{ borderColor:All_ids.includes(ele.id ) ? "#0a3565": "#d1d1d1" }}>
                                                                                                         <img src={ele.image}alt="" width={100} height={ 100}/>
+                                                                                                        <h3 className="mt-2 mb-1 text-capitalize">{ele.name }</h3>
                                                                                                       </div>
-                                                                                                      <h3>{ele.name }</h3>
-                                                                                                  </>:<></>}
-                                                                                                  <div className="Chose" style={{ textAlign:"left", borderColor: All_ids.includes(ele.id)? "#0a3565": "#d1d1d1"}}>
+                                                                                                  </>:<>
+                                                                                                  <div className="Chose text-capitalize" style={{ textAlign:"left", borderColor: All_ids.includes(ele.id)? "#0a3565": "#d1d1d1"}}>
                                                                                                     {ele.name}
                                                                                                   </div>
+                                                                                                  </>}
                                                                                                 </div>
                                                                                               </>
                                                                                             })}
@@ -506,7 +507,7 @@ const TestProduct = () => {
                           <h5>{summeryArr.options.length > 0 ? summeryArr.options[0].section + " : ": null}{" "}</h5>
                           <span>{summeryArr.options.length > 0 ? summeryArr.options[0].name : null}</span>
                           <ul>
-                            {GetOptionName ? GetOptionName.map((item , index) => { return (<li key={index}><span className="fw-bold">{item.parent_name}</span> {` : ${item.name} `}</li>);}): null}
+                            {GetOptionName ? GetOptionName.map((item , index) => { return (<li key={index}><span className="fw-boldذ  ">{item.parent_name}</span> {` : ${item.name} `}</li>);}): null}
                           </ul>
                         </div>
                       </div>
