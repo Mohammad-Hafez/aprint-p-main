@@ -340,7 +340,6 @@ input::-webkit-outer-spin-button,
   -webkit-appearance: none;
 }
 .Card_Image {
-  margin-top: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
