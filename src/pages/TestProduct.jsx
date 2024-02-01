@@ -434,7 +434,7 @@ const TestProduct = () => {
                                                                                                       </div>
                                                                                                   </>:<>
                                                                                                   <div className="Chose text-capitalize text-capitalize fw-bold fs-6" style={{ textAlign:"left", border:All_ids.includes(ele.id)? "3px solid #0a3565": "1px solid #d1d1d1" }}>
-                                                                                                    {ele.name}
+                                                                                                    <h3 className="fw-bold fs-6 text-capitalize text-center">{ele.name}</h3>
                                                                                                   </div>
                                                                                                   </>}
                                                                                                 </div>
