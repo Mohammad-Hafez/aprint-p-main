@@ -284,9 +284,7 @@ const TestProduct = () => {
         <div className="container-xxl">
           <div className="row Responsive_row">
             <div className="col-md-8">
-              <div className="row">
-                <div className="col-md-12">
-                  <div className="CardTest">
+            <div className="CardTest">
                     <h1>{productArr?.title}</h1>
                     <div className="Toogelbuttons">
                       {productArr?.headers?.map((ele) => <h2 key={ele.id}onClick={() => {setHeadersId(ele.id);}} className={`${ele.id === HeadersId ? "ToggleActive" : ""} `}style={{ cursor: "pointer" }}>{ele.title}{" "}</h2>)}
@@ -300,7 +298,18 @@ const TestProduct = () => {
                         </div>
                     )}
                   </div>
-                </div>
+
+            </div>
+            <div className="col-md-4">
+            {productArr && (
+                    <div className="CardTest">
+                      <SwiperProducts elements={productArr.images} />
+                    </div>
+                )}
+
+            </div>
+            <div className="col-md-8">
+              <div className="row">
                 <div className="col-md-12">
                   <div className="CardTest">
                     <h2>Create your order</h2>
@@ -339,8 +348,8 @@ const TestProduct = () => {
                             return (
                               <div className="col-12" key={ele.id}>
                                 <div className="row">
-                                  <div className="col-12">
-                                    <label htmlFor="Height ">{ele.name} </label>
+                                  <div className="col-12 font-roboto">
+                                    <label htmlFor="Height" className="fw-bold fs-5">{ele.name} </label>
                                   </div>
                                   <div className="col-12">
                                     <div className="row">
@@ -348,7 +357,7 @@ const TestProduct = () => {
                                         return (
                                           <div className="col-md-6" key={e.id}>
                                             <div className="row cardCenter">
-                                              <div className="col-md-12 font-roboto">
+                                              <div className="col-md-12">
                                                 <div className="mb-3" onClick={() => {
                                                     setSubOption(e);
                                                     const Option_data = {
@@ -371,15 +380,15 @@ const TestProduct = () => {
                                                         <div className="ImageTesetCon">
                                                           <img src={e.image}alt=""/>
                                                         </div>
-                                                        <h3>{e.name}</h3>
+                                                        <h3 className="fw-bold fs-6 text-capitalize">{e.name}</h3>
                                                       </div>
                                                       <p>{e.description}</p>
                                                     </>
                                                   ) : ( <>
                                                       <div className="Chose text-center"style={{border:All_ids.includes(e.id)? "3px solid #0a3565": "1px solid #d1d1d1" }}>
-                                                        {e.name}
+                                                        <h3 className="fw-bold fs-6 text-capitalize">{e.name}</h3>
                                                       </div>
-                                                      <p> {e.description}</p>
+                                                      <p > {e.description}</p>
                                                     </>
                                                   )}
                                                   {SubOption ? ( e.id === SubOption.id ? (
@@ -390,7 +399,7 @@ const TestProduct = () => {
                                                                 return (
                                                                   <div key={index} className="col-12 rounded ms-3 py-2 mb-2">
                                                                     <div className="">
-                                                                      <label>{item.name}</label>
+                                                                      <label className="fw-bold fs-6 font-roboto">{item.name}</label>
                                                                       <div className="row">
                                                                         {item.childrens.map((item , index) => {
                                                                             return (
@@ -399,12 +408,12 @@ const TestProduct = () => {
                                                                                   {item.image ? ( <>
                                                                                       <div className="Card_Image Chose rounded" style={{ border:All_ids.includes(item.id)? "3px solid #0a3565": "1px solid #d1d1d1" }}>
                                                                                         <img src={ item.image} alt="" width={ 100 } height={ 100  } />
-                                                                                        <h3 className="mt-2 mb-1"> {item.name}</h3>
+                                                                                        <h3 className="mt-2 mb-1 fw-bold fs-6 text-capitalize"> {item.name}</h3>
                                                                                       </div>
                                                                                     </>
                                                                                   ) : (<>
                                                                                       <div className="Chose text-center " style={{border:All_ids.includes(item.id)? "3px solid #0a3565": "1px solid #d1d1d1"  }}> 
-                                                                                        { item.name}
+                                                                                        <h3 className="fw-bold fs-6 text-capitalize">{ item.name}</h3>
                                                                                       </div>
                                                                                     </>
                                                                                   )}
@@ -413,7 +422,7 @@ const TestProduct = () => {
                                                                                     {SubOptionTwo && SubOptionTwo.id === item.id ? <>
                                                                                         {SubOptionTwo.childrens.map(( element , index) => {
                                                                                           return (<>
-                                                                                            <label className="w-auto position-relative pe-0">{element.name}</label>
+                                                                                            <label className="w-auto position-relative pe-0 fs-6 fw-bold font-roboto">{element.name}</label>
                                                                                             <div className="row p-0 m-0">
                                                                                             {element.childrens?.map((ele , index) =>{
                                                                                               return <>
@@ -421,10 +430,10 @@ const TestProduct = () => {
                                                                                                   {ele.image?<>
                                                                                                     <div className="Card_Image Chose mb-2 rounded" style={{ border:All_ids.includes(ele.id)? "3px solid #0a3565": "1px solid #d1d1d1"  }}>
                                                                                                         <img src={ele.image}alt="" width={100} height={ 100}/>
-                                                                                                        <h3 className="mt-2 mb-1 text-capitalize">{ele.name }</h3>
+                                                                                                        <h3 className="mt-2 mb-1 text-capitalize fw-bold fs-6">{ele.name }</h3>
                                                                                                       </div>
                                                                                                   </>:<>
-                                                                                                  <div className="Chose text-capitalize" style={{ textAlign:"left", border:All_ids.includes(ele.id)? "3px solid #0a3565": "1px solid #d1d1d1" }}>
+                                                                                                  <div className="Chose text-capitalize text-capitalize fw-bold fs-6" style={{ textAlign:"left", border:All_ids.includes(ele.id)? "3px solid #0a3565": "1px solid #d1d1d1" }}>
                                                                                                     {ele.name}
                                                                                                   </div>
                                                                                                   </>}
@@ -472,7 +481,6 @@ const TestProduct = () => {
                         <div className="row cardCenter">
                           <div className="col-md-12">
                             <label htmlFor="Height ">Quantity</label>
-                            <p> Finishing Notes</p>
                             <input type="number" min={MinQuanity} max={MaxQuanity} value={quantity} onChange={(e) => {handelQuantityChange(e)}}/>
                             <p className="limit">Please Select a Quantity Between {MinQuanity} as a Minimum Quantity & {MaxQuanity} as a Maximum Quantity</p>
                           </div>
@@ -494,11 +502,6 @@ const TestProduct = () => {
             </div>
             <div className="col-md-4">
               <div style={{ height: "100%"}}>
-                {productArr && (
-                    <div className="CardTest">
-                      <SwiperProducts elements={productArr.images} />
-                    </div>
-                )}
 
                 <div className="order_now">
                   {summeryArr && (
@@ -507,7 +510,7 @@ const TestProduct = () => {
                           <h5 className="font-quest fw-bolder">{summeryArr.options.length > 0 ? summeryArr.options[0].section + " : ": null}{" "}</h5>
                           <span>{summeryArr.options.length > 0 ? summeryArr.options[0].name : null}</span>
                           <ul>
-                            {GetOptionName ? GetOptionName.map((item , index) => { return (<li key={index}><span className="fw-boldذ  ">{item.parent_name}</span> {` : ${item.name} `}</li>);}): null}
+                            {GetOptionName ? GetOptionName.map((item , index) => { return (<li key={index} className="font-quest"><span className="fw-bolder fs-5">{item.parent_name}</span> {` : ${item.name} `}</li>);}): null}
                           </ul>
                         </div>
                       </div>
