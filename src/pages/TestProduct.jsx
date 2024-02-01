@@ -367,7 +367,7 @@ const TestProduct = () => {
                                                   }}
                                                 >
                                                   {e.image ? (<>
-                                                      <div className="Card_Image Chose rounded"style={{borderColor:All_ids.includes(e.id)? "#0a3565": "#d1d1d1"}}>
+                                                      <div className="Card_Image Chose rounded"style={{border:All_ids.includes(e.id)? "3px solid #0a3565": "1px solid #d1d1d1" }}>
                                                         <div className="ImageTesetCon">
                                                           <img src={e.image}alt=""/>
                                                         </div>
@@ -376,7 +376,7 @@ const TestProduct = () => {
                                                       <p>{e.description}</p>
                                                     </>
                                                   ) : ( <>
-                                                      <div className="Chose text-center"style={{borderColor:All_ids.includes( e.id)? "#0a3565": "#d1d1d1"}}>
+                                                      <div className="Chose text-center"style={{border:All_ids.includes(e.id)? "3px solid #0a3565": "1px solid #d1d1d1" }}>
                                                         {e.name}
                                                       </div>
                                                       <p> {e.description}</p>
@@ -397,13 +397,13 @@ const TestProduct = () => {
                                                                               <div key={ index} className="col-6"style={{ textAlign:"center", borderColor: All_ids.includes(item.id)? "#d1d1d1": "#d1d1d10a3565"}}>
                                                                                 <div className="text-start" onClick={(e) => {handelSupOptionSelect(e , item)}}>
                                                                                   {item.image ? ( <>
-                                                                                      <div className="Card_Image Chose rounded" style={{  borderColor: All_ids.includes( item.id )? "#0a3565"  : "#d1d1d1", }}>
+                                                                                      <div className="Card_Image Chose rounded" style={{ border:All_ids.includes(item.id)? "3px solid #0a3565": "1px solid #d1d1d1" }}>
                                                                                         <img src={ item.image} alt="" width={ 100 } height={ 100  } />
                                                                                         <h3 className="mt-2 mb-1"> {item.name}</h3>
                                                                                       </div>
                                                                                     </>
                                                                                   ) : (<>
-                                                                                      <div className="Chose text-center " style={{ borderColor: All_ids.includes(item.id )? "#0a3565": "#d1d1d1" }}> 
+                                                                                      <div className="Chose text-center " style={{border:All_ids.includes(item.id)? "3px solid #0a3565": "1px solid #d1d1d1"  }}> 
                                                                                         { item.name}
                                                                                       </div>
                                                                                     </>
@@ -419,12 +419,12 @@ const TestProduct = () => {
                                                                                               return <>
                                                                                                 <div className="col-12 mb-1" key={index} style={{ textAlign:"center", borderColor: All_ids.includes(ele.id)? "#d1d1d1": "#d1d1d10a3565"}} onClick={(e) => {handleThirdSupOption(e , ele)}}>
                                                                                                   {ele.image?<>
-                                                                                                    <div className="Card_Image Chose mb-2 rounded" style={{ borderColor:All_ids.includes(ele.id ) ? "#0a3565": "#d1d1d1" }}>
+                                                                                                    <div className="Card_Image Chose mb-2 rounded" style={{ border:All_ids.includes(ele.id)? "3px solid #0a3565": "1px solid #d1d1d1"  }}>
                                                                                                         <img src={ele.image}alt="" width={100} height={ 100}/>
                                                                                                         <h3 className="mt-2 mb-1 text-capitalize">{ele.name }</h3>
                                                                                                       </div>
                                                                                                   </>:<>
-                                                                                                  <div className="Chose text-capitalize" style={{ textAlign:"left", borderColor: All_ids.includes(ele.id)? "#0a3565": "#d1d1d1"}}>
+                                                                                                  <div className="Chose text-capitalize" style={{ textAlign:"left", border:All_ids.includes(ele.id)? "3px solid #0a3565": "1px solid #d1d1d1" }}>
                                                                                                     {ele.name}
                                                                                                   </div>
                                                                                                   </>}
