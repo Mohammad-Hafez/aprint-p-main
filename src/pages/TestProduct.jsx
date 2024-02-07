@@ -150,6 +150,9 @@ const TestProduct = () => {
   };
 
   const handelSupOptionSelect = (e , item) =>{
+    if (GetOptionName?.length > 1) {
+      setGetOptionName(null)
+    }
     e.stopPropagation();
     setSubOptionTwo(item);
       const Option_data ={ 
@@ -260,6 +263,8 @@ const TestProduct = () => {
   useEffect(() => {
     if (summeryArr) {
       const data = summeryArr.options.slice(1, summeryArr.options.length);
+      console.log("option",GetOptionName);
+      console.log("data indit",data);
       // *FIXME - label in summary
       setGetOptionName(data);
     }
@@ -315,21 +320,21 @@ const TestProduct = () => {
                     <h2>Create your order</h2>
                     <div className="row  aLLCenter">
                       <div className="col-md-6">
-                      <label htmlFor="Width ">Width </label>
+                      <label htmlFor="Width " className="font-roboto fw-bolder">Width </label>
                         <div className="d-flex align-items-center  cardCenter">
                           <div className="widthInput">
                             <input type="number"value={width} placeholder="Panner Width" onChange={(e) => handelSetWidth(e)} className={`inputNum ${parseInt(width) <= 0 || width.length <= 0? "p-invalid": ""} `} name="Width" id="Width"/>
                           </div>
-                          <div className="unit">cm</div>
+                          <span className="unit font-roboto">cm</span>
                         </div>
                       </div>
                       <div className="col-md-6">
-                      <label htmlFor="Height ">Height</label>
+                      <label htmlFor="Height " className="font-roboto fw-bolder">Height</label>
                         <div className=" d-flex align-items-center cardCenter">
                           <div className="hightInput">
                             <input type="number"value={height} placeholder="Panner Height" onChange={(e) => { handelSetHieght(e) }}className={`inputNum ${parseInt(height) <= 0 || height.length <= 0? "p-invalid": "" } `} name="Height" id="Height"/>
                           </div>
-                          <div className="unit"><span>cm</span></div>
+                          <span className="unit font-roboto">cm</span>
                         </div>
                       </div>
                       {widthError || heightError ? (
@@ -355,9 +360,9 @@ const TestProduct = () => {
                                     <div className="row">
                                       {ele.options?.map((e) => {
                                         return (
-                                          <div className="col-md-6" key={e.id}>
+                                          <div className="col-md-12" key={e.id}>
                                             <div className="row cardCenter">
-                                              <div className="col-md-12">
+                                              <div className="col-md-12 border-bottom py-2 rounded shadow-sm my-1 main-border">
                                                 <div className="mb-3" onClick={() => {
                                                     setSubOption(e);
                                                     const Option_data = {
@@ -392,18 +397,18 @@ const TestProduct = () => {
                                                     </>
                                                   )}
                                                   {SubOption ? ( e.id === SubOption.id ? (
-                                                      <div className="row">
+                                                      <div className="row mx-3">
                                                         {SubOption ? (
                                                           <div className="row">
                                                             {SubOption.childrens.map( (item , index) => {
                                                                 return (
-                                                                  <div key={index} className="col-12 rounded ms-3 py-2 mb-2">
+                                                                  <div key={index} className="col-12 rounded ms-3 p-2 my-2 border shadow-sm">
                                                                     <div className="">
                                                                       <label className="fw-bold fs-6 font-roboto">{item.name}</label>
                                                                       <div className="row">
                                                                         {item.childrens.map((item , index) => {
                                                                             return (
-                                                                              <div key={ index} className="col-6"style={{ textAlign:"center", borderColor: All_ids.includes(item.id)? "#d1d1d1": "#d1d1d10a3565"}}>
+                                                                              <div key={ index} className="col-12 my-1"style={{ textAlign:"center", borderColor: All_ids.includes(item.id)? "#d1d1d1": "#d1d1d10a3565"}}>
                                                                                 <div className="text-start" onClick={(e) => {handelSupOptionSelect(e , item)}}>
                                                                                   {item.image ? ( <>
                                                                                       <div className="Card_Image Chose rounded" style={{ border:All_ids.includes(item.id)? "3px solid #0a3565": "1px solid #d1d1d1" }}>
@@ -418,10 +423,10 @@ const TestProduct = () => {
                                                                                     </>
                                                                                   )}
                                                                                   {/* *********************** */}
-                                                                                  <div className="row my-2 mx-auto" style={{width:'90%'}}>
+                                                                                  <div className="row my-2 mx-3">
                                                                                     {SubOptionTwo && SubOptionTwo.id === item.id ? <>
                                                                                         {SubOptionTwo.childrens.map(( element , index) => {
-                                                                                          return (<>
+                                                                                          return (<div key={index}>
                                                                                             <label className="w-auto position-relative pe-0 fs-6 fw-bold font-roboto">{element.name}</label>
                                                                                             <div className="row p-0 m-0">
                                                                                             {element.childrens?.map((ele , index) =>{
@@ -441,7 +446,7 @@ const TestProduct = () => {
                                                                                               </>
                                                                                             })}
                                                                                             </div>
-                                                                                              </>
+                                                                                              </div>
                                                                                             );
                                                                                           }
                                                                                         )}
@@ -479,7 +484,7 @@ const TestProduct = () => {
                       </div>
                       <div className="col-md-12">
                         <div className="row cardCenter">
-                          <div className="col-md-12">
+                          <div className="col-md-6">
                             <label htmlFor="Height ">Quantity</label>
                             <input type="number" min={MinQuanity} max={MaxQuanity} value={quantity} onChange={(e) => {handelQuantityChange(e)}}/>
                             <p className="limit">Please Select a Quantity Between {MinQuanity} as a Minimum Quantity & {MaxQuanity} as a Maximum Quantity</p>
@@ -509,9 +514,7 @@ const TestProduct = () => {
                         <div className="d-flex flex-wrap">
                           <h5 className="font-quest fw-bolder">{summeryArr.options.length > 0 ? summeryArr.options[0].section + " : ": null}{" "}</h5>
                           <span>{summeryArr.options.length > 0 ? summeryArr.options[0].name : null}</span>
-                          <ul>
-                            {GetOptionName ? GetOptionName.map((item , index) => { return (<li key={index} className="font-quest"><span className="fw-bolder fs-5">{item.parent_name}</span> {` : ${item.name} `}</li>);}): null}
-                          </ul>
+                          {GetOptionName ? GetOptionName.map((item , index) => { return (<h5 key={index} className="font-quest d-block"><span className="fw-bolder fs-5">{item.parent_name} : </span> {<span>{item.name}</span>}</h5>);}): null}
                         </div>
                       </div>
                       <div className="d-flex">
@@ -544,13 +547,6 @@ const TestProduct = () => {
                     </div>
                   )}
                 </div>
-                {/* <div className="order_now order_now_button">
-                  {summeryArr && (
-                    <div className="CardTest">
-                      <button className="AddToCartBtn"onClick={() => {AddToCart();}}>Add To Cart</button>
-                    </div>
-                  )}
-                </div> */}
               </div>
             </div>
           </div>
