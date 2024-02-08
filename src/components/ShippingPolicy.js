@@ -15,32 +15,32 @@ const ShippingPolicy = () => {
       <h3>Turnaround times on most products</h3>
       <p>Delivery time from placement of an order is normally 5-6 working days on most orders. Turnaround starts from order confirmation, payment, and receipt of correct artwork or approval of proof. If order confirmation and payment occur after 1 pm, the order will be processed the following day, incurring an extra day of production/shipping. On larger orders, these times might increase. If you have an order that has a tight deadline, please get in touch with us prior to ordering.</p>
 
-      <table className='border p-3'>
+      <table className='border p-3 w-50 text-center'>
         <caption>Order Placed vs. Order Generally Delivered</caption>
-        <thead>
-          <tr>
+        <thead className='my-1 py-2  border'>
+          <tr className=''>
             <th>Order Placed</th>
             <th>Order Generally Delivered</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr className='my-1 border'>
             <td>Monday by 1pm</td>
             <td>Tuesday following week</td>
           </tr>
-          <tr>
+          <tr className='my-1 border'>
             <td>Tuesday by 1pm</td>
             <td>Wednesday following week</td>
           </tr>
-          <tr>
+          <tr className='my-1 border'>
             <td>Wednesday by 1pm</td>
             <td>Thursday following week</td>
           </tr>
-          <tr>
+          <tr className='my-1 border'>
             <td>Thursday by 1pm</td>
             <td>Thursday following week</td>
           </tr>
-          <tr>
+          <tr className='my-1 border'>
             <td>Friday by 1pm</td>
             <td>Friday following week</td>
           </tr>
