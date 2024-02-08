@@ -37,6 +37,7 @@ import TestProduct from "../pages/TestProduct";
 import Contact from "../pages/Contact";
 import PrivacyPolicy from "../components/PrivacyPolicy";
 import ShippingPolicy from "../components/ShippingPolicy";
+import Terms from "../components/Terms";
 
 const Routers = ({ user, lang, isUser, setIsUser }) => {
   return (
@@ -47,6 +48,7 @@ const Routers = ({ user, lang, isUser, setIsUser }) => {
       <Route path="/contact" element={<Contact/>}></Route>
       <Route path="/PrivacyPolicy" element={<PrivacyPolicy/>}></Route>
       <Route path="/ShippingPolicy" element={<ShippingPolicy/>}></Route>
+      <Route path="/Terms" element={<Terms/>}></Route>
       {/* Contact */}
       <Route path="/Services">
         <Route index element={<Services lang={lang} />}></Route>

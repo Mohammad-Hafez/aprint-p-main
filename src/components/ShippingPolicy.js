@@ -74,7 +74,10 @@ const ShippingPolicy = () => {
       <ul>
         <li>€50 Standard Delivery</li>
       </ul>
-      <p><strong>UK Mainland:</strong></p>
+      <p><strong>UK Mainland:</strong>
+      <br/>
+        <span>(Channel Islands, the Isle of Wight, the Isle of Man, the Scilly Islands, the Scottish Highlands & Islands and Northern Ireland)</span>
+      </p>
       <ul>
         <li>€40 Standard Delivery</li>
         <li>€60 Large Items</li>

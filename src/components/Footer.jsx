@@ -34,8 +34,31 @@ const Footer = ({ lang, setLang }) => {
                 color: "#B6B7CD",
               }}
             >
-              This text is an example of other texts in addition to increasing
-              the number of characters
+              APrint trading Name of MEGAIMPRESIONES DEL SUR S.L
+            </p>
+            <p
+              className={styles.Footerinfo}
+              style={{
+                fontSize: ".8rem",
+                width: "75%",
+                lineHeight: "2",
+                marginTop: "10px",
+                color: "#B6B7CD",
+              }}
+            >
+              Commercial Registration Number: B72180086
+            </p>
+            <p
+              className={styles.Footerinfo}
+              style={{
+                fontSize: ".8rem",
+                width: "75%",
+                lineHeight: "2",
+                marginTop: "10px",
+                color: "#B6B7CD",
+              }}
+            >
+              VAT Number: ESB72180086
             </p>
           </div>
           <div className={`${styles.middle} d-flex`} style={{ width: "50%" }}>
@@ -131,7 +154,7 @@ const Footer = ({ lang, setLang }) => {
             }}
           >
             <li>
-              <Link className={`${styles.lastLink}`} to="/">
+              <Link className={`${styles.lastLink}`} to="/Terms">
                 Terms and Conditions
               </Link>
             </li>
