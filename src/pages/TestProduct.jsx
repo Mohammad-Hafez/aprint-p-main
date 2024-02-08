@@ -21,6 +21,9 @@ const TestProduct = () => {
   const [GetOptionName, setGetOptionName] = useState(null);
   const [width, setWidth] = useState("");
   const [height, setHeight] = useState("");
+
+  const [MainSections, setMainSections] = useState()
+
   useEffect(() => {
     if (value === false) {
       setValue(true);
@@ -35,6 +38,12 @@ const TestProduct = () => {
       dispatch(getProductSummery(`?product_id=${id2}&width=${100}&height=${100}&quantity=${ quantity ? quantity : 1}&limit=${limit}`));
     }
   }, [dispatch, id2, value]);
+
+  useEffect(()=>{
+    if (productArr) {
+      setMainSections(productArr.sections)
+    }
+  },[])
   const [selected_op, setSelected] = useState([{
       section_id: 0,
       Option_id: 0,
@@ -263,8 +272,8 @@ const TestProduct = () => {
   useEffect(() => {
     if (summeryArr) {
       const data = summeryArr.options.slice(1, summeryArr.options.length);
-      console.log("option",GetOptionName);
-      console.log("data indit",data);
+      // console.log("option",GetOptionName);
+      // console.log("data indit",data);
       // *FIXME - label in summary
       setGetOptionName(data);
     }
@@ -281,7 +290,6 @@ const TestProduct = () => {
     }
     dispatch(getProductSummery(`?product_id=${id2}&${FinalData.toString().replace(/,/g,"")}&width=${width}&height=${height}&quantity=${quantity ? quantity : 1}`)); 
   }, [quantity , width , height ]);
-
   return (
     <Helmet title={productArr?.meta_title}>
       <meta name="description" content={productArr?.meta_description} />

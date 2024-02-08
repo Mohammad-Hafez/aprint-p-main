@@ -125,7 +125,7 @@ const Footer = ({ lang, setLang }) => {
             style={{
               listStyle: "none",
               display: "flex",
-              width: "35%",
+              width: "50%",
               justifyContent: "space-between",
               marginTop: "25px",
             }}
@@ -136,10 +136,16 @@ const Footer = ({ lang, setLang }) => {
               </Link>
             </li>
             <li>
-              <Link className={`${styles.lastLink}`} to="/">
+              <Link className={`${styles.lastLink}`} to="/PrivacyPolicy">
                 Privacy Policy
               </Link>
             </li>
+            <li>
+              <Link className={`${styles.lastLink}`} to="/ShippingPolicy">
+                Shipping Policy
+              </Link>
+            </li>
+
             <li>
               <Link className={`${styles.lastLink}`} to="/">
                 Connect with us

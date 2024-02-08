@@ -35,6 +35,8 @@ import Payment from "../pages/Payment";
 import TrackOrder from "../pages/TrackOrder";
 import TestProduct from "../pages/TestProduct";
 import Contact from "../pages/Contact";
+import PrivacyPolicy from "../components/PrivacyPolicy";
+import ShippingPolicy from "../components/ShippingPolicy";
 
 const Routers = ({ user, lang, isUser, setIsUser }) => {
   return (
@@ -42,7 +44,9 @@ const Routers = ({ user, lang, isUser, setIsUser }) => {
       <Route path="/" element={<Navigate to="/home" />}></Route>
       <Route path="/home" element={<Home lang={lang} />}></Route>
       <Route path="/testproduct" element={<TestProduct lang={lang} />}></Route>
-      <Route path="/contact" element={<Contact />}></Route>
+      <Route path="/contact" element={<Contact/>}></Route>
+      <Route path="/PrivacyPolicy" element={<PrivacyPolicy/>}></Route>
+      <Route path="/ShippingPolicy" element={<ShippingPolicy/>}></Route>
       {/* Contact */}
       <Route path="/Services">
         <Route index element={<Services lang={lang} />}></Route>

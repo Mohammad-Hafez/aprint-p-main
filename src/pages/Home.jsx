@@ -1,26 +1,13 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect} from "react";
 import styles from "../styles/home/home.module.css";
 import Helmet from "../components/Helmet";
-// import img1 from "../assets/images/hero/08_June_01.png";
-// import img2 from "../assets/images/hero/180.png";
-// import img3 from "../assets/images/hero/stationery-with-smartphone-mockup-top-view.png";
-// import img4 from "../assets/images/hero/img4.png";
-// import { heroData } from "../data/data";
 import { Row, Col, Container } from "react-bootstrap";
-// import whyImg1 from "../assets/images/why/1.png";
-// import whyImg2 from "../assets/images/why/2.png";
-// import whyImg3 from "../assets/images/why/3.png";
-// import whyImg4 from "../assets/images/why/4.png";
-// import circleImg from "../assets/images/why/kkkkkkkk-removebg-preview.png";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import deliveryImage from "../assets/images/why/delivery-truck.png";
 import payment from "../assets/images/why/online-payment.png";
 import checking from "../assets/images/why/checking.png";
 import brush from "../assets/images/why/brush.png";
-
 import { MdKeyboardArrowLeft } from "react-icons/md";
-// import downImage1 from "../assets/images/download/Group 64.png";
-// import mobileImg from "../assets/images/download/Clay_Mockup___17_.png";
 import d1 from "../assets/images/download/svgexport-4.png";
 import d2 from "../assets/images/download/svgexport-5.png";
 import d3 from "../assets/images/download/svgexport-6.png";
@@ -37,14 +24,11 @@ import Loader from "../components/Loader";
 import { AiOutlineSearch } from "react-icons/ai";
 import SwiperCards from "../components/Home/Brands";
 import ClientsSwiper from "../components/Home/Clients";
-// import productImg from "../assets/product.png";
-// import SeviceImg from "../assets/service.png";
 import AppImage from "../assets/app.png";
 import { useDispatch, useSelector } from "react-redux";
 import { SendContact } from "../store/ContactSlice";
 import { getSearch } from "../store/HomeSlice";
 const Home = ({ lang }) => {
-  // const [data1, setData] = useState(heroData.english);
   const [services, setServices] = useState([]);
   const [products, setProducts] = useState([]);
   const [Brands, setBrands] = useState([]);
@@ -68,21 +52,6 @@ const Home = ({ lang }) => {
     setOprions(data.data.data.options);
   };
   const onServicesError = (error) => {
-    // console.log("Error", error);
-  };
-  const onProductsSuccess = (data) => {
-    setProducts(data.data.data);
-  };
-  const onProductsError = (error) => {
-    // console.log("Error", error);
-  };
-  const onContactSuccess = (data) => {
-    setContactRes(data.data.status);
-    setModalShowSuccess(true);
-  };
-  const onContactError = (error) => {
-    console.log("Error", error);
-    setModalShow(true);
   };
   const servicesFetcher = () => {
     return axios.get(`${process.env.REACT_APP_BACKEND_API}/home`, {
@@ -91,16 +60,6 @@ const Home = ({ lang }) => {
       },
     });
   };
-  // const productsFetcher = () => {
-  //   return axios.get(
-  //     "https://dashboard.mobtkra-press.com/api/all/main/product",
-  //     {
-  //       headers: {
-  //         lang: lang === "ar" ? "ar" : "en",
-  //       },
-  //     }
-  //   );
-  // };
   const initialValues = {
     fullName: "",
     contactEmail: "",
@@ -108,23 +67,6 @@ const Home = ({ lang }) => {
     contactMessage: "",
   };
   const dispatch = useDispatch();
-  const contactFetcher = (res) => {
-    return axios.post(
-      `${process.env.REACT_APP_BACKEND_API}/contacts`,
-      {
-        name: res.fullName,
-        phone: res.contactPhone,
-        email: res.contactEmail,
-        message: res.contactMessage,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      }
-    );
-  };
   const onSubmit = (res) => {
     const data = {
       name: res.fullName,
@@ -137,7 +79,6 @@ const Home = ({ lang }) => {
       .then(() => {
         window.location.reload();
       });
-    // contactFetcher(values);
   };
 
   const {
@@ -151,45 +92,12 @@ const Home = ({ lang }) => {
     servicesFetcher
   );
 
-  // const {
-  //   isLoading: contactLoading,
-  //   error: contactError,
-  //   refetch,
-  //   isFetching,
-  // } = useQueryHook(
-  //   "contact",
-  //   onContactSuccess,
-  //   onContactError,
-  //   contactFetcher,
-  //   false
-  // );
-
   useEffect(() => {
-    // if (lang === "ar") {
-    //   setData(heroData.arabic);
-    // } else {
-    //   setData(heroData.english);
-    // }
     servicesRe();
-    // proRe();
   }, [servicesRe]);
-  // const navigate = useNavigate();
-  // const [DialogVisable, setDialogVisible] = useState(false);
-
-  // const intervalIDRef = useRef(null);
-  // const startTimer = useCallback(() => {
-  //   intervalIDRef.current = setTimeout(() => {
-  //     setDialogVisible(false);
-  //   }, 1500);
-  // }, []);
-  // const stopTimer = useCallback(() => {
-  //   clearInterval(intervalIDRef.current);
-  //   setDialogVisible(false);
-  //   intervalIDRef.current = null;
-  // }, []);
   const [search, setSearch] = useState("");
 
-  let typingTimer; //timer identifier
+  let typingTimer; 
   let doneTypingInterval = 1000;
   const doneTyping = () => {
     dispatch(getSearch(search));
@@ -197,15 +105,10 @@ const Home = ({ lang }) => {
   };
   const { SearchArr } = useSelector((state) => state.HomeSlice);
   const [toggelSearch, setToggleSearch] = useState(false);
-  // console.log(SearchArr);
-  // useEffect(() => {
-  //   return () => clearTimeout(intervalIDRef.current); // to clean up on unmount
-  // }, []);
 
   const SerchResult =
     SearchArr &&
     SearchArr.slice(0, 5).map((ele) => {
-      // const PathName = ele.title.replace(/\s/g, "-");
       return (
         <NavLink
           to={`${
@@ -218,9 +121,6 @@ const Home = ({ lang }) => {
           onClick={() => {
             setToggleSearch(false);
           }}
-          // style={{
-          //   direction: Cookies.get("MIgdir") === "true" ? "rtl" : "ltr",
-          // }}
         >
           <p>{ele.title}</p>
           <img src={ele.image} alt={ele.name} width={100} height={60} />
@@ -229,9 +129,6 @@ const Home = ({ lang }) => {
     });
   return (
     <Helmet title={"home"}>
-      {/* <Button variant="primary" onClick={() => setModalShow(true)}>
-        Launch vertically centered modal
-      </Button> */}
       <ModalMe
         show={modalShow}
         lang={lang}
@@ -253,21 +150,16 @@ const Home = ({ lang }) => {
         />
       )}
       <section className={styles.hero_section}>
-        {/* <div className={styles.hero_images}>
-          <img className={styles.img1} src={img1} alt="" />
-          <img className={styles.img2} src={img2} alt="" />
-          <img className={styles.img3} src={img3} alt="" />
-          <img className={styles.img4} src={img4} alt="" />
-        </div> */}
         <div className={styles.hero_content}>
-          <h1 className={styles.mainHeading}>
-            Do you Plan to create your own Branding and Identity ?!
-            <br />
+          <h1 className={`${styles.mainHeading} font-quest`}>
+          Low Cost Banner Printing
           </h1>
-          <h2 className={styles.mainHeading2}>
-            So you are in the right place APRINT
+          <h2 className={`${styles.mainHeading2} font-quest`}>
+          Trade Prices
           </h2>
-          {/* <button className={styles.orderBtn}> {data1.button}</button> */}
+          <h2 className={`${styles.mainHeading2} font-quest`}>
+          High Quality
+          </h2>
         </div>
         <div className={styles.Search}>
           <div className={`${styles.Search_section} ${styles.Search}`}>
@@ -281,7 +173,6 @@ const Home = ({ lang }) => {
                 clearTimeout(typingTimer);
               }}
               onKeyUp={() => {
-                // console.log(search);
                 clearTimeout(typingTimer);
                 typingTimer = setTimeout(doneTyping, doneTypingInterval);
               }}
@@ -307,12 +198,6 @@ const Home = ({ lang }) => {
                 xl={6}
                 className={styles.parentCircle}
               >
-                {/* <div
-                  className={styles.circle}
-                  style={lang === "ar" ? { left: "55%" } : { right: "38%" }}
-                >
-                  <img src={circleImg} alt="" />
-                </div> */}
 
                 <div className="d-flex gap-4">
                   {options.slice(0, 2).map((ele) => {
@@ -344,39 +229,15 @@ const Home = ({ lang }) => {
                 xl={6}
               >
                 <div>
-                  <h2 className={styles.whyDesc}>
+                  <h2 className={`${styles.whyDesc} font-quest fw-bloder`}>
                     Why Aprint is your Best Option ?
                   </h2>
-                  {options.map((ele) => {
-                    return (
-                      <p style={{ lineHeight: "2" }} key={ele?.id}>
-                        {ele?.name}
-                      </p>
-                    );
-                  })}
-
-                  {/* <p style={{ lineHeight: "2" }}>
-                    This text is an example that can be replaced in the same
-                    space. This text has been generated from
+                  <p className="font-roboto">
+                    APrint is a major supplier of promotional banners to local authorities, government departments, and universities, making us the first choice for custom banners. All of our orders are produced as white-label, allowing us to send banners directly to your client. Our white label banner printing is used across multiple industries, such as marketing agencies, graphic designers, event organizers, printers, sign companies, and more. With our Trade Vinyl Banner Printing service, we manufacture high-quality PVC banners at the most competitive prices. Our product range includes custom banners, outdoor banner printing, printed banners and signs, custom banner printing, and trade banner printing. We cater to clients and resellers throughout Spain and Europe.
                   </p>
-                  <p style={{ lineHeight: "2" }}>
-                    This text is an example that can be replaced in the same
-                    space. This text has been generated from
-                  </p>
-                  <p style={{ lineHeight: "2" }}>
-                    This text is an example that can be replaced in the same
-                    space. This text has been generated from
-                  </p> */}
-                  {/* <div className={`${styles.btn_cont}`}>
-                    <Link>
-                      <button className={`main_btn text-center`}>
-                        Discover More
-                      </button>
-                      <button className={`${styles.orderBtn} ${styles.create}`}>
-                        انشاء حساب
-                      </button>
-                    </Link>
-                  </div> */}
+                  <p className="font-roboto">Super Wide 5 Metre UV Ink Printers - Print up to 5-metre-wide banners with no joints.</p>
+                  <p className="font-roboto">Looking for a professional design service? - Our in-house design team is capable of exceeding expectations, regardless of whether you are a small business, a popular brand, or an individual commemorating a birthday.</p>
+                  <p className="font-roboto">Signage installation - Maximize the impact of your new large format banner, floor or wall graphic, or brand-new signage with our top-notch professional installation service. Our highly skilled and fully-insured installers will handle all aspects of your project with the utmost care and precision.</p>
                 </div>
               </Col>
             </Row>
@@ -388,31 +249,19 @@ const Home = ({ lang }) => {
                 <div className={styles.img_cont}>
                   <img src={brush} alt="deliveryImage" />
                 </div>
-                <p className="mt-4"> Core Feature 3</p>
-                <p className="text-secondary" style={{ fontSize: ".8rem" }}>
-                  This text is an example that can be replaced in the same
-                  space.{" "}
-                </p>
+                <p className="mt-4 font-quest fw-bloder">Design and Print In House</p>
               </div>
               <div className={styles.whyItem}>
                 <div className={styles.img_cont}>
                   <img src={checking} alt="deliveryImage" />
                 </div>
-                <p className="mt-4"> Core Feature 3</p>
-                <p className="text-secondary" style={{ fontSize: ".8rem" }}>
-                  This text is an example that can be replaced in the same
-                  space.{" "}
-                </p>
+                <p className="mt-4 font-quest fw-bloder">Quality Guaranteed</p>
               </div>
               <div className={styles.whyItem}>
                 <div className={styles.img_cont}>
                   <img src={deliveryImage} alt="deliveryImage" />
                 </div>
-                <p className="mt-4"> Core Feature 3</p>
-                <p className="text-secondary" style={{ fontSize: ".8rem" }}>
-                  This text is an example that can be replaced in the same
-                  space.{" "}
-                </p>
+                <p className="mt-4 font-quest fw-bloder">Always Here To Help</p>
               </div>
               <div className={styles.whyItem}>
                 <div className={`${styles.img_cont} text-center`}>
@@ -422,14 +271,7 @@ const Home = ({ lang }) => {
                     className="text-center"
                   />
                 </div>
-                <p className="mt-4 text-center"> Core Feature 3</p>
-                <p
-                  className="text-secondary text-center"
-                  style={{ fontSize: ".8rem" }}
-                >
-                  This text is an example that can be replaced in the same
-                  space.{" "}
-                </p>
+                <p className="mt-4 text-center font-quest fw-bloder">Lowest Trade Prices</p>
               </div>
             </div>
           </Container>
@@ -476,52 +318,6 @@ const Home = ({ lang }) => {
                     <ServiceItem service={item} type="homePage" />
                   </Link>
                 ))}
-
-                {/* <div className={`${styles.servicesItem} ${styles.private}`}>
-                  <Link
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      textDecoration: "none",
-                      textAlign: "center",
-                    }}
-                    to="/"
-                  >
-                    <div
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        color: "#fff",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <div
-                        style={{ textAlign: "center", position: "relative" }}
-                      >
-                        <p style={{ margin: "0px", transition: "1s" }}>
-                          Do you need Custom Service ?
-                        </p>
-                        <p
-                          style={{
-                            fontSize: "2rem",
-                            margin: "0px",
-                            transition: "1s",
-                          }}
-                        >
-                          Order Your Service Now
-                        </p>
-                        <button
-                          className={`${styles.orderNow} ${styles.orderPrivateBtn}`}
-                          to="/"
-                        >
-                          Order Now
-                        </button>
-                      </div>
-                    </div>
-                  </Link>
-                </div> */}
               </div>
             )}
           </Container>
@@ -614,31 +410,6 @@ const Home = ({ lang }) => {
                     </Link>
                   </Col>
                 ))}
-                {/* <Col xs="6" sm="6" lg="4" xl="3" className="p-1 mt-4">
-                  <Link
-                    className={styles.Oredrnow}
-                    to="/"
-                    style={{ textDecoration: "none", height: "100%" }}
-                  >
-                    <div
-                      className={`${styles.productItem1}`}
-                      style={{ borderRadius: "15px", height: "100%" }}
-                    >
-                      <div className={`${styles.content}`}>
-                        <p
-                          className="text-dark"
-                          style={{ fontSize: ".9rem", marginBottom: "4px " }}
-                        >
-                          Do you Need Custom Product
-                        </p>
-                        <p className="text-dark"> Make it Now</p>
-                        <button className={`${styles.orderNow}`}>
-                          Order Now
-                        </button>
-                      </div>
-                    </div>
-                  </Link>
-                </Col> */}
               </Row>
             )}
           </Container>
@@ -721,7 +492,7 @@ const Home = ({ lang }) => {
             <Row>
               <Col lg="6" xl="6">
                 <div className="mt-3">
-                  <h4
+                  <h4 className="font-quest fw-bold"
                     style={{
                       textAlign: "center",
                       color: "#1E96FC",
@@ -730,26 +501,21 @@ const Home = ({ lang }) => {
                   >
                     Contact Us Now
                   </h4>
-                  <p
-                    style={{
-                      textAlign: "center",
-                      width: "86%",
-                      margin: "auto",
-                    }}
-                  >
-                    This text is an example that can be replaced in the same
-                    space This text has been generated from This text has been
-                    generated from
+                  <h5 className="fw-bolder font-quest">
+                    SPAIN
+                  </h5>
+                  <p className="font-roboto">
+                    C. la Perdiz, 28, 11300 La Línea de la Concepción, Cádiz, España
                   </p>
+                  <p className="font-roboto">Tel : +34 856 6211 42</p>
+                  <p className="font-roboto">General : <Link to="mailto:hello1@example.com">hello1@example.com</Link> </p>
+                  <p className="font-roboto">Returns : <Link to="mailto:returns@aprint.com">returns@aprint.com</Link></p>
+                  <p className="font-roboto">Sales : <Link to="mailto:sales@aprint.com">sales@aprint.com</Link></p>
+                  <p className="font-roboto">Support  : <Link to="mailto:support@aprint.com">support@aprint.com</Link></p>
                   <div
                     className={`${styles.form}`}
-                    style={{ marginTop: "50px" }}
+                    style={{ marginTop: "15px" }}
                   >
-                    {/* {(contactLoading || isFetching) && (
-                      <div className={styles.formLoader}>
-                        <Loader />
-                      </div>
-                    )} */}
                     <Formik
                       initialValues={initialValues}
                       validationSchema={validationSchema}
@@ -802,16 +568,9 @@ const Home = ({ lang }) => {
                 </div>
               </Col>
               <Col lg="6" xl="6">
-                {/* <div style={{ position: "relative" }}>
-                  <img src={map} alt="" className={`${styles.map}`} />
-                  <div className={`${styles.mapSmall}`} >
-                    <p>اسم الشارع ورقم المدينه</p>
-                    <p>اسم المكان والمدينه الداخليه</p>
-                  </div>
-                </div> */}
                 <iframe
                   title="alwan location"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6828.716721044884!2d31.398160275057606!3d31.155329475967285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f770d658a47bf9%3A0xcd92daed79b518e2!2sMit%20Zunqur%2C%20Mit%20Zonqor%2C%20Talkha%2C%20Dakahlia%20Governorate!5e0!3m2!1sen!2seg!4v1668614792884!5m2!1sen!2seg"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3220.0308315843517!2d-5.353146824678334!3d36.19013200185213!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd0cc1009d0dd98b%3A0x6fc6ae51b6cb045f!2sC.%20la%20Perdiz%2C%2011300%20El%20Zabal%2C%20C%C3%A1diz%2C%20Spain!5e0!3m2!1sen!2seg!4v1707377020059!5m2!1sen!2seg" 
                   allowFullScreen=""
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
@@ -823,11 +582,8 @@ const Home = ({ lang }) => {
 
         <section className={`${styles.areYou}`}>
           <div className={`${styles.innerAreYou}`}>
-            <p
-              className="text-white"
-              style={{ width: "52%", lineHeight: "1.9" }}
-            >
-              Do you have any service or any product that you want to print?
+            <p className="text-white font-roboto text-capitalize" >
+              As the foremost specialist in banner printing and large-format printing, APrint leads the industry in Spain. We are dedicated to delivering only the highest quality prints using superior materials and inks, utilising advanced printing technology and a team of highly skilled professionals. We strive to offer an unparalleled experience for our customers with easy and swift ordering, dependable print outcomes, and exceptional value pricing. Trust us to deliver excellence from beginning to end.
             </p>
             <p
               className="text-white"

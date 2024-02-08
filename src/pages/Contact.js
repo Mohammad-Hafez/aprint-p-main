@@ -53,6 +53,7 @@ const Contact = () => {
                 Contact Us Now
               </h4>
               <p
+                className="bg-ganger"
                 style={{
                   textAlign: "center",
                   width: "86%",
