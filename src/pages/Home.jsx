@@ -464,17 +464,6 @@ const Home = ({ lang }) => {
                   >
                     Contact Us Now
                   </h4>
-                  <h5 className="fw-bolder font-quest">
-                    SPAIN
-                  </h5>
-                  <p className="font-roboto">
-                    C. la Perdiz, 28, 11300 La Línea de la Concepción, Cádiz, España
-                  </p>
-                  <p className="font-roboto">Tel : +34 856 6211 42</p>
-                  <p className="font-roboto">General : <Link to="mailto:hello1@example.com">hello1@example.com</Link> </p>
-                  <p className="font-roboto">Returns : <Link to="mailto:returns@aprint.com">returns@aprint.com</Link></p>
-                  <p className="font-roboto">Sales : <Link to="mailto:sales@aprint.com">sales@aprint.com</Link></p>
-                  <p className="font-roboto">Support  : <Link to="mailto:support@aprint.com">support@aprint.com</Link></p>
                   <div
                     className={`${styles.form}`}
                     style={{ marginTop: "15px" }}
@@ -545,6 +534,7 @@ const Home = ({ lang }) => {
 
         <section className={`${styles.areYou} `}>
           <div className={`${styles.innerAreYou} py-4 px-3`}>
+            <h4 className="text-light">NEED OUR HELP ?</h4>
             <p className="text-white font-roboto text-capitalize" >
               As the foremost specialist in banner printing and large-format printing, APrint leads the industry in Spain. We are dedicated to delivering only the highest quality prints using superior materials and inks, utilising advanced printing technology and a team of highly skilled professionals. We strive to offer an unparalleled experience for our customers with easy and swift ordering, dependable print outcomes, and exceptional value pricing. Trust us to deliver excellence from beginning to end.
             </p>

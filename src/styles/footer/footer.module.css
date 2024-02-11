@@ -15,20 +15,8 @@
   color: #fff;
 }
 
-.footer .footerContainer {
-  display: flex;
-  justify-content: space-between;
-}
-
 .footer .imgLogo {
   width: 13%;
-  margin-top: -12px;
-}
-
-.footer .middle {
-  justify-content: space-around;
-  -webkit-margin-start: -80px;
-  margin-inline-start: -80px;
 }
 
 .footer .middle a {
@@ -36,7 +24,7 @@
   font-size: 0.8rem;
   color: #fff;
   text-decoration: none;
-  margin-top: 20px;
+  margin-top: 8px;
 }
 
 .footer .middle a:hover {
@@ -54,8 +42,8 @@
 
 .footer .middle li::before {
   position: absolute;
-  top: 20px;
-  left: -10px;
+  top: 8px;
+  left: -8px;
   content: ".";
   font-size: 10px;
   color: #fff;
@@ -112,11 +100,6 @@
     margin: 30px auto;
   }
 
-  .footerContainer .middle {
-    width: 90% !important;
-    -webkit-margin-start: 40px;
-    margin-inline-start: 40px;
-  }
 
   .footerContainer .last {
     width: 12% !important;
@@ -126,13 +109,16 @@
     margin-inline-start: 74px;
   }
 
-  .footerContainer2 ul,
-  .footerContainer2 div {
-    width: 150%;
+  
+  .footerContainer2 > div {
+    width: 40% !important;
+  }
+  .footerContainer2 > ul{
+    width: 100% !important;
   }
 }
 
-@media only screen and (max-width: 499px) {
+@media only screen and (max-width: 500px) {
   .footerContainer .class1 {
     width: 100% !important;
     margin-top: 30px;
@@ -180,12 +166,6 @@
     top: 4px;
     right: -10px;
   }
-
-  .footerContainer2 ul,
-  .footerContainer2 div {
-    width: 80% !important;
-    font-size: 0.7rem;
-  }
 }
 
 @media (max-width: 767.98px) {
@@ -211,15 +191,7 @@
     margin: 5px auto !important;
   }
 
-  .middle {
-    margin: 10px auto !important;
-    flex-wrap: wrap;
-  }
 
-  .middle div {
-    flex-basis: 100% !important;
-    text-align: center;
-  }
 
   .last {
     margin: 10px auto !important;
