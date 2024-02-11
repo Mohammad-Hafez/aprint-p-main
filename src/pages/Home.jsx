@@ -23,7 +23,7 @@ import Loader from "../components/Loader";
 import { AiOutlineSearch } from "react-icons/ai";
 import SwiperCards from "../components/Home/Brands";
 import ClientsSwiper from "../components/Home/Clients";
-import AppImage from "../assets/app.png";
+import AppImage from "../assets/images/download/Clay_Mockup___17_.png";
 import { useDispatch, useSelector } from "react-redux";
 import { SendContact } from "../store/ContactSlice";
 import { getSearch } from "../store/HomeSlice";
@@ -185,7 +185,7 @@ const Home = ({ lang }) => {
           </div>
         </div>
       </section>
-      
+
       <div className="container">
         <section className={`${styles.why} my-4 py-2 px-3`} style={{ direction: "ltr" }}>
           <Container>
