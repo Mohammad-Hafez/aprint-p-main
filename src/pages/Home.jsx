@@ -24,6 +24,8 @@ import { AiOutlineSearch } from "react-icons/ai";
 import SwiperCards from "../components/Home/Brands";
 import ClientsSwiper from "../components/Home/Clients";
 import AppImage from "../assets/images/download/Clay_Mockup___17_.png";
+import why1Img from "../assets/images/why/3.png";
+import why2Img from "../assets/images/why/4.png";
 import { useDispatch, useSelector } from "react-redux";
 import { SendContact } from "../store/ContactSlice";
 import { getSearch } from "../store/HomeSlice";
@@ -187,31 +189,32 @@ const Home = ({ lang }) => {
       </section>
 
       <div className="container">
+
         <section className={`${styles.why} my-4 py-2 px-3`} style={{ direction: "ltr" }}>
           <Container>
-            <Row className="align-items-center">
-            <Col className={styles.secondWHY} xs={12} sm={12} md={6} lg={8}>
-                <div>
-                  <h3 className={`${styles.whyDesc} font-quest fw-bloder`}>
+            <Row>
+            <Col className={` ${styles.secondWHY}`} xs={12} sm={12} lg={7}> 
+                <div className=" w-100">
+                  <h3 className={`${styles.whyDesc} font-quest fw-blod fs-2`}>
                     Why Aprint is your Best Option ?
                   </h3>
-                  <p className="font-roboto ps-4">
+                  <p className="font-roboto ">
                     APrint is a major supplier of promotional banners to local authorities, government departments, and universities, making us the first choice for custom banners. All of our orders are produced as white-label, allowing us to send banners directly to your client. Our white label banner printing is used across multiple industries, such as marketing agencies, graphic designers, event organizers, printers, sign companies, and more. With our Trade Vinyl Banner Printing service, we manufacture high-quality PVC banners at the most competitive prices. Our product range includes custom banners, outdoor banner printing, printed banners and signs, custom banner printing, and trade banner printing. We cater to clients and resellers throughout Spain and Europe.
                   </p>
-                  <p className="font-roboto ps-4">Super Wide 5 Metre UV Ink Printers - Print up to 5-metre-wide banners with no joints.</p>
-                  <p className="font-roboto ps-4">Looking for a professional design service? - Our in-house design team is capable of exceeding expectations, regardless of whether you are a small business, a popular brand, or an individual commemorating a birthday.</p>
-                  <p className="font-roboto ps-4">Signage installation - Maximize the impact of your new large format banner, floor or wall graphic, or brand-new signage with our top-notch professional installation service. Our highly skilled and fully-insured installers will handle all aspects of your project with the utmost care and precision.</p>
+                  <p className="font-roboto ">Super Wide 5 Metre UV Ink Printers - Print up to 5-metre-wide banners with no joints.</p>
+                  <p className="font-roboto ">Looking for a professional design service? - Our in-house design team is capable of exceeding expectations, regardless of whether you are a small business, a popular brand, or an individual commemorating a birthday.</p>
+                  <p className="font-roboto ">Signage installation - Maximize the impact of your new large format banner, floor or wall graphic, or brand-new signage with our top-notch professional installation service. Our highly skilled and fully-insured installers will handle all aspects of your project with the utmost care and precision.</p>
                 </div>
               </Col>
 
-              <Col xs={12} sm={12} md={6} lg={4} className="position-relative">
+              <Col xs={12} sm={12} lg={5}  className="position-relative whyImages mt-5 ">
                       <div className={`over-flow-hidden pt-2 ps-2 my-2 ${styles.imgContainer} position-relative`} >
                         <div className={styles.imgDiv1}></div>
-                        <img src={options[0]?.image} className="w-100 h-100" alt="" />
+                        <img src={why1Img} className="w-100 h-100" alt="" />
                       </div>
                       <div className={`over-flow-hidden pt-2 ps-2 my-2 ${styles.imgContainer} position-relative`} >
                         <div className={styles.imgDiv1}></div>
-                        <img src={options[3]?.image} className="w-100 h-100" alt="" />
+                        <img src={why2Img} className="w-100 h-100" alt="" />
                       </div>
               </Col>
             </Row>
@@ -247,6 +250,7 @@ const Home = ({ lang }) => {
             </div>
           </Container>
         </section>
+
         {/* <section
           className={styles.services}
           style={{ transition: "display 1s" }}
