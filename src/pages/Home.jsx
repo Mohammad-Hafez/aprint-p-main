@@ -166,9 +166,10 @@ const Home = ({ lang }) => {
           <div className={`${styles.Search_section} ${styles.Search}`}>
             <AiOutlineSearch />
             <input
+            className="mx-2"
               value={search}
               type="search"
-              placeholder="SEARCH  ... Find Out Our Products or Services"
+              placeholder="Search By Name"
               onChange={(e) => {
                 setSearch(e.target.value);
                 clearTimeout(typingTimer);
@@ -212,10 +213,10 @@ const Home = ({ lang }) => {
                         <div className={styles.imgDiv1}></div>
                         <img src={why1Img} className="w-100 h-100" alt="" />
                       </div>
-                      <div className={`over-flow-hidden pt-2 ps-2 my-2 ${styles.imgContainer} position-relative`} >
+                      {/* <div className={`over-flow-hidden pt-2 ps-2 my-2 ${styles.imgContainer} position-relative`} >
                         <div className={styles.imgDiv1}></div>
                         <img src={why2Img} className="w-100 h-100" alt="" />
-                      </div>
+                      </div> */}
               </Col>
             </Row>
             <div className={` ${styles.afterWhy} d-flex gap-5 justify-content-center`} style={{ marginTop: "100px" }} >
