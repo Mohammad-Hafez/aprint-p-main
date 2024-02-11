@@ -13,7 +13,6 @@ import d2 from "../assets/images/download/svgexport-5.png";
 import d3 from "../assets/images/download/svgexport-6.png";
 import { FaWhatsapp } from "react-icons/fa";
 import elipse1 from "../assets/images/contact/Mask Group.png";
-import ServiceItem from "../components/ServiceItem";
 import { useQueryHook } from "../components/custom_hooks/UseQueryHook";
 import axios from "axios";
 import FormikControl from "./../components/formik/FormikControl";
@@ -186,6 +185,7 @@ const Home = ({ lang }) => {
           </div>
         </div>
       </section>
+      
       <div className="container">
         <section className={`${styles.why} my-4 py-2 px-3`} style={{ direction: "ltr" }}>
           <Container>
@@ -220,21 +220,21 @@ const Home = ({ lang }) => {
                 <div className={styles.img_cont}>
                   <img src={brush} alt="deliveryImage" />
                 </div>
-                <p className="mt-4 font-quest fw-bloder">Design and Print In House</p>
+                <p className="mt-4 font-quest fs-5 fw-bloder">Design and Print In House</p>
               </div>
               <div className={styles.whyItem}>
                 <div className={styles.img_cont}>
                   <img src={checking} alt="deliveryImage" />
                 </div>
-                <p className="mt-4 font-quest fw-bloder">Quality Guaranteed</p>
+                <p className="mt-4 font-quest fs-5 fw-bloder">Quality Guaranteed</p>
               </div>
               <div className={styles.whyItem}>
                 <div className={styles.img_cont}>
                   <img src={deliveryImage} alt="deliveryImage" />
                 </div>
-                <p className="mt-4 font-quest fw-bloder">Always Here To Help</p>
+                <p className="mt-4 font-quest fs-5 fw-bloder">Always Here To Help</p>
               </div>
-              <div className={styles.whyItem}>
+              <div className={`${styles.whyItem}`}>
                 <div className={`${styles.img_cont} text-center`}>
                   <img
                     src={payment}
@@ -242,12 +242,12 @@ const Home = ({ lang }) => {
                     className="text-center"
                   />
                 </div>
-                <p className="mt-4 text-center font-quest fw-bloder">Lowest Trade Prices</p>
+                <p className="mt-4 text-center fs-5 font-quest fw-bloder">Lowest Trade Prices</p>
               </div>
             </div>
           </Container>
         </section>
-        <section
+        {/* <section
           className={styles.services}
           style={{ transition: "display 1s" }}
         >
@@ -292,86 +292,40 @@ const Home = ({ lang }) => {
               </div>
             )}
           </Container>
-        </section>
+        </section> */}
 
         <section className={styles.products}>
           <Container>
-            <div
-              className={`${styles.services_header} mb-3 d-flex align-items-center justify-content-between mt-4`}
-            >
-              <h3 className={`${styles.heading}`}>
-                {" "}
-                Aprint Products Categories
-              </h3>
-              <Link
-                to="/products"
-                style={{ color: "#3E4F94", marginInlineEnd: "32px" }}
-              >
-                {" "}
+            <div className={`${styles.services_header} mb-3 d-flex align-items-center justify-content-between mt-4`} >
+              <h3 className={`${styles.heading}`}> Aprint Products Categories </h3>
+              <Link to="/products" style={{ color: "#3E4F94", marginInlineEnd: "32px" }} >
                 See All Products
               </Link>
             </div>
-            {serviceLoading ? (
-              <Loader />
-            ) : servicesError ? (
-              <p className="text-danger text-center display-4">
+            {serviceLoading ?  <Loader /> : servicesError ? (  <p className="text-danger text-center display-4">
                 something went wrong
               </p>
             ) : (
               <Row>
                 {products.map((item, index) => (
-                  <Col
-                    xs="12"
-                    sm="12"
-                    md="6"
-                    lg="4"
-                    xl="3"
-                    className="p-1 mt-4"
-                    key={index}
-                  >
-                    <Link
-                      to={`/products/${item.id}`}
-                      style={{ textDecoration: "none" }}
-                      className=""
-                    >
+                  <Col xs="12"  sm="12" md="6" lg="4" xl="3"  className="p-1 mt-4" key={index} >
+                    <Link to={`/products/${item.id}`} style={{ textDecoration: "none" }} className=""  >
                       <div className={styles.productItem}>
                         <img src={item.image} alt={item.name} />
                         <div
-                          style={{
-                            border: "1px solid #888",
-                            padding: "15px 15px 2px 15px",
-                            borderRadius: "0px 0px 15px 15px",
-                          }}
-                        >
-                          <h3
-                            style={{
-                              fontSize: ".95rem",
-                              fontWeight: "normal",
-                              color: "#374958",
-                            }}
-                          >
+                          style={{ border: "1px solid #888", padding: "15px 15px 2px 15px", borderRadius: "0px 0px 15px 15px", }} >
+                          <h3 style={{ fontSize: ".95rem", fontWeight: "normal", color: "#374958", }} >
                             {item.name}
                           </h3>
                           <div className="d-flex">
                             <p style={{ color: "#1E96FC" }}>
                               ({item.count}) Products
                             </p>
-                            <div
-                              style={{ marginInlineStart: "auto" }}
-                              className={`d-flex ali-align-items-center ${styles.parentHover}`}
-                            >
-                              <span
-                                className={`${styles.gradient2}`}
-                                style={{
-                                  marginTop: "1px",
-                                  textDecoration: "none",
-                                }}
-                              >
+                            <div className={`d-flex ali-align-items-center ${styles.parentHover} ms-auto`} >
+                              <span className={`${styles.gradient2} mt-1`} >
                                 Discover Products
                               </span>
-                              <span
-                                className={`${styles.arrowCont} ${styles.arrowCont2}`}
-                              >
+                              <span className={`${styles.arrowCont} ${styles.arrowCont2}`} >
                                 <MdKeyboardArrowLeft />{" "}
                               </span>
                             </div>
@@ -387,63 +341,39 @@ const Home = ({ lang }) => {
         </section>
 
         <section className={`${styles.download} py-2 rounded`}>
-          <div className="container d-flex align-items-center justify-content-between">
-            <div className="">
+          <div className="container ">
+            <div className="row">
+            <div className={`${styles.content} col-md-6 mol-lg-7 text-center`}>
+              <h3 className="mb-4 text-center">APrint App </h3>
+              <p style={{ lineHeight: "2", color: "#D4D5FF", fontSize: ".9rem", }} className="text-justify">
+                This text is an example that can be replaced in the same
+                space. This text has been generated from This text is an
+                example that can be replaced in the same space. This text
+                has been generated from This text is an example that can be
+                replaced in the same space. This text has been generated
+                from
+              </p>
+              <div>
+                <p className="text-white my-3 text-center" >
+                  Download Our App
+                </p>
+                <div className={styles.downloadApp}>
+                  <Link to="/">
+                    <img className="ms-3"  style={{ width: "25%" }} src={d3} alt="" />
+                  </Link>
+                  <Link to="/" >
+                    <img className="ms-3" style={{ width: "25%" }} src={d2} alt="" />
+                  </Link>
+                  <Link to="/">
+                    <img src={d1} className="ms-3" alt="" style={{ width: "25%" }} />
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-6 mol-lg-5">
               <img className="w-100" src={AppImage} alt="" />
             </div>
-            <div className={`${styles.content}`}>
-                  <h3 className="mb-4 text-center">APrint App </h3>
-                  <p
-                    style={{
-                      lineHeight: "2",
-                      color: "#D4D5FF",
-                      fontSize: ".9rem",
-                    }}
-                    className="text-center"
-                  >
-                    This text is an example that can be replaced in the same
-                    space. This text has been generated from This text is an
-                    example that can be replaced in the same space. This text
-                    has been generated from This text is an example that can be
-                    replaced in the same space. This text has been generated
-                    from
-                  </p>
-                  <div>
-                    <p
-                      className="text-white mb-3 text-center"
-                      style={{ marginTop: "60px" }}
-                    >
-                      Download Our App
-                    </p>
-                    <div className={styles.downloadApp}>
-                      <Link to="/">
-                        <img
-                          className="ms-3"
-                          style={{ width: "25%" }}
-                          src={d3}
-                          alt=""
-                        />
-                      </Link>
-
-                      <Link to="/">
-                        <img
-                          className="ms-3"
-                          style={{ width: "25%" }}
-                          src={d2}
-                          alt=""
-                        />
-                      </Link>
-                      <Link to="/">
-                        <img
-                          src={d1}
-                          className="ms-3"
-                          alt=""
-                          style={{ width: "25%" }}
-                        />
-                      </Link>
-                    </div>
-                  </div>
-                </div>
+            </div>
           </div>
         </section>
 

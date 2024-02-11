@@ -1194,7 +1194,7 @@ iframe {
   }
 }
 
-@media only screen and (max-width: 499px) {
+@media only screen and (max-width: 600px) {
   .services_header {
     flex-direction: column;
   }
@@ -1215,10 +1215,6 @@ iframe {
   .servicesItem {
     width: 95% !important;
     margin: auto;
-  }
-
-  .download .content {
-    padding-right: 0px !important;
   }
 
   .innerAreYou p,
@@ -1246,7 +1242,7 @@ iframe {
   }
 
   .whyItem {
-    width: 90% !important;
+    width: 70% !important;
   }
 
   .mainHeading {
@@ -1454,10 +1450,6 @@ iframe {
 
   .secondWHY p::before {
     left: 5px !important;
-  }
-
-  .download .content {
-    padding-inline-start: 0;
   }
 
   .productItem1 {
