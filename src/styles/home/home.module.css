@@ -742,19 +742,23 @@ input:not(input[type="submit"]),
 textarea {
   width: 95%;
   background-color: #f1f1f2;
-  border: none;
-  margin-top: 10px;
+  margin-block: 10px;
   padding: 5px 25px;
   border-radius: 7px;
   outline: none;
+  box-shadow: 1px 1px 6px 0px rgba(44, 114, 197, 0.62) !important;
+  border: 0;
 }
-
+input:not(input[type="submit"]):link,input:not(input[type="submit"]):focus,input:not(input[type="submit"]):active,
+textarea:link,textarea:focus,textarea:active {
+  border: 3px solid rgba(44, 114, 197, 1) !important ;
+}
+/*     */
 input[type="submit"] {
   display: block;
-  width: 130px;
+  box-shadow: 1px 1px 6px 0px rgba(44, 114, 197, 0.62) !important;
   border-radius: 10px;
   border: none;
-  margin: 40px auto 0px;
   text-align: center;
   font-size: 0.9rem;
   padding: 6px 20px;
@@ -857,7 +861,14 @@ input[type="submit"]:hover {
 .form {
   position: relative;
 }
+.inputShadow{
+  box-shadow: 1px 1px 6px 0px rgba(44, 114, 197, 0.62) !important;
+  border: 3px solid rgba(44, 114, 197, 1) !important ;
 
+}
+.inputShadow:visited{
+  border: 3px solid rgba(44, 114, 197, 1)
+}
 .main_btn {
   background: linear-gradient(
     154.49deg,
@@ -873,7 +884,6 @@ input[type="submit"]:hover {
   -ms-border-radius: 10px !important;
   -o-border-radius: 10px !important;
   color: white !important;
-  margin-bottom: 10px !important;
 }
 
 .formLoader {

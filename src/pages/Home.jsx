@@ -446,80 +446,30 @@ const Home = ({ lang }) => {
                 </div>
           </div>
         </section>
-        <section
-          id="contact_us"
-          className={`${styles.contact}`}
-          style={{ background: "#fff" }}
-        >
-          <Container style={{ maxWidth: "100%", paddingInlineStart: "6.5%" }}>
+
+        <section  id="contact_us" className={`my-5 rounded w-100`} style={{ background: "#fff" }} >
+          <Container >
             <Row>
-              <Col lg="6" xl="6">
-                <div className="mt-3">
-                  <h4 className="font-quest fw-bold"
-                    style={{
-                      textAlign: "center",
-                      color: "#1E96FC",
-                      marginBottom: "20px",
-                    }}
-                  >
+              <Col lg="6" xl="6" >
+                <div className="my-3">
+                  <h4 className="font-quest fw-bold text-center mb-3"style={{color: "#1E96FC"}}>
                     Contact Us Now
                   </h4>
-                  <div
-                    className={`${styles.form}`}
-                    style={{ marginTop: "15px" }}
-                  >
-                    <Formik
-                      initialValues={initialValues}
-                      validationSchema={validationSchema}
-                      onSubmit={onSubmit}
-                    >
-                      {(formik) => {
-                        return (
-                          <Form className="mt-2">
-                            <FormikControl
-                              control="input"
-                              type="text"
-                              name="fullName"
-                              placeholder=" Your Full Name Here"
-                              label=" Full Name"
-                            />
-                            <FormikControl
-                              control="input"
-                              type="email"
-                              name="contactEmail"
-                              placeholder=" Write Email here ..."
-                              label="Email "
-                            />
-                            <FormikControl
-                              control="input"
-                              type="phone"
-                              name="contactPhone"
-                              placeholder=" Write Email here ..."
-                              label="Phone Number "
-                            />
-                            <FormikControl
-                              control="textarea"
-                              rows="5"
-                              name="contactMessage"
-                              placeholder="Write Your Message Here ..."
-                              label="Your Message Here "
-                            />
-                            <input
-                              type="submit"
-                              className={` ${
-                                !formik.isValid ? `${styles.disabled}` : ""
-                              }  ${styles.main_btn}`}
-                              disabled={!formik.isValid}
-                              value="Send"
-                            />
+                  <div className={`${styles.form} my-3 `} >
+                    <Formik className="w-100" initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit} >
+                      {(formik) => <Form className="my-2 w-100  text-center">
+                            <FormikControl className="inputShadow mx-auto" control="input" type="text" name="fullName"  placeholder="Full Name"   />
+                            <FormikControl className="inputShadow mx-auto" control="input" type="email" name="contactEmail" placeholder="Email "  />
+                            <FormikControl className="inputShadow mx-auto" control="input" type="phone" name="contactPhone" placeholder="Phone Number" />
+                            <FormikControl className="inputShadow mx-auto my-2" control="textarea" rows="5" name="contactMessage" placeholder=" Message"  />
+                            <input type="submit" className={` ${ !formik.isValid ? `${styles.disabled}` : "" }  ${styles.main_btn} mx-auto w-25 my-2`} disabled={!formik.isValid} value="Send" />
                           </Form>
-                        );
-                      }}
+                        }
                     </Formik>
                   </div>
                 </div>
               </Col>
-              <Col lg="6" xl="6">
+              <Col lg="6" xl="6" >
                 <iframe
                   title="alwan location"
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3220.0308315843517!2d-5.353146824678334!3d36.19013200185213!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd0cc1009d0dd98b%3A0x6fc6ae51b6cb045f!2sC.%20la%20Perdiz%2C%2011300%20El%20Zabal%2C%20C%C3%A1diz%2C%20Spain!5e0!3m2!1sen!2seg!4v1707377020059!5m2!1sen!2seg" 
