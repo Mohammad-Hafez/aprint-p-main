@@ -3,6 +3,8 @@
 .hero_section {
   position: relative;
   height: 90vh;
+  min-height: 550px;
+  background-color: #374958;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -793,13 +795,12 @@ iframe {
     width: 70%;
   }
 
-  .hero_section {
-    height: 80vh;
-
+  // .hero_section {
+  //   height: 80vh;
+  // }
     .hero_images {
       height: 80vh;
     }
-  }
 
   //why
   .why {
@@ -960,11 +961,11 @@ iframe {
     width: 65%;
   }
 
-  .hero_section {
+  // .hero_section {
     .hero_images {
       height: 78vh;
     }
-  }
+  // }
 
   .why {
     padding-top: 60px !important;
@@ -1217,12 +1218,12 @@ iframe {
     }
   }
 
-  .hero_section {
-    height: 48vh;
+  // .hero_section {
+  //   height: 48vh;
 
     .hero_images {
       height: 48vh;
-    }
+    // }
   }
 }
 

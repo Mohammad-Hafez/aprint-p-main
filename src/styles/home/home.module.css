@@ -1,10 +1,14 @@
 .hero_section {
   position: relative;
   height: 87vh;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  background-image: url(../../assets/header.png);
+  min-height: 500px;
+  background: linear-gradient(to bottom right, #225597, #143E74 70%, #ACB447 95%);
+  border-radius: 0 0px 30px 10px;
+  padding-top: 10px;
+  -webkit-border-radius: 0 0px 115px 30px;
+  -moz-border-radius: 0 0px 30px 10px;
+  -ms-border-radius: 0 0px 30px 10px;
+  -o-border-radius: 0 0px 30px 10px;
 }
 
 .mainHeading {
@@ -126,28 +130,11 @@
 }
 
 .why {
-  padding-top: 120px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   background-image: url(../../assets/images/why/bg.png);
   position: relative;
-}
-
-.why::before {
-  content: "";
-  position: absolute;
-  top: 138px;
-  left: 238px;
-  width: 132px;
-  height: 12px;
-  background-color: rgba(229, 229, 17, 0.8);
-  z-index: -1;
-}
-
-.container1 {
-  width: 85%;
-  margin: auto;
 }
 
 .imgContainer {
@@ -156,10 +143,10 @@
 
 .imgContainer .imgDiv1 {
   position: absolute;
-  top: -6px;
-  left: 6px;
-  width: 270px;
-  height: 240px;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
   background-image: linear-gradient(
     rgba(247, 37, 132, 0.3137254902),
     rgba(30, 148, 252, 0.462745098)
@@ -210,10 +197,6 @@
   z-index: -1;
 }
 
-.imgContainer img {
-  width: 270px;
-  height: 250px;
-}
 
 .parentCircle {
   position: relative;
@@ -363,7 +346,6 @@
   min-height: 20vh;
   position: relative;
   overflow: hidden;
-  width: 32%;
 }
 
 .servicesItem img {
@@ -720,7 +702,6 @@
 }
 
 .download {
-  padding: 30px 0px;
   background: linear-gradient(
     95.92deg,
     #0a3565 28.81%,
@@ -744,10 +725,7 @@
 }
 
 .download .content {
-  margin-top: 80px;
   color: #fff;
-  -webkit-padding-start: 4.5rem;
-  padding-inline-start: 4.5rem;
 }
 
 .contact {
@@ -811,14 +789,11 @@ input[type="submit"]:hover {
 }
 
 .areYou {
-  padding-top: 100px;
   background-image: url(../../assets/images/contact/Group35411.png);
 }
 
 .areYou .innerAreYou {
-  height: 40vh;
   background-image: url(../../assets/footer-background.png);
-  padding: 40px 100px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -949,13 +924,10 @@ iframe {
     width: 70%;
   }
 
-  .hero_section {
-    height: 80vh;
-  }
 
-  .hero_section .hero_images {
+  /* .hero_section .hero_images {
     height: 80vh;
-  }
+  } */
 
   .why .whyItem {
     width: 45%;
@@ -1114,9 +1086,9 @@ iframe {
     width: 65%;
   }
 
-  .hero_section .hero_images {
+  /* .hero_section .hero_images {
     height: 78vh;
-  }
+  } */
 
   .why {
     padding-top: 60px !important;
@@ -1377,13 +1349,10 @@ iframe {
     z-index: -1;
   }
 
-  .hero_section {
-    height: 48vh;
-  }
 
-  .hero_section .hero_images {
+  /* .hero_section .hero_images {
     height: 48vh;
-  }
+  } */
 }
 
 @media only screen and (max-width: 1024px) {
@@ -1441,10 +1410,6 @@ iframe {
     width: 80% !important;
   }
 
-  .hero_section {
-    background-size: cover;
-    height: 54vh;
-  }
 
   .hero_section .mainHeading2 {
     font-size: 24px;

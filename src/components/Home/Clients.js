@@ -1,16 +1,11 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation, Pagination } from "swiper";
+import { Autoplay,  Pagination } from "swiper";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css";
 import styles from "../../styles/home/home.module.css";
-import image1 from "../../assets/logo.png";
-import image2 from "../../assets/logo2.png";
-// import styles from "@/styles/layouts/Card.module.css";
-// import Image from "next/legacy/image";
 
 const ClientsSwiper = ({ Clients }) => {
-  // console.log(elements);
   return (
     <div className="container-xxl">
       <h2 className="main-title"> Our clients</h2>
@@ -21,7 +16,6 @@ const ClientsSwiper = ({ Clients }) => {
         pagination={{
           clickable: true,
         }}
-        // navigation={true}
         breakpoints={{
           640: {
             slidesPerView: 1,
@@ -43,7 +37,6 @@ const ClientsSwiper = ({ Clients }) => {
         modules={[
           Autoplay,
           Pagination,
-          // , Navigation
         ]}
         className="mySwiper"
       >

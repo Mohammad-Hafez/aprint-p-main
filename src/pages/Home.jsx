@@ -149,7 +149,7 @@ const Home = ({ lang }) => {
           body={contactRes}
         />
       )}
-      <section className={styles.hero_section}>
+      <section className={`${styles.hero_section} container mb-5`}>
         <div className={styles.hero_content}>
           <h1 className={`${styles.mainHeading} font-quest`}>
           Low Cost Banner Printing
@@ -161,7 +161,7 @@ const Home = ({ lang }) => {
           High Quality
           </h2>
         </div>
-        <div className={styles.Search}>
+        <div className={`${styles.Search} `}>
           <div className={`${styles.Search_section} ${styles.Search}`}>
             <AiOutlineSearch />
             <input
@@ -186,65 +186,36 @@ const Home = ({ lang }) => {
           </div>
         </div>
       </section>
-      <div className="container1">
-        <section className={styles.why} style={{ direction: "ltr" }}>
+      <div className="container">
+        <section className={`${styles.why} my-4 py-2 px-3`} style={{ direction: "ltr" }}>
           <Container>
-            <Row className={styles.row_direction}>
-              <Col
-                xs={12}
-                sm={12}
-                md={12}
-                lg={12}
-                xl={6}
-                className={styles.parentCircle}
-              >
-
-                <div className="d-flex gap-4">
-                  {options.slice(0, 2).map((ele) => {
-                    return (
-                      <div className={styles.imgContainer} key={ele?.id}>
-                        <div className={styles.imgDiv1}></div>
-                        <img src={ele?.image} alt="" />
-                      </div>
-                    );
-                  })}
-                </div>
-                <div className="d-flex gap-4 mt-4">
-                  {options.slice(2, 4).map((ele) => {
-                    return (
-                      <div className={styles.imgContainer} key={ele?.id}>
-                        <div className={styles.imgDiv1}></div>
-                        <img src={ele?.image} alt="" />
-                      </div>
-                    );
-                  })}
-                </div>
-              </Col>
-              <Col
-                className={styles.secondWHY}
-                xs={12}
-                sm={12}
-                md={12}
-                lg={12}
-                xl={6}
-              >
+            <Row className="align-items-center">
+            <Col className={styles.secondWHY} xs={12} sm={12} md={6} lg={8}>
                 <div>
-                  <h2 className={`${styles.whyDesc} font-quest fw-bloder`}>
+                  <h3 className={`${styles.whyDesc} font-quest fw-bloder`}>
                     Why Aprint is your Best Option ?
-                  </h2>
-                  <p className="font-roboto">
+                  </h3>
+                  <p className="font-roboto ps-4">
                     APrint is a major supplier of promotional banners to local authorities, government departments, and universities, making us the first choice for custom banners. All of our orders are produced as white-label, allowing us to send banners directly to your client. Our white label banner printing is used across multiple industries, such as marketing agencies, graphic designers, event organizers, printers, sign companies, and more. With our Trade Vinyl Banner Printing service, we manufacture high-quality PVC banners at the most competitive prices. Our product range includes custom banners, outdoor banner printing, printed banners and signs, custom banner printing, and trade banner printing. We cater to clients and resellers throughout Spain and Europe.
                   </p>
-                  <p className="font-roboto">Super Wide 5 Metre UV Ink Printers - Print up to 5-metre-wide banners with no joints.</p>
-                  <p className="font-roboto">Looking for a professional design service? - Our in-house design team is capable of exceeding expectations, regardless of whether you are a small business, a popular brand, or an individual commemorating a birthday.</p>
-                  <p className="font-roboto">Signage installation - Maximize the impact of your new large format banner, floor or wall graphic, or brand-new signage with our top-notch professional installation service. Our highly skilled and fully-insured installers will handle all aspects of your project with the utmost care and precision.</p>
+                  <p className="font-roboto ps-4">Super Wide 5 Metre UV Ink Printers - Print up to 5-metre-wide banners with no joints.</p>
+                  <p className="font-roboto ps-4">Looking for a professional design service? - Our in-house design team is capable of exceeding expectations, regardless of whether you are a small business, a popular brand, or an individual commemorating a birthday.</p>
+                  <p className="font-roboto ps-4">Signage installation - Maximize the impact of your new large format banner, floor or wall graphic, or brand-new signage with our top-notch professional installation service. Our highly skilled and fully-insured installers will handle all aspects of your project with the utmost care and precision.</p>
                 </div>
               </Col>
+
+              <Col xs={12} sm={12} md={6} lg={4} className="position-relative">
+                      <div className={`over-flow-hidden pt-2 ps-2 my-2 ${styles.imgContainer} position-relative`} >
+                        <div className={styles.imgDiv1}></div>
+                        <img src={options[0]?.image} className="w-100 h-100" alt="" />
+                      </div>
+                      <div className={`over-flow-hidden pt-2 ps-2 my-2 ${styles.imgContainer} position-relative`} >
+                        <div className={styles.imgDiv1}></div>
+                        <img src={options[3]?.image} className="w-100 h-100" alt="" />
+                      </div>
+              </Col>
             </Row>
-            <div
-              className={` ${styles.afterWhy} d-flex gap-5 justify-content-center`}
-              style={{ marginTop: "100px" }}
-            >
+            <div className={` ${styles.afterWhy} d-flex gap-5 justify-content-center`} style={{ marginTop: "100px" }} >
               <div className={styles.whyItem}>
                 <div className={styles.img_cont}>
                   <img src={brush} alt="deliveryImage" />
@@ -304,12 +275,11 @@ const Home = ({ lang }) => {
                 something went wrong
               </p>
             ) : (
-              <div className={`gap-3 ${styles.box}`}>
-                {services.map((item, index) => (
+              <div className={`row gy-3`}>
+                {services.map((item, index) => <div key={index} className="col-md-6 col-lg-4">
                   <Link
                     to={`/services/${item.id}`}
-                    className={`${styles.servicesItem}`}
-                    key={item.id}
+                    className={`${styles.servicesItem} h-100`}
                     style={{
                       cursor: "pointer",
                       color: "black",
@@ -317,7 +287,8 @@ const Home = ({ lang }) => {
                   >
                     <ServiceItem service={item} type="homePage" />
                   </Link>
-                ))}
+                  </div>
+                )}
               </div>
             )}
           </Container>
@@ -415,18 +386,12 @@ const Home = ({ lang }) => {
           </Container>
         </section>
 
-        <section className={`${styles.download}`}>
-          <Container>
-            <Row className={styles.row}>
-              <Col lg="6" xl="6">
-                <img
-                  style={{ width: "113%", marginInlineStart: "-20px" }}
-                  src={AppImage}
-                  alt=""
-                />
-              </Col>
-              <Col lg="6" xl="6">
-                <div className={`${styles.content}`}>
+        <section className={`${styles.download} py-2 rounded`}>
+          <div className="container d-flex align-items-center justify-content-between">
+            <div className="">
+              <img className="w-100" src={AppImage} alt="" />
+            </div>
+            <div className={`${styles.content}`}>
                   <h3 className="mb-4 text-center">APrint App </h3>
                   <p
                     style={{
@@ -479,9 +444,7 @@ const Home = ({ lang }) => {
                     </div>
                   </div>
                 </div>
-              </Col>
-            </Row>
-          </Container>
+          </div>
         </section>
         <section
           id="contact_us"
@@ -580,8 +543,8 @@ const Home = ({ lang }) => {
           </Container>
         </section>
 
-        <section className={`${styles.areYou}`}>
-          <div className={`${styles.innerAreYou}`}>
+        <section className={`${styles.areYou} `}>
+          <div className={`${styles.innerAreYou} py-4 px-3`}>
             <p className="text-white font-roboto text-capitalize" >
               As the foremost specialist in banner printing and large-format printing, APrint leads the industry in Spain. We are dedicated to delivering only the highest quality prints using superior materials and inks, utilising advanced printing technology and a team of highly skilled professionals. We strive to offer an unparalleled experience for our customers with easy and swift ordering, dependable print outcomes, and exceptional value pricing. Trust us to deliver excellence from beginning to end.
             </p>
