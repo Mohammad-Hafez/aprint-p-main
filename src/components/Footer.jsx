@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import styles from "../styles/footer/footer.module.css";
-import logo from "../assets/images/download/Group 64.png";
+import logo from "../assets/aprint_logo_mayo_2023.pdf-removebg-preview.png";
 import { Link } from "react-router-dom";
 import { IoLogoLinkedin } from "react-icons/io";
 import { FaFacebookSquare } from "react-icons/fa";
@@ -13,15 +13,16 @@ const Footer = () => {
       <Container>
         <div className={`row mt-2`}>
           <div className={`${styles.class1}  col-md-6 `}>
-            <div className={`d-flex align-items-center  ${styles.FooterfristDiv}`} >
-              <img className={`${styles.imgLogo}`} src={logo} alt="" />
-              <div className="ms-2">
+            <div className={`d-flex align-items-center justify-content-start ${styles.FooterfristDiv}`} >
+              <img className={`${styles.imgLogo} `} src={logo} alt="" />
+              <div className="ms-2 mt-2">
                 <h5>Aprint Limited Liability Company</h5>
                 <p style={{ fontSize: ".6rem" }}>
                   Aprint Limited Liability Company
                 </p>
               </div>
             </div>
+            <div className="ps-5">
             <p className={styles.Footerinfo}  style={{ fontSize: ".8rem",  marginTop: "10px", color: "#B6B7CD", }}  >
               APrint trading Name of MEGAIMPRESIONES DEL SUR S.L
             </p>
@@ -31,13 +32,14 @@ const Footer = () => {
             <p className="font-roboto">
               C. la Perdiz, 28, 11300 La Línea de la Concepción, Cádiz, España
             </p>
+            </div>
           </div>
           <div className="footerContact  col-md-3 text-light">
             <p className="font-roboto">Tel : +34 856 6211 42</p>
-            <p className="font-roboto">General : <Link className="text-light" to="mailto:hello1@example.com">hello@aprint.com</Link> </p>
-            <p className="font-roboto">Returns : <Link className="text-light" to="mailto:returns@aprint.com">returns@aprint.com</Link></p>
-            <p className="font-roboto">Sales :   <Link className="text-light" to="mailto:sales@aprint.com">sales@aprint.com</Link></p>
-            <p className="font-roboto">Support  : <Link className="text-light" to="mailto:support@aprint.com">support@aprint.com</Link></p>
+            <p className="font-roboto">General : <Link className={styles.email}  to="mailto:hello1@example.com">hello@aprint.com</Link> </p>
+            <p className="font-roboto">Returns : <Link className={styles.email}  to="mailto:returns@aprint.com">returns@aprint.com</Link></p>
+            <p className="font-roboto">Sales :   <Link className={styles.email}  to="mailto:sales@aprint.com">sales@aprint.com</Link></p>
+            <p className="font-roboto">Support  : <Link className={styles.email} to="mailto:support@aprint.com">support@aprint.com</Link></p>
             <div className={styles.last} >
               <div className={` ${styles.linksContainer}`}>
                 <h6 style={{ fontSize: ".9rem" }}> Find Us :</h6>
@@ -62,13 +64,13 @@ const Footer = () => {
               <h4 className="mb-0">Home</h4>
               <ul style={{ listStyle: "none" }} >
                 <li>
-                  <Link to="/">Products</Link>
+                  {'> '} <Link to="/">Products</Link>
                 </li>
                 <li>
-                  <Link to="/"> Contact Us</Link>
+                {'> '} <Link to="/"> Contact Us</Link>
                 </li>
                 <li>
-                  <Link to="/">Aprint App</Link>
+                {'> '} <Link to="/">Aprint App</Link>
                 </li>
               </ul>
           <div>

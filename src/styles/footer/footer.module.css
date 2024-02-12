@@ -16,7 +16,7 @@
 }
 
 .footer .imgLogo {
-  width: 13%;
+  width: 30%;
 }
 
 .footer .middle a {
@@ -26,8 +26,11 @@
   text-decoration: none;
   margin-top: 8px;
 }
-
-.footer .middle a:hover {
+.email{
+  color: #fff !important;
+}
+.footer .middle a:hover ,
+.email:hover{
   color: #FDC500 !important;
   text-decoration: underline;
 }
@@ -40,14 +43,6 @@
   position: relative;
 }
 
-.footer .middle li::before {
-  position: absolute;
-  top: 8px;
-  left: -8px;
-  content: ".";
-  font-size: 10px;
-  color: #fff;
-}
 
 .footer .last svg {
   font-size: 1.6rem;
@@ -161,11 +156,6 @@
     margin: 0 !important;
   }
 
-  .footerContainer .middle li::before {
-    position: absolute;
-    top: 4px;
-    right: -10px;
-  }
 }
 
 @media (max-width: 767.98px) {
