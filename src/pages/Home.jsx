@@ -167,8 +167,8 @@ const Home = ({ lang }) => {
 
         </div>
         <div className={`${styles.Search} `}>
-          <div className={`${styles.Search_section} ${styles.Search}`}>
-            <AiOutlineSearch />
+          <div className={`${styles.Search_section} ${styles.Search}  w-100 `}>
+            <AiOutlineSearch className="me-2"/>
             <input
             className="mx-2"
               value={search}
@@ -183,7 +183,7 @@ const Home = ({ lang }) => {
                 typingTimer = setTimeout(doneTyping, doneTypingInterval);
               }}
             />
-            <button>Search</button>
+            <button className="ms-2">Search</button>
             <div className={styles.searchResult}>
               {search.length > 0 && SearchArr && toggelSearch && (
                 <ul>{SerchResult}</ul>
