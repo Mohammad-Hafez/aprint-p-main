@@ -16,10 +16,6 @@ const Footer = () => {
             <div className={`d-flex align-items-center justify-content-start ${styles.FooterfristDiv}`} >
               <img className={`${styles.imgLogo} `} src={logo} alt="" />
               <div className="ms-2 mt-2">
-                <h5>Aprint Limited Liability Company</h5>
-                <p style={{ fontSize: ".6rem" }}>
-                  Aprint Limited Liability Company
-                </p>
               </div>
             </div>
             <div className="ps-5">
@@ -35,11 +31,12 @@ const Footer = () => {
             </div>
           </div>
           <div className="footerContact  col-md-3 text-light">
-            <p className="font-roboto">Tel : <a href="tel:+34856621142" className={styles.email} >+34 856 6211 42</a></p>
-            <p className="font-roboto">General : <a href="mailto:mailto:hello1@aprint.com" className={styles.email} >hello@aprint.com</a> </p>
-            <p className="font-roboto">Returns : <a href="mailto:returns@aprint.com" className={styles.email}  >returns@aprint.com</a ></p>
-            <p className="font-roboto">Sales :   <a href="mailto:sales@aprint.com" className={styles.email}  >sales@aprint.com</a ></p>
-            <p className="font-roboto">Support  : <a href="mailto:support@aprint.com" className={styles.email} >support@aprint.com</a></p>
+          <h4 className="mb-0">Contact :</h4>
+            <p className="font-roboto">Tel : <a href="tel:+34856621142" className={`${styles.email}`} >+34 856 6211 42</a></p>
+            <p className="font-roboto">General : <a href="mailto:mailto:hello1@aprint.com" className={`${styles.email} text-lowercase`}>hello@aprint.com</a> </p>
+            <p className="font-roboto">Returns : <a href="mailto:returns@aprint.com" className={`${styles.email} text-lowercase`} >returns@aprint.com</a ></p>
+            <p className="font-roboto">Sales :   <a href="mailto:sales@aprint.com" className={`${styles.email} text-lowercase`} >sales@aprint.com</a ></p>
+            <p className="font-roboto">Support  : <a href="mailto:support@aprint.com" className={`${styles.email} text-lowercase`}>support@aprint.com</a></p>
             <div className={styles.last} >
               <div className={` ${styles.linksContainer}`}>
                 <h6 style={{ fontSize: ".9rem" }}> Find Us :</h6>
@@ -61,7 +58,7 @@ const Footer = () => {
           </div>
           <div className="col-md-3 footerLinks d-flex justify-content-between  flex-grow-1 px-3">
         <div className={`${styles.middle} `} >
-              <h4 className="mb-0">Home</h4>
+              <h4 className="mb-0">َQuick Links :</h4>
               <ul style={{ listStyle: "none" }} >
                 <li>
                   {'> '} <Link to="/">Products</Link>
