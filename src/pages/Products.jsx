@@ -8,13 +8,13 @@ import { MdKeyboardArrowLeft } from "react-icons/md";
 import { useQueryHook } from "../components/custom_hooks/UseQueryHook";
 import Helmet from "../components/Helmet";
 import styles1 from "../styles/Services/services.module.css";
-import productImage from "../assets/product.png";
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const onProductsSuccess = (data) => {
     setProducts(data.data.data);
+    console.log("data", data.data);
   };
   const onProductsError = (error) => {
     // console.log("Error", error);
@@ -86,21 +86,6 @@ const Products = () => {
           >
             <h3 className={`${styles1.heading} m-auto`}> Aprint Products</h3>
           </div>
-          {/* <div className={styles1.mainServiceSearch}>
-            <input
-              onChange={(e) => setSearchTerm(e.target.value)}
-              style={{
-                marginTop: "-30px",
-                border: "1px solid #1e96fc ",
-                width: "96%",
-                margin: "30px auto 0px",
-                display: "block",
-              }}
-              className="mb-4"
-              type="search"
-              placeholder={ "Search..."}
-            />
-          </div> */}
           {isFetching || productLoading || isLoading ? (
             <div className="mt-5">
               <Loader />

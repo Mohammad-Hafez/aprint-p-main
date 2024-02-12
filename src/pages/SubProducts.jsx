@@ -134,19 +134,21 @@ const SubProducts = ({ lang }) => {
               </p>
             ) : (
               <>
-                <div className={`gap-3 ${styles.box}`}>
+                <div className={`row g-2 ${styles.box}`}>
                   {products.map((item, index) => (
+                    <div className="col-6 col-md-4 col-lg-3 ">
                     <Link
                       to={`${item.id}`}
                       style={{
                         cursor: "pointer",
                         color: "black",
                       }}
-                      className={styles.servicesItem}
+                      className={`${styles.servicesItem} h-100`}
                       key={item.id}
                     >
                       <ServiceItem service={item} type="subProduct" />
                     </Link>
+                    </div>
                   ))}
 
                   {/* <div className={`${styles.servicesItem} ${styles.private}`}>
