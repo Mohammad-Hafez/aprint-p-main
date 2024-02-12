@@ -35,11 +35,11 @@ const Footer = () => {
             </div>
           </div>
           <div className="footerContact  col-md-3 text-light">
-            <p className="font-roboto">Tel : +34 856 6211 42</p>
-            <p className="font-roboto">General : <Link className={styles.email}  to="mailto:hello1@example.com">hello@aprint.com</Link> </p>
-            <p className="font-roboto">Returns : <Link className={styles.email}  to="mailto:returns@aprint.com">returns@aprint.com</Link></p>
-            <p className="font-roboto">Sales :   <Link className={styles.email}  to="mailto:sales@aprint.com">sales@aprint.com</Link></p>
-            <p className="font-roboto">Support  : <Link className={styles.email} to="mailto:support@aprint.com">support@aprint.com</Link></p>
+            <p className="font-roboto">Tel : <a href="tel:+34856621142" className={styles.email} >+34 856 6211 42</a></p>
+            <p className="font-roboto">General : <a href="mailto:mailto:hello1@aprint.com" className={styles.email} >hello@aprint.com</a> </p>
+            <p className="font-roboto">Returns : <a href="mailto:returns@aprint.com" className={styles.email}  >returns@aprint.com</a ></p>
+            <p className="font-roboto">Sales :   <a href="mailto:sales@aprint.com" className={styles.email}  >sales@aprint.com</a ></p>
+            <p className="font-roboto">Support  : <a href="mailto:support@aprint.com" className={styles.email} >support@aprint.com</a></p>
             <div className={styles.last} >
               <div className={` ${styles.linksContainer}`}>
                 <h6 style={{ fontSize: ".9rem" }}> Find Us :</h6>
