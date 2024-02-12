@@ -31,7 +31,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="footerContact  col-md-3 text-light">
-          <h4 className="mb-0">Contact :</h4>
+          <h4 className="mb-3">Contact :</h4>
             <p className="font-roboto">Tel : <a href="tel:+34856621142" className={`${styles.email}`} >+34 856 6211 42</a></p>
             <p className="font-roboto">General : <a href="mailto:mailto:hello1@aprint.com" className={`${styles.email} text-lowercase`}>hello@aprint.com</a> </p>
             <p className="font-roboto">Returns : <a href="mailto:returns@aprint.com" className={`${styles.email} text-lowercase`} >returns@aprint.com</a ></p>
@@ -58,7 +58,7 @@ const Footer = () => {
           </div>
           <div className="col-md-3 footerLinks d-flex justify-content-between  flex-grow-1 px-3">
         <div className={`${styles.middle} `} >
-              <h4 className="mb-0">َQuick Links :</h4>
+              <h4 className="mb-0">Quick Links :</h4>
               <ul style={{ listStyle: "none" }} >
                 <li>
                   {'> '} <Link to="/">Products</Link>
