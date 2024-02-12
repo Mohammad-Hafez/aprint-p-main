@@ -25,7 +25,7 @@ import SwiperCards from "../components/Home/Brands";
 import ClientsSwiper from "../components/Home/Clients";
 import AppImage from "../assets/images/download/Clay_Mockup___17_.png";
 import why1Img from "../assets/images/why/3.png";
-import why2Img from "../assets/images/why/4.png";
+import banner from "../assets/images/PVC-Foam (1).png";
 import { useDispatch, useSelector } from "react-redux";
 import { SendContact } from "../store/ContactSlice";
 import { getSearch } from "../store/HomeSlice";
@@ -161,6 +161,10 @@ const Home = ({ lang }) => {
           <h2 className={`${styles.mainHeading2} font-quest`}>
           High Quality
           </h2>
+          {/* <div className="bannerImg">
+          <img src={banner} className="w-100" alt="banner" />
+        </div> */}
+
         </div>
         <div className={`${styles.Search} `}>
           <div className={`${styles.Search_section} ${styles.Search}`}>
@@ -196,15 +200,12 @@ const Home = ({ lang }) => {
             <Row>
             <Col className={` ${styles.secondWHY}`} xs={12} sm={12} lg={7}> 
                 <div className=" w-100">
-                  <h3 className={`${styles.whyDesc} font-quest fw-blod fs-2`}>
-                    Why Aprint is your Best Option ?
+                  <h3 className={`${styles.whyDesc} font- fw-blod fs-2`}>
+                     Aprint 
                   </h3>
                   <p className="font-roboto ">
                     APrint is a major supplier of promotional banners to local authorities, government departments, and universities, making us the first choice for custom banners. All of our orders are produced as white-label, allowing us to send banners directly to your client. Our white label banner printing is used across multiple industries, such as marketing agencies, graphic designers, event organizers, printers, sign companies, and more. With our Trade Vinyl Banner Printing service, we manufacture high-quality PVC banners at the most competitive prices. Our product range includes custom banners, outdoor banner printing, printed banners and signs, custom banner printing, and trade banner printing. We cater to clients and resellers throughout Spain and Europe.
                   </p>
-                  <p className="font-roboto ">Super Wide 5 Metre UV Ink Printers - Print up to 5-metre-wide banners with no joints.</p>
-                  <p className="font-roboto ">Looking for a professional design service? - Our in-house design team is capable of exceeding expectations, regardless of whether you are a small business, a popular brand, or an individual commemorating a birthday.</p>
-                  <p className="font-roboto ">Signage installation - Maximize the impact of your new large format banner, floor or wall graphic, or brand-new signage with our top-notch professional installation service. Our highly skilled and fully-insured installers will handle all aspects of your project with the utmost care and precision.</p>
                 </div>
               </Col>
 
@@ -345,7 +346,7 @@ const Home = ({ lang }) => {
           </Container>
         </section>
 
-        <section className={`${styles.download} py-2 rounded`}>
+        {/* <section className={`${styles.download} py-2 rounded`}>
           <div className="container ">
             <div className="row">
             <div className={`${styles.content} col-md-6 mol-lg-7 text-center`}>
@@ -380,7 +381,7 @@ const Home = ({ lang }) => {
             </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         <section  id="contact_us" className={`my-5 rounded w-100`} style={{ background: "#fff" }} >
           <Container >
@@ -420,9 +421,6 @@ const Home = ({ lang }) => {
         <section className={`${styles.areYou} `}>
           <div className={`${styles.innerAreYou} py-4 px-3`}>
             <h4 className="text-light">NEED OUR HELP ?</h4>
-            <p className="text-white font-roboto text-capitalize" >
-              As the foremost specialist in banner printing and large-format printing, APrint leads the industry in Spain. We are dedicated to delivering only the highest quality prints using superior materials and inks, utilising advanced printing technology and a team of highly skilled professionals. We strive to offer an unparalleled experience for our customers with easy and swift ordering, dependable print outcomes, and exceptional value pricing. Trust us to deliver excellence from beginning to end.
-            </p>
             <p
               className="text-white"
               style={{ width: "52%", lineHeight: "1.9" }}

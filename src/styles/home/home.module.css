@@ -2,13 +2,16 @@
   position: relative;
   height: 87vh;
   min-height: 500px;
-  background: linear-gradient(to bottom right, #225597, #143E74 70%, #ACB447 95%);
+  /* background: linear-gradient(to bottom right, #225597, #143E74 70%, #ACB447 95%); */
   border-radius: 0 0px 30px 10px;
   padding-top: 10px;
   -webkit-border-radius: 0 0px 115px 30px;
   -moz-border-radius: 0 0px 30px 10px;
   -ms-border-radius: 0 0px 30px 10px;
   -o-border-radius: 0 0px 30px 10px;
+  background-image: url(../../assets/Banner.jpg);
+  background-position: center;
+  background-size: cover;
 }
 
 .mainHeading {
@@ -20,7 +23,7 @@
   font-weight: 400;
   line-height: 60px;
   color: #ffffff;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .mainHeading::before {
@@ -42,7 +45,7 @@
   font-weight: 400;
   line-height: 60px;
   color: #ffffff;
-  text-transform: uppercase;
+  text-transform: capitalize;
 
 }
 
@@ -346,6 +349,7 @@
 .box {
   display: flex;
   flex-wrap: wrap;
+  /* background: #000; */
 }
 
 .arrowCont {
