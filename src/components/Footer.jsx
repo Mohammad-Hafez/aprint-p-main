@@ -16,7 +16,7 @@ const Footer = () => {
             <div className={`d-flex align-items-center justify-content-center ${styles.FooterfristDiv}`} >
               <img className={`${styles.imgLogo} `} src={logo} alt="" />
             </div>
-            <div className="ps-5">
+            <div className="text-start  ">
             <p className={styles.Footerinfo}  style={{ fontSize: ".8rem",  color: "#B6B7CD", }}  >
               APrint trading Name of MEGAIMPRESIONES DEL SUR S.L
             </p>
