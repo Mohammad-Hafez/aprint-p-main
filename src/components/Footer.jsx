@@ -58,7 +58,7 @@ const Footer = () => {
           </div>
           <div className="col-md-3 footerLinks d-flex justify-content-between  flex-grow-1 px-3">
         <div className={`${styles.middle} `} >
-              <h4 className="mb-0">Quick Links :</h4>
+              <h4 className="mb-1">Quick Links :</h4>
               <ul style={{ listStyle: "none" }} >
                 <li>
                   {'> '} <Link to="/">Products</Link>
