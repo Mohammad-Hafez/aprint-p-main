@@ -478,7 +478,7 @@
   margin-top: 5px !important;
 }
 
-.parentHover:hover .gradient2 {
+/* .parentHover:hover .gradient2 {
   display: block;
   -webkit-animation-name: visitHover;
   animation-name: visitHover;
@@ -486,9 +486,10 @@
   animation-duration: 1s;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
-}
+} */
 
 .parentHover:hover .arrowCont {
+  border: 0;
   background-image: linear-gradient(60deg, #80dc74, #1e96fc);
 }
 

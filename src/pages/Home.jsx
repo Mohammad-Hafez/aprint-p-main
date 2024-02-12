@@ -328,9 +328,6 @@ const Home = ({ lang }) => {
                               ({item.count}) Products
                             </p>
                             <div className={`d-flex ali-align-items-center ${styles.parentHover} ms-auto`} >
-                              <span className={`${styles.gradient2} mt-1`} >
-                                Discover Products
-                              </span>
                               <span className={`${styles.arrowCont} ${styles.arrowCont2}`} >
                                 <MdKeyboardArrowLeft />{" "}
                               </span>
