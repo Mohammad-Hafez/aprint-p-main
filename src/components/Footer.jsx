@@ -26,18 +26,18 @@ const Footer = () => {
               APrint trading Name of MEGAIMPRESIONES DEL SUR S.L
             </p>
             <h5 className="fw-bolder font-quest">
-                    SPAIN
+                    Spain
             </h5>
             <p className="font-roboto">
               C. la Perdiz, 28, 11300 La Línea de la Concepción, Cádiz, España
             </p>
           </div>
-          <div className="footerContact  col-md-3">
+          <div className="footerContact  col-md-3 text-light">
             <p className="font-roboto">Tel : +34 856 6211 42</p>
-            <p className="font-roboto">General : <Link to="mailto:hello1@example.com">hello1@example.com</Link> </p>
-            <p className="font-roboto">Returns : <Link to="mailto:returns@aprint.com">returns@aprint.com</Link></p>
-            <p className="font-roboto">Sales : <Link to="mailto:sales@aprint.com">sales@aprint.com</Link></p>
-            <p className="font-roboto">Support  : <Link to="mailto:support@aprint.com">support@aprint.com</Link></p>
+            <p className="font-roboto">General : <Link className="text-light" to="mailto:hello1@example.com">hello@aprint.com</Link> </p>
+            <p className="font-roboto">Returns : <Link className="text-light" to="mailto:returns@aprint.com">returns@aprint.com</Link></p>
+            <p className="font-roboto">Sales :   <Link className="text-light" to="mailto:sales@aprint.com">sales@aprint.com</Link></p>
+            <p className="font-roboto">Support  : <Link className="text-light" to="mailto:support@aprint.com">support@aprint.com</Link></p>
             <div className={styles.last} >
               <div className={` ${styles.linksContainer}`}>
                 <h6 style={{ fontSize: ".9rem" }}> Find Us :</h6>
