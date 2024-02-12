@@ -23,7 +23,7 @@ const Footer = () => {
               </div>
             </div>
             <div className="ps-5">
-            <p className={styles.Footerinfo}  style={{ fontSize: ".8rem",  marginTop: "10px", color: "#B6B7CD", }}  >
+            <p className={styles.Footerinfo}  style={{ fontSize: ".8rem",  color: "#B6B7CD", }}  >
               APrint trading Name of MEGAIMPRESIONES DEL SUR S.L
             </p>
             <h5 className="fw-bolder font-quest">

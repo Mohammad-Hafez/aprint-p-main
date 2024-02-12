@@ -24,7 +24,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import SwiperCards from "../components/Home/Brands";
 import ClientsSwiper from "../components/Home/Clients";
 import AppImage from "../assets/images/download/Clay_Mockup___17_.png";
-import why1Img from "../assets/images/why/3.png";
+import why1Img from "../assets/images/PVC-Foam (1).png";
 import banner from "../assets/images/PVC-Foam (1).png";
 import { useDispatch, useSelector } from "react-redux";
 import { SendContact } from "../store/ContactSlice";

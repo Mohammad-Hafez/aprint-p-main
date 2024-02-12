@@ -231,7 +231,7 @@
   flex-direction: row-reverse;
 }
 
-.whyDesc::before {
+/* .whyDesc::before {
   content: "";
   position: absolute;
   bottom: 5%;
@@ -240,7 +240,7 @@
   height: 12px;
   background-color: rgba(229, 229, 17, 0.8);
   z-index: -1;
-}
+} */
 
 .secondWHY p {
   color: #0a3565;
@@ -1041,7 +1041,7 @@ iframe {
     margin: 50px auto 20px;
   }
 
-  .whyDesc::before {
+  /* .whyDesc::before {
     content: "";
     position: absolute;
     top: 35.5px;
@@ -1050,7 +1050,7 @@ iframe {
     height: 12px;
     background-color: rgba(229, 229, 17, 0.8);
     z-index: -1;
-  }
+  } */
 
   .productItem1 {
     height: 34vh !important;
@@ -1177,7 +1177,7 @@ iframe {
     margin: 50px auto 20px !important;
   }
 
-  .why .whyDesc::before {
+  /* .why .whyDesc::before {
     content: "";
     position: absolute;
     top: 35.5px;
@@ -1186,7 +1186,7 @@ iframe {
     height: 12px;
     background-color: rgba(229, 229, 17, 0.8);
     z-index: -1;
-  }
+  } */
 }
 
 @media only screen and (max-width: 600px) {
@@ -1334,7 +1334,7 @@ iframe {
     font-size: 1.5rem;
   }
 
-  .why .whyDesc::before {
+  /* .why .whyDesc::before {
     content: "";
     position: absolute;
     right: 0;
@@ -1342,7 +1342,7 @@ iframe {
     height: 12px;
     background-color: rgba(229, 229, 17, 0.8);
     z-index: -1;
-  }
+  } */
 
 
   /* .hero_section .hero_images {
