@@ -13,10 +13,8 @@ const Footer = () => {
       <Container>
         <div className={`row mt-2`}>
           <div className={`${styles.class1}  col-md-6 `}>
-            <div className={`d-flex align-items-center justify-content-start ${styles.FooterfristDiv}`} >
+            <div className={`d-flex align-items-center justify-content-center ${styles.FooterfristDiv}`} >
               <img className={`${styles.imgLogo} `} src={logo} alt="" />
-              <div className="ms-2 mt-2">
-              </div>
             </div>
             <div className="ps-5">
             <p className={styles.Footerinfo}  style={{ fontSize: ".8rem",  color: "#B6B7CD", }}  >
@@ -37,7 +35,7 @@ const Footer = () => {
             <p className="font-roboto">Returns : <a href="mailto:returns@aprint.com" className={`${styles.email} text-lowercase`} >returns@aprint.com</a ></p>
             <p className="font-roboto">Sales :   <a href="mailto:sales@aprint.com" className={`${styles.email} text-lowercase`} >sales@aprint.com</a ></p>
             <p className="font-roboto">Support  : <a href="mailto:support@aprint.com" className={`${styles.email} text-lowercase`}>support@aprint.com</a></p>
-            <div className={styles.last} >
+            {/* <div className={styles.last} >
               <div className={` ${styles.linksContainer}`}>
                 <h6 style={{ fontSize: ".9rem" }}> Find Us :</h6>
                 <Link to="/" className="me-1">
@@ -53,7 +51,7 @@ const Footer = () => {
                   <CiInstagram />
                 </Link>
               </div>
-          </div>
+          </div> */}
 
           </div>
           <div className="col-md-3 footerLinks d-flex justify-content-between  flex-grow-1 px-3">
