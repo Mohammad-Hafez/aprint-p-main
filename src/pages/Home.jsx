@@ -210,7 +210,7 @@ const Home = ({ lang }) => {
               </Col>
 
               <Col xs={12} sm={12} lg={5}  className="position-relative whyImages mt-5 ">
-                      <div className={`over-flow-hidden pt-2 ps-2 my-2 ${styles.imgContainer} position-relative`} >
+                      <div className={`over-flow-hidden pt-2 ps-2 my-2 w-100 ${styles.imgContainer} position-relative`} >
                         <div className={styles.imgDiv1}></div>
                         <img src={why1Img} className="w-100 h-100" alt="" />
                       </div>
