@@ -3,14 +3,11 @@ import styles from "../styles/home/home.module.css";
 import Helmet from "../components/Helmet";
 import { Row, Col, Container } from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom";
-import deliveryImage from "../assets/images/why/delivery-truck.png";
-import payment from "../assets/images/why/online-payment.png";
+import deliveryImage from "../assets/vecteezy_faq-concept-illustration-people-looking-through-magnifying_10869741.png";
+import payment from "../assets/vecteezy_3d-hand-holding-with-tag-online-shopping-price-discount_9315266.png";
 import checking from "../assets/images/why/checking.png";
 import brush from "../assets/images/why/brush.png";
 import { MdKeyboardArrowLeft } from "react-icons/md";
-import d1 from "../assets/images/download/svgexport-4.png";
-import d2 from "../assets/images/download/svgexport-5.png";
-import d3 from "../assets/images/download/svgexport-6.png";
 import { FaWhatsapp } from "react-icons/fa";
 import elipse1 from "../assets/images/contact/Mask Group.png";
 import { useQueryHook } from "../components/custom_hooks/UseQueryHook";
@@ -23,12 +20,11 @@ import Loader from "../components/Loader";
 import { AiOutlineSearch } from "react-icons/ai";
 import SwiperCards from "../components/Home/Brands";
 import ClientsSwiper from "../components/Home/Clients";
-import AppImage from "../assets/images/download/Clay_Mockup___17_.png";
 import why1Img from "../assets/images/PVC-Foam (1).png";
-import banner from "../assets/images/PVC-Foam (1).png";
 import { useDispatch, useSelector } from "react-redux";
 import { SendContact } from "../store/ContactSlice";
 import { getSearch } from "../store/HomeSlice";
+import { FaHandsHelping } from "react-icons/fa";
 const Home = ({ lang }) => {
   const [services, setServices] = useState([]);
   const [products, setProducts] = useState([]);
@@ -229,13 +225,13 @@ const Home = ({ lang }) => {
               </div>
               <div className={styles.whyItem}>
                 <div className={styles.img_cont}>
-                  <img src={checking} alt="deliveryImage" />
+                  <img src={checking}  alt="deliveryImage"  />
                 </div>
                 <p className="mt-4 font-quest fs-5 fw-bloder">Quality Guaranteed</p>
               </div>
               <div className={styles.whyItem}>
                 <div className={styles.img_cont}>
-                  <img src={deliveryImage} alt="deliveryImage" />
+                  <img src={deliveryImage} className="w-75" alt="deliveryImage" />
                 </div>
                 <p className="mt-4 font-quest fs-5 fw-bloder">Always Here To Help</p>
               </div>

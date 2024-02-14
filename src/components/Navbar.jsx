@@ -221,7 +221,7 @@ const Navbar = ({ user, lang, setLang, isUser }) => {
                   {data.links.link2}
                 </NavLink>
               </li> */}
-              <li>
+              {/* <li>
                 <NavLink
                   to="/services"
                   className={({ isActive }) =>
@@ -230,7 +230,7 @@ const Navbar = ({ user, lang, setLang, isUser }) => {
                 >
                   {data.links.link3}
                 </NavLink>
-              </li>
+              </li> */}
               <li>
                 <NavLink
                   to="/products"
